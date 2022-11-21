@@ -1,0 +1,58 @@
+\documentclass[10pt,landscape]{article}
+\usepackage[landscape, margin=0.2in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{listings}
+
+
+\colorlet{mygray}{black!30}
+\colorlet{mygreen}{green!60!blue}
+\colorlet{mymauve}{red!60!blue}
+
+\lstset{
+  basicstyle=\footnotesize\ttfamily,
+  columns=fullflexible,
+  breakatwhitespace=false,      
+  breaklines=true,                
+  captionpos=b,                    
+  commentstyle=\color{mygreen}, 
+  extendedchars=true,              
+  frame=single,                   
+  keepspaces=true,             
+  keywordstyle=\color{blue},      
+  language=c++,                 
+  numbers=none,                
+  numbersep=5pt,                   
+  numberstyle=\tiny\color{blue}, 
+  rulecolor=\color{black},        
+  showspaces=false,               
+  showtabs=false,                 
+  stepnumber=5,                  
+  stringstyle=\color{mymauve},    
+  tabsize=3,                      
+  title=\lstname                
+}
+
+\begin{document}
+\begin{center}
+\textbf{Handbook USM}
+\end{center}
+
+\begin{multicols*}{3}
+\noindent\footnotesize\textbf{Type definitions}
+\begin{lstlisting}
+typedef long long ll;
+typedef vector< int > vi;
+typedef vector< vi > vvi;
+typedef pair< int, int > pii;
+typedef vector< pii > vpii;
+typedef vector< vpii > vvpii;
+\end{lstlisting}
+\vspace{-0.8cm}
+\begin{lstlisting}
+ios_base::sync_with_stdio(false); 
+cin.tie(NULL);
+cout.setf(ios::fixed);
+cout.precision(4);
+\end{lstlisting}
