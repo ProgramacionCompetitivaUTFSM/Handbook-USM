@@ -1,23 +1,18 @@
 class RollingHashing {
-  ll p;
-  ll m;
-  ll ns;
-  vector< ll > pows;
-  vector< ll > hash;
+  ll p, m, ns;
+  vector< ll > pows, hash;
 
   RollingHashing(string s) {
     // if WA then other p and other m
     // if still WA then double hashing
     // if still WA maybe is not the answer RH
-    p = 31;
-    m = 1e9 + 7;
-
+    p = 31; m = 1e9 + 7;
 
     ns = s.size();
     pows.resize(ns + 2);
-    for(int i = 1; i < ns + 2; i++) {
+    for(int i = 1; i < ns + 2; i++) 
       pows[i] = (pows[i - 1] * p) % m;
-    }
+
     hash.resize(ns + 1);
     hash[0] = 0;
     for(int i = 1; i <= ns; i++) {
