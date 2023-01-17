@@ -32,7 +32,7 @@ stuct SegmenTree {
       bit[n] = 0;
     }
   }
-  void apply(int n, int i, int j, T val) {"
+  void apply(int n, int i, int j, T val) {
     ST[n] += val * (j - i + 1);
     if(i != j) {
       lazy[2 * n] += lazy[n];
