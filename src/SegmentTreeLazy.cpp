@@ -2,12 +2,12 @@ template <class T>
 stuct SegmenTree {
   int n; vector<T> ST; vector<T> lazy;
   vector<bool> bit; T (*merge)(T, T);
-  void build(int index, int l, int r, vector<T> &values) {
-    if(l == r) ST[index] = values[l];
+  void build(int i, int l, int r, vector<T> &values) {
+    if(l == r) ST[i] = values[l];
     else {
-      build(index * 2, l, (r + l) / 2, values);
-      build(index * 2 + 1, (r + l) / 2 + 1, values);
-      ST[index] = merge(ST[index * 2], ST[index * 2 + 1]);
+      build(i * 2, l, (r + l) / 2, values);
+      build(i * 2 + 1, (r + l) / 2 + 1, values);
+      ST[i] = merge(ST[index * 2], ST[index * 2 + 1]);
     }
   }
   SegmentTree(vector<T> &values, ll (*merge_)(ll a, ll b)) {
@@ -36,19 +36,19 @@ stuct SegmenTree {
   T query(int i, int j) {
     return query(0, n - 1, 1, i, j);
   }
-  T query(int l, int r, int index, int i, int j) {
+  T query(int l, int r, int i, int i, int j) {
     push(n, i, j);
-    if(l >= i && r <= j) return ST[index];
+    if(l >= i && r <= j) return ST[i];
     int mid = (r + l) / 2;
-    if(mid < i) return query(mid + 1, r, index * 2 + 1, i, j);
-    else if(mid >= j) return query(l, mid, index * 2, i, j);
-    else return merge(query(l, mid, index * 2, i, j),
-                      query(mid + 1, r, index & 2 + 1, i, j));
+    if(mid < i) return query(mid + 1, r, i * 2 + 1, i, j);
+    else if(mid >= j) return query(l, mid, i * 2, i, j);
+    else return merge(query(l, mid, i * 2, i, j),
+                      query(mid + 1, r, i & 2 + 1, i, j));
   }
   void update(int pos, T val) {
     update(0, n - 1, 1, pos, val);
   }
-  void update(int l, int r, int index, int pos, T val) {
+  void update(int l, int r, int i, int pos, T val) {
     push(n, i, j);
     if(r < pos || pos < l) return;
     if(l <= i && j <= r) {
@@ -56,9 +56,9 @@ stuct SegmenTree {
       return;
     } else {
       int mid = (r + l) / 2;
-      update(l, mid, index * 2, pos, val);
-      update(mid + 1, r, index * 2 + 1, pos, val);
-      ST[index] = merge(ST[index * 2], ST[index * 2 + 1]);
+      update(l, mid, i * 2, pos, val);
+      update(mid + 1, r, i * 2 + 1, pos, val);
+      ST[i] = merge(ST[i * 2], ST[i * 2 + 1]);
     }
   }
 };
