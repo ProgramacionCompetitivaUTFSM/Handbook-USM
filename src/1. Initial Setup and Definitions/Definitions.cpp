@@ -1,0 +1,6 @@
+typedef long long ll;
+typedef vector< int > vi;
+typedef vector< vi > vvi;
+typedef pair< int, int > pii;
+typedef vector< pii > vpii;
+typedef vector< vpii > vvpii;

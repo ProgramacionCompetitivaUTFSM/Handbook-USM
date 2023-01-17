@@ -12,8 +12,8 @@ struct SegmentTree {
   }
   SegmentTree(vector<T> &vs, T (*m)(T a, T b)) {
     merge = m; N = vs.size();
-    ST.resize(4*N+3); lazy.assign(4*N+3, T());
-    bit.assign(4*N+3, false); build(1, 0, N-1, vs);
+    ST.resize(4 * N + 3); lazy.assign(4 * N + 3, T());
+    bit.assign(4 * N + 3, false); build(1, 0, N - 1, vs);
   }
   void push(int n, int i, int j) {
     if(bit[n]) {
@@ -40,8 +40,8 @@ struct SegmentTree {
     push(n, l, r);
     if(i <= l && r <= j) return ST[n];
     int mid = (r + l) / 2;
-    if(mid<i||j<l) return query(mid+1,r,2*n+1,i,j);
-    if(mid>=j||r<i) return query(l, mid, 2*n, i, j);
+    if(mid<i||j<l) return query(mid + 1, r, 2 * n + 1, i, j);
+    if(mid >= j || r < i) return query(l, mid, 2 * n, i, j);
     return merge(query(l, mid, 2 * n, i, j),
                  query(mid + 1, r, 2 * n + 1, i, j));
   }
