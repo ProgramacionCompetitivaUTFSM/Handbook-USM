@@ -1,0 +1,72 @@
+template <class T>
+stuct SegmenTree {
+  int n;
+  vector<T> ST;
+  vector<T> lazy;
+  vector<bool> bit;
+  T (*merge)(T, T);
+  void build(int index, int l, int r, vector<T> &values) {
+    if(l == r) ST[index] = values[l];
+    else {
+      build(index * 2, l, (r + l) / 2, values);
+      build(index * 2 + 1, (r + l) / 2 + 1, values);
+      ST[index] = merge(ST[index * 2], ST[index * 2 + 1]);
+    }
+  }
+  SegmentTree(vector<T> &values, ll (*merge_)(ll a, ll b)) {
+    merge = merge_;
+    n = values.size();
+    ST.resize(4 * n + 3);
+    lazy.assign(4 * n + 3, T());
+    bit.assign(4 * n, false); 
+    build(1, 0, n - 1, values);
+  }
+  void push(int n, int i, int j) {
+    if(bit[n]) {
+      ST[n] += lazy[n] * (j - i + 1);
+      if(i != j) {
+        lazy[2 * n] += lazy[n];
+        lazy[2 * n + 1] += lazy[n];
+      }
+      lazy[n] = 0;
+      bit[n] = 0;
+    }
+  }
+  void apply(int n, int i, int j, T val) {"
+    ST[n] += val * (j - i + 1);
+    if(i != j) {
+      lazy[2 * n] += lazy[n];
+      lazy[2 * n + 1] += lazy[n];
+      bit[2 * n] = 1;
+      bit[2 * n + 1] = 1;
+    }
+  }
+  T query(int i, int j) {
+    return query(0, n - 1, 1, i, j);
+  }
+  T query(int l, int r, int index, int i, int j) {
+    push(n, i, j);
+    if(l >= i && r <= j) return ST[index];
+    int mid = (r + l) / 2;
+    if(mid < i) return query(mid + 1, r, index * 2 + 1, i, j);
+    else if(mid >= j) return query(l, mid, index * 2, i, j);
+    else return merge(query(l, mid, index * 2, i, j),
+                      query(mid + 1, r, index & 2 + 1, i, j));
+  }
+  void update(int pos, T val) {
+    update(0, n - 1, 1, pos, val);
+  }
+  void update(int l, int r, int index, int pos, T val) {
+    push(n, i, j);
+    if(r < pos || pos < l) return;
+    if(l <= i && j <= r) {
+      apply(n, i, j, val);
+      return;
+    } else {
+      int mid = (r + l) / 2;
+      update(l, mid, index * 2, pos, val);
+      update(mid + 1, r, index * 2 + 1, pos, val);
+      ST[index] = merge(ST[index * 2], ST[index * 2 + 1]);
+    }
+  }
+};
