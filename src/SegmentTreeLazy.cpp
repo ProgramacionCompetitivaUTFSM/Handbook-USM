@@ -39,7 +39,7 @@ stuct SegmenTree {
     push(n, i, j);
     if(l >= i && r <= j) return ST[i];
     int mid = (r + l) / 2;
-    if(mid<i) return query(mid + 1, r, i * 2 + 1, i, j);
+    if(mid<i) return query(mid+1, r, i*2+1, i, j);
     else if(mid>=j) return query(l, mid, i * 2, i, j);
     else return merge(query(l, mid, i * 2, i, j),
                 query(mid + 1, r, i * 2 + 1, i, j));
@@ -50,8 +50,7 @@ stuct SegmenTree {
     push(n, i, j);
     if(r < pos || pos < l) return;
     if(l <= i && j <= r) {
-      apply(n, i, j, val);
-      return;
+      apply(n, i, j, val); return;
     } else {
       update(l, (r + l) / 2, i * 2, pos, val);
       update((r + l) / 2 + 1, r, i * 2 + 1, pos, val);
