@@ -1,10 +1,7 @@
 template <class T>
 stuct SegmenTree {
-  int n;
-  vector<T> ST;
-  vector<T> lazy;
-  vector<bool> bit;
-  T (*merge)(T, T);
+  int n; vector<T> ST; vector<T> lazy;
+  vector<bool> bit; T (*merge)(T, T);
   void build(int index, int l, int r, vector<T> &values) {
     if(l == r) ST[index] = values[l];
     else {
@@ -14,12 +11,9 @@ stuct SegmenTree {
     }
   }
   SegmentTree(vector<T> &values, ll (*merge_)(ll a, ll b)) {
-    merge = merge_;
-    n = values.size();
-    ST.resize(4 * n + 3);
-    lazy.assign(4 * n + 3, T());
-    bit.assign(4 * n, false); 
-    build(1, 0, n - 1, values);
+    merge = merge_; n = values.size();
+    ST.resize(4 * n + 3); lazy.assign(4 * n + 3, T());
+    bit.assign(4 * n, false); build(1, 0, n - 1, values);
   }
   void push(int n, int i, int j) {
     if(bit[n]) {
@@ -28,8 +22,7 @@ stuct SegmenTree {
         lazy[2 * n] += lazy[n];
         lazy[2 * n + 1] += lazy[n];
       }
-      lazy[n] = 0;
-      bit[n] = 0;
+      lazy[n] = 0; bit[n] = 0;
     }
   }
   void apply(int n, int i, int j, T val) {
@@ -37,8 +30,7 @@ stuct SegmenTree {
     if(i != j) {
       lazy[2 * n] += lazy[n];
       lazy[2 * n + 1] += lazy[n];
-      bit[2 * n] = 1;
-      bit[2 * n + 1] = 1;
+      bit[2 * n] = 1; bit[2 * n + 1] = 1;
     }
   }
   T query(int i, int j) {
