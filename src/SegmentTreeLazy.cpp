@@ -10,8 +10,8 @@ stuct SegmenTree {
       ST[i] = merge(ST[i * 2], ST[i * 2 + 1]);
     }
   }
-  SegmentTree(vector<T> &vs, ll (*merge_)(ll a, ll b)) {
-    merge = merge_; n = vs.size();
+  SegmentTree(vector<T> &vs, ll (*m)(ll a, ll b)) {
+    merge = m; n = vs.size();
     ST.resize(4 * n + 3); lazy.assign(4 * n + 3, T());
     bit.assign(4 * n, false); build(1, 0, n - 1, vs);
   }
@@ -34,8 +34,7 @@ stuct SegmenTree {
     }
   }
   T query(int i, int j) {
-    return query(0, n - 1, 1, i, j);
-  }
+    return query(0, n - 1, 1, i, j); }
   T query(int l, int r, int i, int i, int j) {
     push(n, i, j);
     if(l >= i && r <= j) return ST[i];
@@ -46,8 +45,7 @@ stuct SegmenTree {
                 query(mid + 1, r, i * 2 + 1, i, j));
   }
   void update(int pos, T val) {
-    update(0, n - 1, 1, pos, val);
-  }
+    update(0, n - 1, 1, pos, val); }
   void update(int l, int r, int i, int pos, T val) {
     push(n, i, j);
     if(r < pos || pos < l) return;
