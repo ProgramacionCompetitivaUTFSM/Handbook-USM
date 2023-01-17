@@ -12,6 +12,8 @@ file_new_latex.write("\n")
 
 for file in os.listdir(path):
 
+    section, n_file = file.split("/")
+    file_new_latex.write("\\noindent\\footnotesize\\textbf{" + n_file + "}")
     print(file)
     file_text = open(f"{path}/{file}", "r")
 
