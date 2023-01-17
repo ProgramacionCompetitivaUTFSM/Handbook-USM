@@ -26,7 +26,7 @@ stuct SegmenTree {
     if(mid < i) return query(mid + 1, r, n * 2 + 1, i, j);
     else if(mid >= j) return query(l, mid, n * 2, i, j);
     else return merge(query(l, mid, n * 2, i, j),
-                      query(mid + 1, r, n & 2 + 1, i, j));
+                      query(mid + 1, r, n * 2 + 1, i, j));
   }
   void update(int pos, T val) {
     update(0, N - 1, 1, pos, val);

@@ -11,12 +11,9 @@ stuct SegmenTree {
     }
   }
   SegmentTree(vector<T> &vs, ll (*m)(ll a, ll b)) {
-    merge = m;
-    N = vs.size();
-    ST.resize(4 * n + 3);
-    lazy.assign(4 * n + 3, T());
-    bit.assign(4 * n + 3, false);
-    build(1, 0, n - 1, vs);
+    merge = m; N = vs.size();
+    ST.resize(4 * n + 3); lazy.assign(4 * n + 3, T());
+    bit.assign(4 * n + 3, false); build(1, 0, n - 1, vs);
   }
   void push(int n, int i, int j) {
     if(bit[n]) {
@@ -25,8 +22,7 @@ stuct SegmenTree {
         lazy[2 * n] += lazy[n];
         lazy[2 * n + 1] += lazy[n];
       }
-      lazy[n] = 0;
-      bit[n] = 0;
+      lazy[n] = 0; bit[n] = 0;
     } 
   }
   void apply(int n, int i, int j, T val) {
@@ -44,10 +40,10 @@ stuct SegmenTree {
     push(n, l, r);
     if(l >= i && r <= j) return ST[n];
     int mid = (r + l) / 2;
-    if(mid < i) return query(mid + 1, r, n * 2 + 1, i, j);
-    else if(mid >= j) return query(l, mid, n * 2, i, j);
+    if(mid<i) return query(mid + 1, r, n*2+1, i, j);
+    else if(mid>=j) return query(l, mid, n*2, i, j);
     else return merge(query(l, mid, n * 2, i, j),
-                      query(mid + 1, r, n & 2 + 1, i, j));
+                      query(mid + 1, r, n * 2 + 1, i, j));
   }
   void update(int i, int j, T val) {
     update(0, n - 1, 1, i, j, val); }
