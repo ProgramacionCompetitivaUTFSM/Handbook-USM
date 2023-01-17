@@ -40,7 +40,7 @@ stuct SegmenTree {
     if(l >= i && r <= j) return ST[i];
     int mid = (r + l) / 2;
     if(mid<i) return query(mid+1, r, i*2+1, i, j);
-    else if(mid>=j) return query(l, mid, i * 2, i, j);
+    else if(mid>=j) return query(l,mid,i*2,i,j);
     else return merge(query(l, mid, i * 2, i, j),
                 query(mid + 1, r, i * 2 + 1, i, j));
   }
