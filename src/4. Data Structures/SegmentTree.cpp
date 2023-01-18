@@ -1,5 +1,5 @@
 template <class T>
-stuct SegmenTree {
+struct SegmentTree {
   int N;
   vector<T> ST;
   T (*merge)(T, T); 
