@@ -1,24 +1,22 @@
 struct UnionFind {
-  vector<int> p, r;
+	vector<int> e;
   UnionFind(int n) {
-    r.assign(n+1, 0);
-    p.assign(n+1, 0);
-    for(int i=1; i<=n; i++) p[i] = i;
+    e.assign(n, -1);
   }
-  int findSet(int i) {
-    return (p[i] == i)? i:(p[i] = findSet(p[i]));
+	int findSet (int x) {
+    return (e[x] < 0 ? x : e[x] = findSet(e[x]));
   }
-  bool isSameSet(int i, int j) {
-    return findSet(i) == findSet(j);
+	bool sameSet (int x, int y) {
+    return findSet(x) == findSet(y);
   }
-  void unionSet(int i, int j) {
-    if (!isSameSet(i, j)) {
-      int x = findSet(i), y = findSet(j);
-      if (r[x] > r[y]) p[y] = x;
-      else {
-        p[x] = y;
-        if (r[x] == r[y]) r[y]++;
-      }
-    }
+	int size (int x) {
+    return -e[findSet(x)];
   }
+	bool unionSet (int x, int y) {
+		x = findSet(x), y = findSet(y);
+		if (x == y) return 0;
+		if (e[x] > e[y]) swap(x, y);
+		e[x] += e[y], e[y] = x;
+		return 1;
+	}
 };
