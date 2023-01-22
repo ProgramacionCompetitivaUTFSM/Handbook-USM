@@ -5,6 +5,7 @@ void Dijsktra(int a) {
   while(!PQ.empty()) {
     int u = PQ.top().second;
     int d = PQ.top().first;
+    PQ.pop();
     if(d > D[u]) continue;
     // only in case that final node exists
     if(u == f) continue 
