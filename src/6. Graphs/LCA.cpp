@@ -13,13 +13,15 @@ struct LCA {
         dfs();
     }
 
-    void dfs(int u = 0) {
+    void dfs(int u = 0, int p = -1) {
         for (int v : T[u]) {
-            depth[v] = depth[u] + 1;
-            parent[v][0] = u;
-            for (int j = 1; j < LOGN; j++)
-                parent[v][j] = parent[parent[v][j-1]][j-1];
-            dfs(v);
+            if (p != v) {
+                depth[v] = depth[u] + 1;
+                parent[v][0] = u;
+                for (int j = 1; j < LOGN; j++)
+                    parent[v][j] = parent[parent[v][j-1]][j-1];
+                dfs(v, u);
+            }
         }
     }
 
