@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+template <typename T>
+struct SparseTable {
+    int n;
+    vector<vector<T>> table;
+    function<T(T, T)> merge;
+    SparseTable(const vector<T> &arr, function<T(T, T)> m) : merge(m) {
+        n = arr.size();
+        int k = log2_floor(n) + 1;
+        table.assign(n, vector<T>(k));
+        for (int i = 0; i < n; i++)
+            table[i][0] = arr[i];
+        for (int j = 1; j < k; j++)
+            for (int i = 0; i + (1 << j) <= n; i++)
+                table[i][j] = merge(table[i][j - 1], table[i + (1 << (j - 1))][j - 1]);
+    }
+    T query(int l, int r) {
+        int k = log2_floor(r - l + 1);
+        return merge(table[l][k], table[r - (1 << k) + 1][k]);
+    }
+    
+    int log2_floor(int n) { return n ? __builtin_clzll(1) - __builtin_clzll(n) : -1; }
+};
+
+int gcd(int a, int b) {
+    return __gcd(a, b);
+}
+
+int main() {
+
+    vector<int> arr = {1, 3, 2, 4, 5, 7, 6, 8};
+    SparseTable<int> st(arr, gcd);
+
+    cout << st.query(2, 2) << endl;
+
+
+    return 0;
+}
