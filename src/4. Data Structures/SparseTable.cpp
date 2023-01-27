@@ -1,7 +1,4 @@
-#include <bits/stdc++.h>
-
-using namespace std;
-
+// Precomputación en O(n logn), query en O(1)
 template <typename T>
 struct SparseTable {
     int n;
@@ -24,18 +21,3 @@ struct SparseTable {
     
     int log2_floor(int n) { return n ? __builtin_clzll(1) - __builtin_clzll(n) : -1; }
 };
-
-int gcd(int a, int b) {
-    return __gcd(a, b);
-}
-
-int main() {
-
-    vector<int> arr = {1, 3, 2, 4, 5, 7, 6, 8};
-    SparseTable<int> st(arr, gcd);
-
-    cout << st.query(2, 2) << endl;
-
-
-    return 0;
-}
