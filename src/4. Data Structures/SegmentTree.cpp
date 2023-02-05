@@ -7,7 +7,7 @@ struct SegmentTree {
     if(l == r) ST[n] = vs[l];
     else { 
       build(n * 2, l, (r + l) / 2, vs);
-      build(n * 2 + 1, (r + l) / 2 + 1, vs);
+      build(n * 2 + 1, (r + l) / 2 + 1, r, vs);
       ST[n] = merge(ST[n * 2], ST[n * 2 + 1]);
     }
   } 
