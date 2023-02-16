@@ -10,6 +10,7 @@ struct RollingHashing {
 
     ns = s.size();
     pows.resize(ns + 2);
+    pows[0] = 1;
     for(int i = 1; i < ns + 2; i++) 
       pows[i] = (pows[i - 1] * p) % m;
 
