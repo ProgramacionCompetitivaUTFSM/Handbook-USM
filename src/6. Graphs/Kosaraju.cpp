@@ -1,11 +1,12 @@
-// Usando Kosaraju
+// Kosaraju, en O(V + E)
 template<typename T>
 struct SCC {
-    vector<vector<int>> GT, G, SCC_G, SCC_GT;
+    vector<vector<int>> GT, G, SCC_G, SCC_GT, comp_nodes;
     vector<T> data, compressed_data;
     stack<int> order;
     vector<int> comp, dp;
     vector<bool> visited;
+    T (*compress_func)(T, T);
     int comp_count = 0;
  
     void topsort(int u) {
@@ -22,34 +23,39 @@ struct SCC {
             if (!visited[v])
                 build_component(v);
         comp[u] = comp_count;
+        comp_nodes[comp_count].push_back(u);
     }
  
     void compress_graph() {
         for (int u = 0; u < G.size(); u++)
-            compressed_data[comp[u]] += data[u];
+            compressed_data[comp[u]] = compress_func(compressed_data[comp[u]], data[u]);
  
         for (int u = 0; u < G.size(); u++)
             for (int v : G[u])
-                if (comp[u] != comp[v])
+                if (comp[u] != comp[v]) {
                     SCC_G[comp[u]].push_back(comp[v]);
+                    SCC_GT[comp[v]].push_back(comp[u]);                    
+                }
          
     }
  
-    T process(int cmp, T (*merge)(T a, T b)) {
+    T process(int cmp, T (*func)(T a, T b), T (*merge)(T a, T b)) {
         if (dp[cmp]) return dp[cmp];
         dp[cmp] = compressed_data[cmp];
         for (int u : SCC_G[cmp])
-            dp[cmp] = merge(dp[cmp], process(u, merge) + compressed_data[cmp]);
+            dp[cmp] = merge(dp[cmp], func(process(u, func, merge), compressed_data[cmp]));
         return dp[cmp];
     }
  
-    SCC(vector<vector<int>> &G, vector<T> &data, T identity): G(G), data(data) {
+    SCC(vector<vector<int>> &G, vector<T> &data, T (*compress_func)(T a, T b), T comp_identity, T dp_identity): compress_func(compress_func), G(G), data(data) {
         GT.resize(G.size());
+        comp_nodes.resize(G.size());
         visited.assign(G.size(), 0);
-        compressed_data.assign(G.size(), identity);
+        compressed_data.assign(G.size(), comp_identity);
         comp.assign(G.size(), 0);
         SCC_G.resize(G.size());
-        dp.assign(G.size(), identity);
+        SCC_GT.resize(G.size());
+        dp.assign(G.size(), dp_identity);
  
         for (int u = 0; u < G.size(); u++)
             for (int v : G[u])
@@ -71,5 +77,4 @@ struct SCC {
  
         compress_graph();
     }
- 
 };
