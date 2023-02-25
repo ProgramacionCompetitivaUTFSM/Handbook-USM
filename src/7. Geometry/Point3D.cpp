@@ -39,8 +39,32 @@ struct Point3D {
   Point3D operator/(T t) const {
     return Point3D(*this) /= t;
   }
+  T dot(Point3D& b) {
+    return x * b.x + y * b.y + z * b.z;
+  }
+  Point3D cross(Point3D & b) {
+    return Point3D(y * b.z - z * b.y,
+                   z * b.x - x * b.z,
+                   x * b.y - y * b.x);
+  }
+  T norm() {
+    return dot(*this);
+  }
+  double abs() {
+    return sqrt(norm());
+  }
+  double proj(Point3D& b) {
+    return dot(b) / b.abs();
+  }
+  double angle(Point3D& b) {
+    return acos(dot(b) / abs() / b.abs());
+  }
 };
 template< T >
 Point3D operator*(T a, Point3D< T > b) {
   return b * a;
+}
+template< T >
+T triple(Point3D a, Point3D b, Point3D c) {
+  return dot(a, cross(b, c));
 }

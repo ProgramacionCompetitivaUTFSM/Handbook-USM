@@ -35,6 +35,24 @@ struct Point2D {
   Point2D operator/(T t) const {
     return Point2D(*this) /= t;
   }
+  T dot(Point2D& b) {
+    return x * b.x + a.y * b.y;
+  }
+  T cross(Point2D & b) {
+    return x * b.y - a.y * a.x;
+  }
+  T norm() {
+    return dot(*this);
+  }
+  double abs() {
+    return sqrt(norm());
+  }
+  double proj(Point2D& b) {
+    return dot(b) / b.abs();
+  }
+  double angle(Point2D& b) {
+    return acos(dot(b) / abs() / b.abs());
+  }
 };
 template< T >
 Point2D operator*(T a, Point2D< T > b) {
