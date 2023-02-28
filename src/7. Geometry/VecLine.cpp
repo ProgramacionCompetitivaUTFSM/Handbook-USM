@@ -4,8 +4,7 @@ struct Line {
   Point2D< T > d;
   Line() {}
   Line(Point2D< T > a_, Point2D< T > d_) {
-    a = a_;
-    d = d_;
+    a = a_; d = d_;
   }
   Line(Point2D< T > p1, Point2D< T > p2) {
     // TO DO

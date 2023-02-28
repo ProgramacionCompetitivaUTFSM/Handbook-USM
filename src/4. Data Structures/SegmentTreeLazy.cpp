@@ -18,10 +18,8 @@ struct SegmentTreeLazy{
     ST[i] = merge(ST[i << 1], ST[i << 1 | 1]);
   }
   SegmentTreeLazy(vector<T1>&values){
-    n = values.size();
-    ST.resize(n << 2 | 3);
-    lazy.resize(n << 2 | 3);
-    upd.resize(n << 2 | 3, false);
+    n = values.size(); ST.resize(n << 2 | 3);
+    lazy.resize(n << 2 | 3); upd.resize(n << 2 | 3, false);
     build(1, 0, n - 1, values);
   }
   void push(int i, int l, int r){
@@ -69,9 +67,7 @@ struct SegmentTreeLazy{
     return merge(query(i << 1, l, mid, a, b), query(i << 1 | 1, mid + 1, r, a, b));
   }
   T1 query(int a, int b){
-    if (a > b){
-      return merge(query(a, n - 1), query(0, b));
-    }
+    if (a > b) return merge(query(a, n - 1), query(0, b));
     return query(1, 0, n - 1, a, b);
   }
 };

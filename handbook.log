@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2021.5.6)  27 FEB 2023 21:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2021.5.6)  28 FEB 2023 01:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -672,17 +672,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 84--108
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--146
+Underfull \hbox (badness 10000) in paragraph at lines 141--143
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 187--215
+Underfull \hbox (badness 10000) in paragraph at lines 170--198
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 187--215
+Underfull \hbox (badness 10000) in paragraph at lines 170--198
 []
  []
 
@@ -693,42 +693,42 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.420 // Precomputación 
+l.393 // Precomputación 
                          en O(n logn), query en O(1)
 ? 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--476
+Underfull \hbox (badness 10000) in paragraph at lines 234--443
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--476
+Underfull \hbox (badness 10000) in paragraph at lines 234--443
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--476
+Underfull \hbox (badness 10000) in paragraph at lines 234--443
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--476
+Underfull \hbox (badness 10000) in paragraph at lines 234--443
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--476
+Underfull \hbox (badness 10000) in paragraph at lines 234--443
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--476
+Underfull \hbox (badness 10000) in paragraph at lines 234--443
 []
  []
 
 [1
 
-] [2]
+]
 
 ! Package inputenc Error: Invalid UTF-8 byte sequence.
 
@@ -736,7 +736,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.542 // Corre en O(√n)
+l.507 // Corre en O(√n)
                          : Recomendado para obtener solo un numero
 ? 
 
@@ -746,7 +746,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.556 // Función 
+l.520 // Función 
                   Phi de 1 a n en O(n log(log n))
 ? 
 
@@ -756,139 +756,139 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.621 // Corre en O(√n)
+l.583 // Corre en O(√n)
                          
 ? 
 
-Underfull \hbox (badness 10000) in paragraph at lines 494--638
+Underfull \hbox (badness 10000) in paragraph at lines 461--600
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 494--638
+Underfull \hbox (badness 10000) in paragraph at lines 461--600
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 494--638
+Underfull \hbox (badness 10000) in paragraph at lines 461--600
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 494--638
+Underfull \hbox (badness 10000) in paragraph at lines 461--600
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 494--638
+Underfull \hbox (badness 10000) in paragraph at lines 461--600
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 494--638
+Underfull \hbox (badness 10000) in paragraph at lines 461--600
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 494--638
+Underfull \hbox (badness 10000) in paragraph at lines 461--600
 []
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 661--1076
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 623--996
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 661--1076
+Underfull \hbox (badness 10000) in paragraph at lines 623--996
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 661--1076
+Underfull \hbox (badness 10000) in paragraph at lines 623--996
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 661--1076
+Underfull \hbox (badness 10000) in paragraph at lines 623--996
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 661--1076
+Underfull \hbox (badness 10000) in paragraph at lines 623--996
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 661--1076
+Underfull \hbox (badness 10000) in paragraph at lines 623--996
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 661--1076
+Underfull \hbox (badness 10000) in paragraph at lines 623--996
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 661--1076
+Underfull \hbox (badness 10000) in paragraph at lines 623--996
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 661--1076
+Underfull \hbox (badness 10000) in paragraph at lines 623--996
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 661--1076
+Underfull \hbox (badness 10000) in paragraph at lines 623--996
 []
  []
 
 [3] [4]
-Overfull \vbox (165.1582pt too high) has occurred while \output is active []
+Overfull \vbox (5.1582pt too high) has occurred while \output is active []
 
 
-Overfull \vbox (165.1582pt too high) has occurred while \output is active []
+Overfull \vbox (5.1582pt too high) has occurred while \output is active []
 
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 1145--1395
+Underfull \hbox (badness 10000) in paragraph at lines 1050--1259
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1145--1395
+Underfull \hbox (badness 10000) in paragraph at lines 1050--1259
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1145--1395
+Underfull \hbox (badness 10000) in paragraph at lines 1050--1259
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1145--1395
+Underfull \hbox (badness 10000) in paragraph at lines 1050--1259
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1145--1395
+Underfull \hbox (badness 10000) in paragraph at lines 1050--1259
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1145--1395
+Underfull \hbox (badness 10000) in paragraph at lines 1050--1259
 []
  []
 
 [6] [7] [8] (./handbook.aux) ) 
 Here is how much of TeX's memory you used:
- 16791 strings out of 481240
- 315688 string characters out of 5920404
- 2804598 words of memory out of 5000000
- 31784 multiletter control sequences out of 15000+600000
+ 16787 strings out of 481240
+ 315548 string characters out of 5920404
+ 2534597 words of memory out of 5000000
+ 31780 multiletter control sequences out of 15000+600000
  534715 words of font info for 34 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,8n,65p,430b,1845s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on handbook.dvi (8 pages, 242212 bytes).
+Output written on handbook.dvi (8 pages, 237152 bytes).

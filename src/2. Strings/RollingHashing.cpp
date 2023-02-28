@@ -1,19 +1,16 @@
 struct RollingHashing {
   ll p, m, ns;
   vector< ll > pows, hash;
-
   RollingHashing(string s, ll p_=31, ll m_=1e9 + 7) {
     // if WA then other p and other m
     // if still WA then double hashing
     // if still WA maybe is not the answer RH
     p = p_; m = m_;
-
     ns = s.size();
     pows.resize(ns + 2);
     pows[0] = 1;
     for(int i = 1; i < ns + 2; i++) 
       pows[i] = (pows[i - 1] * p) % m;
-
     hash.resize(ns + 1);
     hash[0] = 0;
     for(int i = 1; i <= ns; i++) {
