@@ -21,9 +21,8 @@ for dir in os.listdir(path):
         name_w = name_w.split(".cpp")[0]
 
         file_new_latex.write("\\begin{tikzpicture}\n")
-        file_new_latex.write("\\node [mybox] (box){\n\\begin{minipage}{0.3\\textwidth}")
+        file_new_latex.write("\\node [mybox] (box){\n\\begin{minipage}{0.45\\textwidth}")
         file_new_latex.write("\\begin{lstlisting}\n")
-    
         for line in file_text:
             file_new_latex.write(line)
 
