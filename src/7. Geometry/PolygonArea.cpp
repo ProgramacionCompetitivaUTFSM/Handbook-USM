@@ -1,11 +1,10 @@
 // Recuerda que si quieres sumar varias areas factoriza 1/2
-// Para numeros enteros, solo hay que cambiar el tipo de dato
-double area(const vector<Point>& fig) {
-    double res = 0;
-    for (unsigned i = 0; i < fig.size(); i++) {
-        Point p = i ? fig[i - 1] : fig.back();
-        Point q = fig[i];
-        res += (p.x - q.x) * (p.y + q.y);
-    }
-    return fabs(res) / 2;
+template<typename T>
+T polygonArea(vector<Point2D<T>> P, bool x2 = 0) {
+  T area = 0;
+  for(int i = 0; i < P.size()-1; ++i)
+    area += P[i].cross(P[i+1]);
+  // Si el primer punto se repite, sacar:
+  area += P.back().cross(P.front());
+  return abs(area)/ (x2 ? 1 : 2);
 }
