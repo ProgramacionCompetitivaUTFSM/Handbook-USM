@@ -1,4 +1,4 @@
-template< T >
+template<typename T >
 struct Point2D {
   T x, y;
   Point2D() {};
@@ -35,8 +35,8 @@ struct Point2D {
   Point2D< T > operator/(T t) const {
     return Point2D(*this) /= t;
   }
-  T dot(Point2D< T >& b) { return x * b.x + a.y * b.y; }
-  T cross(Point2D< T >& b) { return x * b.y - a.y * a.x; }
+  T dot(Point2D< T >& b) { return x * b.x + y * b.y; }
+  T cross(Point2D< T >& b) { return x * b.y - y * b.x; }
   T norm() { return dot(*this); }
   double abs() { return sqrt(norm()); }
   double proj(Point2D< T >& b) { return dot(b) / b.abs(); }
@@ -44,5 +44,5 @@ struct Point2D {
     return acos(dot(b) / abs() / b.abs()); 
   }
 };
-template< T >
+template<typename T >
 Point2D< T > operator*(T a, Point2D< T > b) { return b * a; }
