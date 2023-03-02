@@ -1,23 +1,17 @@
-template< T >
+template<typename T >
 struct Segment {
-  // Segment (P, Q)
   Point2D< T > P;
   Point2D< T > Q;
-  Segment(Point2D< T > P_, Point2D< T > Q_) {
-    P = P_;
-    Q = Q_;
+  Segment(Point2D<T> P, Point2D<T> Q): P(P), Q(Q) {}
+  int sign(T x, T eps = 0) { return x > eps ? 1 : x < -eps ? -1 : 0; }
+  bool contain(Point2D<T> p, T eps = 0) {
+    return (P - p).dot(Q - p) <= (T)0 and abs((Q - P).cross(p - P)) <= eps;
   }
-  bool check(T a, T b, T c, T d) {
-    if(a > b) swap(a, b);
-    if(c > d) swap(c, d);
-    return max(a, c) <= min(b, d);
-  }
-  int sign(T x) { return x > 0 ? 1 : (x < 0 : -1 : 0); } 
-  bool intersect(Segment< T > S) {
-    if((P - S.P).cross(S.Q - S.P) == 0 && (Q - S.P).cross(S.Q - S.P) == 0) {
-      return check(P.x, Q.x, S.P.x, S.Q.x) && check(P.y, Q.y, S.P.y, S.Q.y);
-    }
-    return sign((Q - P).cross(S.P - P)) != sign((Q - P).cross(S.Q - P)) &&
-    sign((S.Q - S.P).cross(P - S.P)) != sign((S.Q - S.P).cross(Q - S.P));
+  bool intersect(Segment<T> b) {
+    if (this->contain(b.P) or this->contain(b.Q) or b.contain(P) or b.contain(Q))
+        return true;
+    // change < 0 or <= depending the problem
+    return sign( ((b.P) - P).cross(Q - P) )*sign( (b.Q - P).cross(Q - P) ) < 0 and
+           sign((P - b.Q).cross(b.Q - b.P))*sign( (Q- b.P).cross(b.Q - b.P) ) < 0;
   }
 };
