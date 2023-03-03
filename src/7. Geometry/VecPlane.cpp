@@ -8,7 +8,7 @@ struct Plane {
     Point3D< T > x(n.x, p1.n.x, p2.n.x);
     Point3D< T > x(n.y, p1.n.y, p2.n.y);
     Point3D< T > x(n.z, p1.n.z, p2.n.z);
-    Point3D< T > d(a.dot(n), p1.a.dot(p1.n), p2.a.dot(p2.n));
+    Point3D< T > d(a|n, (p1.a)|(p1.n), (p2.a)|(p2.n));
     return Point3D(triple(d, y, z),
                    triple(x, d, z),
                    triple(x, y, d)) / triple(n, p1.n, p2.n);

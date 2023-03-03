@@ -7,19 +7,19 @@ struct Point2D {
     x = t.x; y = t.y;
     return *this;
   }
-  Point2D< T >& operator+= (Point2D< T > t) {
+  Point2D< T >& operator+=(Point2D< T > t) {
     x += t.x; y += t.y;
     return *this;
   }
-  Point2D< T >& operator-= (Point2D< T > t) {
+  Point2D< T >& operator-=(Point2D< T > t) {
     x -= t.x; y -= t.y;
     return *this;
   }
-  Point2D< T >& operator*= (Point2D< T > t) {
+  Point2D< T >& operator*=(Point2D< T > t) {
     x *= t.x; y *= t.y;
     return *this;
   }
-  Point2D< T >& operator/= (Point2D< T > t) {
+  Point2D< T >& operator/=(Point2D< T > t) {
     x /= t.y; y /= t.y;
     return *this;
   }

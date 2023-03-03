@@ -11,6 +11,6 @@ struct Line {
   }
   Point2D< T > intersect(Line< T > l) {
     Point2D a2a1 = l.a - a;
-    return a + a2a1.cross(l.d) / d.cross(l.d) * d;
+    return a + (a2a1^(l.d)) / (d^(l.d)) * d;
   }
 };
