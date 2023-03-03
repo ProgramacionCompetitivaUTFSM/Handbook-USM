@@ -1,16 +1,22 @@
+template <typename T>
 struct Fraction {
-  ll numerator, denominator;
-  Fraction(ll a, ll b){
-    numerator = a, denominator = b;
+  T p, q;
+
+  Fraction() {}
+  Fraction(T p, T q): p(p), q(q) {
+    if (q < 0) this->p = -p, this->q = -q;
+  }
+  bool operator<(const Fraction o) {
+    return p*o.q < o.p*q;
   }
   Fraction simplify(Fraction f){
-    ll g = gcd(f.numerator, f.denominator);
-    return Fraction(f.numerator/g, f.denominator/g);
+    ll g = gcd(f.p, f.q);
+    return Fraction(f.p/g, f.q/g);
   }
   Fraction add(Fraction f){
-    ll l = lcm(denominator, f.denominator);
-    numerator *= (l/denominator);
-    numerator += f.numerator * (l/f.denominator);
-    return simplify(Fraction(numerator, l));
+    ll l = lcm(q, f.q);
+    p *= (l/q);
+    p += f.p * (l/f.q);
+    return simplify(Fraction(p, l));
   }
 };
