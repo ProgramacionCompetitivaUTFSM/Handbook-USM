@@ -35,14 +35,14 @@ struct Point2D {
   Point2D< T > operator/(T t) {
     return Point2D(*this) /= t;
   }
-  T dot(Point2D< T > b) { return x * b.x + y * b.y; }
-  T cross(Point2D< T > b) { return x * b.y - y * b.x; }
-  T cross(Point2D<T> a, Point2D<T> b) { return (a-*this).cross(b-*this); }
-  T norm() { return dot(*this); }
+  T operator|(Point2D< T > b) { return x * b.x + y * b.y; }
+  T operator^(Point2D< T > b) { return x * b.y - y * b.x; }
+  T cross(Point2D< T > a, Point2D< T > b) { return (a-*this)^(b-*this); }
+  T norm() { return (*this) | (*this); }
   double abs() { return sqrt(norm()); }
-  double proj(Point2D< T > b) { return dot(b) / b.abs(); }
+  double proj(Point2D< T > b) { return (*this | b) / b.abs(); }
   double angle(Point2D< T > b) { 
-    return acos(dot(b) / this->abs() / b.abs()); 
+    return acos(((*this) | b) / this->abs() / b.abs()); 
   }
 };
 template<typename T >
