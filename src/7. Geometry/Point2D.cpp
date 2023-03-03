@@ -39,6 +39,7 @@ struct Point2D {
   T operator^(Point2D< T > b) { return x * b.y - y * b.x; }
   T cross(Point2D< T > a, Point2D< T > b) { return (a-*this)^(b-*this); }
   T norm() { return (*this) | (*this); }
+  T sqdist(Point2D<T> b) { return ((*this)-b).norm(); }
   double abs() { return sqrt(norm()); }
   double proj(Point2D< T > b) { return (*this | b) / b.abs(); }
   double angle(Point2D< T > b) { 
