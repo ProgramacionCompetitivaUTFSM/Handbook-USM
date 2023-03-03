@@ -44,6 +44,7 @@ struct Point2D {
   double angle(Point2D< T > b) { 
     return acos(((*this) | b) / this->abs() / b.abs()); 
   }
+  Point2D<T> rotate(T a) const  { return {cos(a)*x - sin(a)*y, sin(a)*x + cos(a)*y}; }
 };
 template<typename T >
 Point2D< T > operator*(T a, Point2D< T > b) { return b * a; }
