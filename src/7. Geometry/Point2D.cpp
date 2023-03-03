@@ -37,6 +37,7 @@ struct Point2D {
   }
   T dot(Point2D< T > b) { return x * b.x + y * b.y; }
   T cross(Point2D< T > b) { return x * b.y - y * b.x; }
+  T cross(Point2D<T> a, Point2D<T> b) { return (a-*this).cross(b-*this); }
   T norm() { return dot(*this); }
   double abs() { return sqrt(norm()); }
   double proj(Point2D< T > b) { return dot(b) / b.abs(); }
