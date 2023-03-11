@@ -4,7 +4,7 @@ class Hungarian {
     bool maxi, swapped = false;
     vector<vector<T>> cost;
     vector<T> u, v;
-    vi p, way;
+    vector<int> p, way;
     int l, r;
  
   public:
