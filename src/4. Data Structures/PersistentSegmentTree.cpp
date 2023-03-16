@@ -1,50 +1,48 @@
-template < typename T, T merge(T, T) >
-  struct st_node {
-    st_node * left = 0, * right = 0;
-    int i, j;
-    T val;
-    st_node() {}
-    st_node(int _i, int _j): i(_i), j(_j) {}
-    st_node(vector < T > & A) {
-      int N = int(A.size());
-      i = 0, j = N - 1;
-      build(A);
+template<class T, T _m(T, T)>
+struct persistent_segment_tree {
+    vector<T> ST; vector<int> L, R;
+    int n, rt;
+    persistent_segment_tree(int n): ST(1, T()),L(1, 0),R(1, 0), n(n), rt(0){}
+    int new_node(T v, int l = 0, int r = 0){
+        int ks = ST.size();
+        ST.push_back(v); L.push_back(l); R.push_back(r);
+        return ks;
     }
-
-    void build(vector < ll > & A) {
-      if (i == j) {
-        val = A[i];
-        return;
-      }
-      int mid = (i + j) / 2;
-      left = new st_node < T, merge > (i, mid);
-      right = new st_node < T, merge > (mid + 1, j);
-      left -> build(A);
-      right -> build(A);
-      val = merge(left -> val, right -> val);
+    int update(int k, int l, int r, int p, T v){
+        int ks = new_node(ST[k], L[k], R[k]);
+        if (l == r) {
+            ST[ks] = v;
+            return ks;
+        }
+        int m = (l + r) / 2, ps;
+        if (p <= m) {
+            ps = update(L[ks], l, m, p, v);
+            L[ks] = ps;
+        }
+        else {
+            ps = update(R[ks], m + 1, r, p, v);
+            R[ks] = ps;
+        }
+        ST[ks] = _m(ST[L[ks]], ST[R[ks]]);
+        return ks;
     }
-
-    st_node * update(int t, ll v) {
-      if (t < i || j < t) {
-        return this;
-      }
-      if (i == j) {
-        st_node * ret = new st_node < T, merge > ( * this);
-        ret -> val = v;
-        return ret;
-      }
-      st_node * ret = new st_node < T, merge > (i, j);
-      ret -> left = left -> update(t, v);
-      ret -> right = right -> update(t, v);
-      ret -> val = merge(ret -> left -> val, ret -> right -> val);
-      return ret;
+    int query(int k, int l, int r, int a, int b){
+        if (l >= a and r <= b)
+            return ST[k];
+        int m = (l + r) / 2;
+        if (b <= m)
+            return query(L[k], l, m, a, b);
+        if (a > m)
+            return query(R[k], m + 1, r, a, b);
+        return _m(query(L[k], l, m, a, b), query(R[k], m + 1, r, a, b));
     }
-
-    ll query(int l, int r) {
-      if (l <= i && j <= r) return val;
-      int mid = (i + j) / 2;
-      if (mid < l || r < i) return right -> query(l, r);
-      else if (j < l || r < mid + 1) return left -> query(l, r);
-      return merge(left -> query(l, r), right -> query(l, r));
+    int update(int k, int p, int v){
+        return rt = update(k, 0, n - 1, p, v);
     }
-  };
+    int update(int p, int v){
+        return update(rt, p, v);
+    }
+    int query(int k, int a, int b){
+        return query(k, 0, n - 1, a, b);
+    }
+};
