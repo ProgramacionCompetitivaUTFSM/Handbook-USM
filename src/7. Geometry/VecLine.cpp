@@ -10,7 +10,7 @@ struct Line {
     // TO DO
   }
   Point2D< T > intersect(Line< T > l) {
-    Point2D a2a1 = l.a - a;
+    Point2D< T > a2a1 = l.a - a;
     return a + (a2a1^(l.d)) / (d^(l.d)) * d;
   }
 };
