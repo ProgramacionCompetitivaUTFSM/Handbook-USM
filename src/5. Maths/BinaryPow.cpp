@@ -1,5 +1,5 @@
 ll binpow(ll a, ll b, ll mod) {
-  a %= m;
+  a %= mod;
   ll res = 1;
   while (b > 0) {
     if (b & 1)
