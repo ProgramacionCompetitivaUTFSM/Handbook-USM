@@ -1,6 +1,12 @@
-struct GCD_type { ll x, y, d; };
-GCD_type ex_GCD(ll a, ll b){
-    if (b == 0) return {1, 0, a};
-    GCD_type pom = ex_GCD(b, a % b);
-    return {pom.y, pom.x - a / b * pom.y, pom.d};
+vector<ll> egcd(ll n, ll m) {
+  ll r0 = n, r1 = m;
+  ll s0 = 1, s1 = 0;
+  ll t0 = 0, t1 = 1;
+  while(r1 != 0) {
+    ll q = r0/r1;
+    ll r = r0 - q*r1; r0 = r1; r1 = r;
+    ll s = s0 - q*s1; s0 = s1; s1 = s;
+    ll t = t0 - q*t1; t0 = t1; t1 = t;
+  }
+  return {r0,s0,t0};
 }
