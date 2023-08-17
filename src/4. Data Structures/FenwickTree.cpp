@@ -1,7 +1,7 @@
 struct BIT {
   vector <int> bit; int n;
   BIT(int n): n(n) { bit.assign(n, 0); }
-  BIT(vector <int> const & a): bit(a.size()) {
+  BIT(vector <int> const & a): BIT(a.size()) {
     for (size_t i = 0; i < a.size(); i++)
       add(i, a[i]);
   }
