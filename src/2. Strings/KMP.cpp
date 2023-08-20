@@ -1,7 +1,8 @@
+template<class T>
 struct KMP {
-  string pattern;
+  T pattern;
   vector < int > lps;
-  KMP(string & pat): pattern(pat) {
+  KMP(T & pat): pattern(pat) {
     lps.resize(pat.size(), 0);
     int len = 0, i = 1;
     while (i < pattern.size()) {
@@ -13,8 +14,8 @@ struct KMP {
       }
     }
   }
-  vector < int > search(const string & text) {
-    vector < int > matches;
+  vector < int > search(T &text) {
+    vector <int> matches;
     int i = 0, j = 0;
     while (i < text.size()) {
       if (pattern[j] == text[i]) {
