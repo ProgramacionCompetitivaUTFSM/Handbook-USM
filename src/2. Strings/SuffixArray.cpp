@@ -1,50 +1,38 @@
-vector<int> sort_cyclic_shifts(string &s) {
-    int n = s.size();
-    const int alphabet = 256;
-    vector<int> p(n), c(n), cnt(max(alphabet, n), 0);
-    for (int i = 0; i < n; i++)
-        cnt[s[i]]++;
-    for (int i = 1; i < alphabet; i++)
-        cnt[i] += cnt[i-1];
-    for (int i = 0; i < n; i++)
-        p[--cnt[s[i]]] = i;
-    c[p[0]] = 0;
-    int classes = 1;
-    for (int i = 1; i < n; i++) {
-        if (s[p[i]] != s[p[i-1]])
-            classes++;
-        c[p[i]] = classes - 1;
+struct SA{
+    int n; 
+    vector<int> C, R, R_, sa, sa_, lcp;
+    inline int gr(int i) { return i < n ? R[i] : 0; }
+    void csort(int maxv, int k){
+        C.assign(maxv + 1, 0); 
+        for(int i = 0; i < n; i++) C[gr(i + k)]++;
+        for(int i = 1; i < maxv + 1; i++) C[i] += C[i - 1];
+        for (int i = (int)n - 1; i >= 0; i--) sa_[--C[gr(sa[i] + k)]] = sa[i];
+        sa.swap(sa_);
     }
-    vector<int> pn(n), cn(n);
-    for (int h = 0; (1 << h) < n; ++h) {
-        for (int i = 0; i < n; i++) {
-            pn[i] = p[i] - (1 << h);
-            if (pn[i] < 0)
-                pn[i] += n;
+    void getSA(vector<int>& s){
+        R = R_ = sa = sa_ = vector<int>(n); 
+        for(ll i = 0; i < n; i++) sa[i] = i;
+        sort(sa.begin(),sa.end(),[&s](int i, int j) { return s[i] < s[j]; });
+        int r = R[sa[0]] = 1;
+        for(ll i = 1; i < n; i++) R[sa[i]] = (s[sa[i]] != s[sa[i - 1]]) ? ++r : r;
+        for (int h = 1; h < n && r < n; h <<= 1){
+            csort(r, h); csort(r, 0); r = R_[sa[0]] = 1;
+            for(int i = 1; i < n; i++){
+                if (R[sa[i]] != R[sa[i - 1]] || gr(sa[i] + h) != gr(sa[i - 1] + h)) r++;
+                R_[sa[i]] = r;
+            } R.swap(R_);
         }
-        fill(cnt.begin(), cnt.begin() + classes, 0);
-        for (int i = 0; i < n; i++)
-            cnt[c[pn[i]]]++;
-        for (int i = 1; i < classes; i++)
-            cnt[i] += cnt[i-1];
-        for (int i = n-1; i >= 0; i--)
-            p[--cnt[c[pn[i]]]] = pn[i];
-        cn[p[0]] = 0;
-        classes = 1;
-        for (int i = 1; i < n; i++) {
-            pair<int, int> cur = {c[p[i]], c[(p[i] + (1 << h)) % n]};
-            pair<int, int> prev = {c[p[i-1]], c[(p[i-1] + (1 << h)) % n]};
-            if (cur != prev)
-                ++classes;
-            cn[p[i]] = classes - 1;
-        }
-        c.swap(cn);
     }
-    return p;
-}
-vector<int> suffix_array_construction(string s) {
-    s += "\0";
-    vector<int> sorted_shifts = sort_cyclic_shifts(s);
-    sorted_shifts.erase(sorted_shifts.begin());
-    return sorted_shifts;
-}
+    void getLCP(vector<int> &s)
+    {
+        lcp.assign(n, 0); int k = 0;
+        for(ll i = 0; i < n; i++){
+            int r = R[i] - 1;
+            if (r == n - 1) { k = 0; continue; }
+            int j = sa[r + 1];
+            while (i + k < n && j + k < n and s[i + k] == s[j + k]) k++;
+            lcp[r] = k; if (k) k--;
+        }
+    }
+    SA(vector<int> &s) { n = s.size(); getSA(s); getLCP(s); }
+};
