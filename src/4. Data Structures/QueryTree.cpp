@@ -1,3 +1,9 @@
+struct query{
+  int v,u;
+  bool status;
+  query(int _v,int _u) : v(_v),u(_u) {};
+};
+
 struct QTree{
   vector<vector<query>> tree;
   int size;
