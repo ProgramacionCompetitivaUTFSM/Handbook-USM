@@ -1,8 +1,8 @@
 template<class T>
 struct KMP {
   T pattern;
-  vector < int > lps;
-  KMP(T & pat): pattern(pat) {
+  vector<int> lps;
+  KMP(T &pat): pattern(pat) {
     lps.resize(pat.size(), 0);
     int len = 0, i = 1;
     while (i < pattern.size()) {
@@ -14,8 +14,8 @@ struct KMP {
       }
     }
   }
-  vector < int > search(T &text) {
-    vector <int> matches;
+  vector<int> search(T &text) {
+    vector<int> matches;
     int i = 0, j = 0;
     while (i < text.size()) {
       if (pattern[j] == text[i]) {
