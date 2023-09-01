@@ -1,4 +1,4 @@
-// Corre en O(√n): Recomendado para obtener solo un numero
+// Corre en O(sqrt(n)): Recomendado para obtener solo un numero
 int phi(int n) {
   int result = n;
   for (int i = 2; i * i <= n; i++) {
