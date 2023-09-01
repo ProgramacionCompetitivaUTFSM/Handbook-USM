@@ -21,7 +21,6 @@ void fft(vector<C> &a) {
     a[i + j + k] = a[i + j] - z, a[i + j] += z;
   }
 }
-
 vd FPM(const vd &a, const vd &b) {
   if (a.empty() || b.empty()) return {};
   vd res(a.size() + b.size() - 1);
