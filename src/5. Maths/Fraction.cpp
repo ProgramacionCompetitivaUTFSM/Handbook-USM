@@ -1,7 +1,6 @@
 template <typename T>
 struct Fraction {
   T p, q;
-
   Fraction() {}
   Fraction(T p, T q): p(p), q(q) {
     if (q < 0) this->p = -p, this->q = -q;
