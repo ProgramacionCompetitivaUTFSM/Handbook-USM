@@ -1,6 +1,5 @@
 int dp[12][12][2]; // dp[i][s][f] {i: posicion, s: estado del problema, f: act < s}
 int k, d;
-
 // solve(r) - solve(l-1)
 int call(int pos, int cnt, int f){
     if(cnt > k) return 0;
