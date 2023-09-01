@@ -1,9 +1,8 @@
 template < class DS, class T, T merge(T, T), int IN_EDGES >
   struct associative_heavy_light {
-    vector < int > parent, depth, heavy, head, pos_up, pos_down;
+    vector <int> parent, depth, heavy, head, pos_up, pos_down;
     int n, cur_pos_up, cur_pos_down;
     DS ds_up, ds_down;
-
     int dfs(int v, vector < vector < int >>
       const & adj) {
       int size = 1;
@@ -18,7 +17,6 @@ template < class DS, class T, T merge(T, T), int IN_EDGES >
         }
       return size;
     }
-
     void decompose(int v, int h, vector < vector < int >>
       const & adj, vector < T > & a_up, vector < T > & a_down, vector < T > & values) {
       head[v] = h, pos_up[v] = cur_pos_up--, pos_down[v] = cur_pos_down++;
@@ -31,27 +29,20 @@ template < class DS, class T, T merge(T, T), int IN_EDGES >
           decompose(c, c, adj, a_up, a_down, values);
       }
     }
-
     associative_heavy_light(vector < vector < int > >
       const & adj, vector < T > & values) {
-      n = adj.size();
-      parent.resize(n);
-      depth.resize(n);
-      heavy.resize(n, -1);
-      head.resize(n);
-      pos_up.resize(n);
+      n = adj.size(); parent.resize(n);
+      depth.resize(n); heavy.resize(n, -1);
+      head.resize(n); pos_up.resize(n);
       pos_down.resize(n);
-      vector < T > a_up(n), a_down(n);
+      vector <T> a_up(n), a_down(n);
       cur_pos_up = n - 1;
       cur_pos_down = 0;
-
       dfs(0, adj);
       decompose(0, 0, adj, a_up, a_down, values);
-
       ds_up = DS(a_up);
       ds_down = DS(a_down);
     }
-
     void update(int a, int b, T x) {
       while (head[a] != head[b]) {
         if (depth[head[a]] < depth[head[b]])
@@ -67,12 +58,10 @@ template < class DS, class T, T merge(T, T), int IN_EDGES >
       ds_up.update(pos_up[a], pos_up[b] - IN_EDGES, x);
       ds_down.update(pos_down[b] + IN_EDGES, pos_down[a], x);
     }
-
     void update(int a, T x) {
       ds_up.update(pos_up[a], x);
       ds_down.update(pos_down[a], x);
     }
-
     T query(int a, int b) {
       T ansL, ansR;
       bool hasL = 0, hasR = 0;
