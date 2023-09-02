@@ -1,5 +1,4 @@
-struct Node {
-  // Splay tree. Root's pp contains tree's parent.
+struct Node { // Splay tree. Root's pp contains tree's parent.
   Node *p = 0, *pp = 0, *c[2];
   bool flip = 0;
   Node() { c[0] = c[1] = 0; fix(); }
@@ -10,8 +9,7 @@ struct Node {
   }
   void pushFlip() {
     if (!flip) return;
-    flip = 0;
-    swap(c[0], c[1]);
+    flip = 0; swap(c[0], c[1]);
     if (c[0]) c[0]->flip ^= 1;
     if (c[1]) c[1]->flip ^= 1;
   }
@@ -26,16 +24,13 @@ struct Node {
       z->c[h ^ 1] = b ? x : this;
     }
     y->c[i ^ 1] = b ? this : x;
-    fix();
-    x->fix(); y->fix();
-    if (p) p->fix();
-    swap(pp, y->pp);
+    fix(); x->fix(); y->fix();
+    if (p) p->fix(); swap(pp, y->pp);
   }
   void splay() { /// Splay this up to the root. Always finishes without flip set.
     for (pushFlip(); p;) {
       if (p->p) p->p->pushFlip();
-      p->pushFlip();
-      pushFlip();
+      p->pushFlip(); pushFlip();
       int c1 = up(), c2 = p->up();
       if (c2 == -1) p->rot(c1, 2);
       else p->p->rot(c2, c1 != c2);
@@ -58,8 +53,7 @@ struct LinkCut {
     makeRoot(top);
     x->splay();
     assert(top == (x->pp ?: x->c[0]));
-    if (x->pp)
-      x->pp = 0;
+    if (x->pp) x->pp = 0;
     else {
       x->c[0] = top->p = 0;
       x->fix();
@@ -70,28 +64,23 @@ struct LinkCut {
     return nu == access(&node[v])->first();
   }
   void makeRoot(Node *u) {
-    access(u);
-    u->splay();
+    access(u); u->splay();
     if (u->c[0]) {
-      u->c[0]->p = 0;
-      u->c[0]->flip ^= 1;
-      u->c[0]->pp = u;
-      u->c[0] = 0;
+      u->c[0]->p = 0; u->c[0]->flip ^= 1;
+      u->c[0]->pp = u; u->c[0] = 0;
       u->fix();
     }
   }
   Node *access(Node *u) {
     u->splay();
     while (Node *pp = u->pp) {
-      pp->splay();
-      u->pp = 0;
+      pp->splay(); u->pp = 0;
       if (pp->c[1]) {
         pp->c[1]->p = 0;
         pp->c[1]->pp = pp;
       }
       pp->c[1] = u;
-      pp->fix();
-      u = pp;
+      pp->fix(); u = pp;
     }
     return u;
   }
