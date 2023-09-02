@@ -1,7 +1,6 @@
-class WT {
+struct WT {
     typedef vi::iterator iter;
-    vvi r0; vi arrCopy;
-    int n, s;
+    vvi r0; vi arrCopy; int n, s, q, w;
     void build(iter b, iter e, int l, int r, int u) {
         if (l == r) return;
         int m = (l + r) / 2;
@@ -11,7 +10,6 @@ class WT {
         iter p = stable_partition(b, e, [=](int i) { return i <= m; });
         build(b, p, l, m, u * 2); build(p, e, m + 1, r, u * 2 + 1);
     }
-    int q, w;
     int range(int a, int b, int l, int r, int u) {
         if (r < q or w < l) return 0;
         if (q <= l && r <= w) return b - a;
@@ -19,7 +17,6 @@ class WT {
         return range(za, zb, l, m, u * 2) +
                range(a - za, b - zb, m + 1, r, u * 2 + 1);
     }
-public:
     WT(vi arr, int sigma) { // arr[i] in [0,sigma)
         n = sz(arr); s = sigma; r0.resize(s * 2);
         arrCopy = arr;
@@ -27,7 +24,6 @@ public:
     }
     // k in [1,n], [a,b) is 0-indexed, -1 if error
     int quantile(int k, int a, int b) {
-        // extra conditions disabled
         if (/*a < 0 or b > n or*/ k < 1 or k > b - a) return -1;
         int l = 0, r = s - 1, u = 1, m, za, zb;
         while (l != r) {
@@ -55,8 +51,7 @@ public:
         }
         return k;
     }
-    // x in [0,sigma)
-    void pb(int x) {
+    void pb(int x) { // x in [0,sigma)
         int l = 0, r = s - 1, u = 1, m, p; ++n;
         while (l != r) {
             m = (l + r) / 2;
@@ -72,8 +67,7 @@ public:
         while (l != r) {
             m = (l + r) / 2;
             k = sz(r0[u]), p = r0[u][k - 1] - r0[u][k - 2];
-            r0[u].pop_back();
-            u *= 2;
+            r0[u].pop_back(); u *= 2;
             if (p) r = m;
             else l = m + 1, ++u;
         }
@@ -83,12 +77,8 @@ public:
         int l = 0, r = s - 1, u = 1;
         while (l != r) {
             int m = (l + r) / 2, p = (x <= m), q = (y <= m);
-            if (p != q) {
-                r0[u][i + 1] ^= r0[u][i] ^ r0[u][i + 2];
-                break;
-            }
-            u *= 2;
-            if (p) r = m;
+            if (p != q) { r0[u][i + 1] ^= r0[u][i] ^ r0[u][i + 2]; break; }
+            u *= 2; if (p) r = m;
             else l = m + 1, ++u;
         }
         swap(x, y);
