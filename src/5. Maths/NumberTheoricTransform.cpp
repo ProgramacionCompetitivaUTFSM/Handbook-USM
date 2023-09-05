@@ -1,3 +1,4 @@
+// mod: 9223372036737335297 root: 3
 template<int mod, int root>
 struct NTT {
   void ntt(int* x, int* temp, int* roots, int N, int skip) {
