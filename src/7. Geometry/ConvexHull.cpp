@@ -11,7 +11,7 @@ vector<Point2D<T>> convexHull(vector<Point2D<T>> cloud, bool ac = 0) {
       allCollinear = false; break;
     }
   }
-  if (allCollinear) return cloud;
+  if (allCollinear) return ac ? cloud : vector<Point2D<T>>{cloud[0], cloud.back()};
   vector<Point2D<T>> ch(2 * n);
   auto process = [&](int st, int end, int stp, int t, auto cmp) {
     for (int i = st; i != end; i += stp) {
@@ -20,7 +20,7 @@ vector<Point2D<T>> convexHull(vector<Point2D<T>> cloud, bool ac = 0) {
     }
   };
   process(0, n, 1, 2, [&](auto a, auto b, auto c) {
-    return ((a - b) ^ (c - b)) < 0;
+    return ((a - b) ^ (c - b)) < (ac ? 0 : 1);
   });
   process(n - 2, -1, -1, k + 1, [&](auto a, auto b, auto c) {
     return ((a - b) ^ (c - b)) < (ac ? 0 : 1);
