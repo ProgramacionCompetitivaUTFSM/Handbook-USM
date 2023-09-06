@@ -1,35 +1,60 @@
-typedef complex<double> C;
-typedef vector<double> vd;
-typedef vector<vd> vvd;
-void fft(vector<C> &a) {
-  int n = a.size(), L = 31 - __builtin_clz(n);
-  static vector<complex<long double>> R(2, 1);
-  static vector<C> rt(2, 1);
-  for (static int k = 2; k < n; k *= 2) {
-    R.resize(n); rt.resize(n);
-    auto x = polar(1.0L, PI / k);
-    for(int i = k; i < 2*k; ++i) rt[i] = R[i] = i & 1 ? R[i / 2] * x : R[i / 2];
+struct FFT {
+  const long double PI = acos(-1);
+  typedef long double d; // to double if too slow
+  void fft(vector<complex<d>> &a) {
+    int n = a.size(), L = 31 - __builtin_clz(n);
+    vector<complex<d>> R(2, 1), rt(2, 1);
+    for (int k = 2; k < n; k *= 2) {
+      R.resize(n); rt.resize(n);
+      auto x = polar(1.0L, PI / k);
+      for(int i = k; i < 2*k; ++i) rt[i] = R[i] = i & 1 ? R[i / 2] * x : R[i / 2];
+    }
+    vector<int> rev(n);
+    for(int i = 0; i < n; ++i) rev[i] = (rev[i / 2] | (i & 1) << L) / 2;
+    for(int i = 0; i < n; ++i) if (i < rev[i]) swap(a[i], a[rev[i]]);
+    for (int k = 1; k < n; k *= 2)
+    for (int i = 0; i < n; i += 2 * k)
+    for(int j = 0; j < k; ++j) {
+      auto x = (d*)&rt[j + k], y = (d*)&a[i + j + k];
+      complex<d> z(x[0]*y[0] - x[1]*y[1], x[0]*y[1] + x[1]*y[0]);
+      a[i + j + k] = a[i + j] - z, a[i + j] += z;
+    }
   }
-  vector<int> rev(n);
-  for(int i = 0; i < n; ++i) rev[i] = (rev[i / 2] | (i & 1) << L) / 2;
-  for(int i = 0; i < n; ++i) if (i < rev[i]) swap(a[i], a[rev[i]]);
-  for (int k = 1; k < n; k *= 2)
-  for (int i = 0; i < n; i += 2 * k)
-  for(int j = 0; j < k; ++j) {
-    auto x = (double *)&rt[j + k], y = (double *)&a[i + j + k];
-    C z(x[0] * y[0] - x[1] * y[1], x[0] * y[1] + x[1] * y[0]);
-    a[i + j + k] = a[i + j] - z, a[i + j] += z;
+  vector<int> conv(vector<d> &a, vector<d> &b) {
+    if (a.empty() || b.empty()) return {};
+    vector<d> res(a.size() + b.size() - 1);
+    int B = 32 - __builtin_clz(res.size()), n = 1 << B;
+    vector<complex<d>> in(n), out(n);
+    copy(a.begin(), a.end(), in.begin());
+    for(int i = 0; i < b.size(); ++i) in[i].imag(b[i]);
+    fft(in); for (auto &x : in) x *= x;
+    for(int i = 0; i < n; ++i) out[i] = in[-i & (n - 1)] - conj(in[i]);
+    fft(out); for(int i = 0; i < res.size(); ++i) res[i] = imag(out[i]) / (4 * n);
+    vector<int> resint(n);
+    for (int i = 0; i < n; i++) resint[i] = round(res[i]);
+    return resint;
   }
-}
-vd FPM(const vd &a, const vd &b) {
-  if (a.empty() || b.empty()) return {};
-  vd res(a.size() + b.size() - 1);
-  int L = 32 - __builtin_clz(res.size()), n = 1 << L;
-  vector<C> in(n), out(n);
-  copy(a.begin(), a.end(), in.begin());
-  for(int i = 0; i < b.size(); ++i) in[i].imag(b[i]);
-  fft(in); for (auto &x : in) x *= x;
-  for(int i = 0; i < n; ++i) out[i] = in[-i & (n - 1)] - conj(in[i]);
-  fft(out); for(int i = 0; i < res.size(); ++i) res[i] = imag(out[i]) / (4 * n);
-  return res;
-}
+  vector<int> convMod(vector<int> &a, vector<int> &b, int mod) {
+    if (a.empty() || b.empty()) return {};
+    vector<d> res(a.size() + b.size() - 1);
+    int B = 32 - __builtin_clz(res.size()), n = 1 << B, cut = int(sqrt(mod));
+    vector<complex<d>> L(n), R(n), outs(n), outl(n);
+    for (int i = 0; i < a.size(); i++) L[i] = complex<d>(a[i]/cut, a[i]%cut);
+    for (int i = 0; i < b.size(); i++) R[i] = complex<d>(b[i]/cut, b[i]%cut);
+    fft(L), fft(R);
+    for (int i = 0; i < n; i++) {
+      int j = -i & (n-1);
+      outl[j] = (L[i] + conj(L[j])) * R[i] / ((d)2.0 * n);
+      outs[j] = (L[i] - conj(L[j])) * R[i] / ((d)2.0 * n) / complex<d>(0, 1);
+    }
+    fft(outl), fft(outs);
+    for (int i = 0; i < res.size(); i++) {
+      int av = (int)(real(outl[i])+.5), cv = (int)(imag(outs[i])+.5);
+      int bv = (int)(imag(outl[i])+.5) + (int)(real(outs[i])+.5);
+      res[i] = ((av % mod * cut + bv) % mod * cut + cv) % mod;
+    }
+    vector<int> resint(n);
+    for (int i = 0; i < n; i++) resint[i] = round(res[i]);
+    return resint;
+  }
+};
