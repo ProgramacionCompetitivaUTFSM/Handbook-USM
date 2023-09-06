@@ -12,7 +12,7 @@ bool MillerRabin(uint64_t n) {
   };
   uint64_t r = 0, d = n - 1;
   while ((d & 1) == 0) d >>= 1, r++;
-  for (int x : {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {
+  for (int x : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37}) {
     if (x == n) return true;
     if (check(n, x, d, r)) return false;
   }
