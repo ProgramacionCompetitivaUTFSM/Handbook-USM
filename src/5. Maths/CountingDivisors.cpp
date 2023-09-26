@@ -1,7 +1,8 @@
 // Contar divisores en O(n ^ (1/3) )
+const int MX_P = 1e6 + 1;
+EratosthenesSieve sieve(MX_P);
 int countingDivisors(int n) {
-  int MX_P = 1e6 + 1, ret = 1;
-  EratosthenesSieve sieve(MX_P);
+  int ret = 1;
   for (int p : sieve.primes) {
     if (p*p*p > n) break;
     int count = 1;
