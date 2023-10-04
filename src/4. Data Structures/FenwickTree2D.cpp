@@ -3,12 +3,12 @@ struct FenwickTree2D {
   vector < vector < int >> BIT;
 
   FenwickTree2D(int N, int M): N(N), M(M) {
-    BIT.assign(N, vector < int > (M, 0));
+    BIT.assign(N + 1, vector < int > (M + 1, 0));
   }
 
   void update(int x, int y, int v) {
     for (int i = x; i <= N; i += (i & -i))
-      for (int j = y; j <= N; j += (j & -j))
+      for (int j = y; j <= M; j += (j & -j))
         BIT[i][j] += v;
   }
 
