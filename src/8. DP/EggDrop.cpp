@@ -1,9 +1,9 @@
 vector<vector<ll>> egg_drop(ll h,ll k){
   vector<vector<ll>> dp(h + 1,vector<ll>(k + 1));
-  forn(i,0,k + 1) dp[0][i] = 0;
-  forn(i,1,h + 1) dp[i][0] = INT_MAX;
-  forn(j,1,k + 1){
-    forn(i,1,h + 1){
+  for(int i = 0; i < k + 1; i++) dp[0][i] = 0;
+  for(int i = 1; i < h + 1; i++) dp[i][0] = INT_MAX;
+  for(int j = 1; j < k + 1; j++) {
+    for(int i = 1; i < h + 1; i++) {
       ll ans=INT_MAX,x=1,y=i;
       while(x <= y){
         ll mid = (x + y)/2;
