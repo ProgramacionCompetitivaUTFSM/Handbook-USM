@@ -1,4 +1,4 @@
-// Precomputación en O(n logn), query en O(1)
+// Precomputacion en O(n logn), query en O(1)
 template <typename T>
 struct SparseTable {
   int n;
