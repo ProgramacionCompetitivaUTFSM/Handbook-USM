@@ -11,7 +11,7 @@ int phi(int n) {
     result -= result / n;
   return result;
 }
-// Función Phi de 1 a n en O(n log(log n))
+// Funcion Phi de 1 a n en O(n log(log n))
 struct EulerPhi {
   vector<int> phi;
   EulerPhi(int n) {
