@@ -1,4 +1,4 @@
-// Corre en O(√n)
+// Corre en O(sqrt(n))
 vector<int> primeFactors(int n) {
   vector<int> factors;
   for (int i = 2; (i*i) <= n; i++) {
