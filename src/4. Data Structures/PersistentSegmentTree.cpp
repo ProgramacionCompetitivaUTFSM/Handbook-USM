@@ -25,7 +25,7 @@ struct persistent_segment_tree {
     ST[ks] = _m(ST[L[ks]], ST[R[ks]]);
     return ks;
   }
-  int query(int k, int l, int r, int a, int b) {
+  T query(int k, int l, int r, int a, int b) {
     if (l >= a and r <= b)
       return ST[k];
     int m = (l + r) / 2;
@@ -35,13 +35,13 @@ struct persistent_segment_tree {
       return query(R[k], m + 1, r, a, b);
     return _m(query(L[k], l, m, a, b), query(R[k], m + 1, r, a, b));
   }
-  int update(int k, int p, int v) {
+  int update(int k, int p, T v) {
     return rt = update(k, 0, n - 1, p, v);
   }
-  int update(int p, int v) {
+  int update(int p, T v) {
     return update(rt, p, v);
   }
-  int query(int k, int a, int b) {
+  T query(int k, int a, int b) {
     return query(k, 0, n - 1, a, b);
   }
 };
