@@ -2,17 +2,27 @@ import os
 from re import sub, match
 path = "src/"
 
-file_latex = open("header.tex", "r")
-file_new_latex = open("handbook.tex", "w")
 
-for line in file_latex:
-    file_new_latex.write(line)
-file_latex.close()
-file_new_latex.write("\n")
+path = "src/"
+
+GENERATED_TEX = "generated_tex"
+
+if not os.path.exists("generated_tex"):
+    os.makedirs(GENERATED_TEX)
+
 
 for dir in os.listdir(path):
+    file_latex = open("header.tex", "r")
+    file_new_latex = open(f"{GENERATED_TEX}/{dir}.tex", "w")
+
+    for line in file_latex:
+        file_new_latex.write(line)
+    file_latex.close()
+    file_new_latex.write("\n")
+
     file_new_latex.write("\\noindent\\scriptsize\\textbf{" + dir.split(". ")[1] + "}\n\n")
     for file in os.listdir(path + "/" + dir):
+
         print(f"{dir}/{file}")
         file_text = open(f"{path}/{dir}/{file}", "r")
 
@@ -23,6 +33,7 @@ for dir in os.listdir(path):
         file_new_latex.write("\\begin{tikzpicture}\n")
         file_new_latex.write("\\node [mybox] (box){\n\\begin{minipage}{0.45\\textwidth}")
         file_new_latex.write("\\begin{lstlisting}\n")
+
         for line in file_text:
             file_new_latex.write(line)
 
@@ -33,6 +44,6 @@ for dir in os.listdir(path):
         file_new_latex.write("\\end{tikzpicture}\n")
         file_text.close()
 
-file_new_latex.write("\\end{multicols*}\n\\end{document}\n")
-file_new_latex.close()
+    file_new_latex.write("\\end{multicols*}\n\\end{document}\n")
+    file_new_latex.close()
 

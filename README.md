@@ -1,15 +1,15 @@
-= Handbook USM =
+# Handbook USM
 
-To generate latex do:
+**Dependencies:**
+- pdflatex
+- pdftk
 
-```
+**To generate LaTeX, do:**
+
+```bash
 python3 generate_latex.py
 ```
 
-Then, to generate the latex you have to do:
+Then, open the copypaste.txt file, copy the commands, and paste them into the terminal.
 
-```
-latex handbook.tex
-dvips handbook.dvi
-ps2pdf handbook.ps handbook.pdf
-```
+Now you have created handbook.pdf!
