@@ -7,9 +7,11 @@
 **To generate LaTeX, do:**
 
 ```bash
-python3 generate_latex.py
+./compile.sh
 ```
 
 Then, open the copypaste.txt file, copy the commands, and paste them into the terminal.
 
 Now you have created handbook.pdf!
+
+Warning: You need to delete the handbook.pdf before you use the command!
