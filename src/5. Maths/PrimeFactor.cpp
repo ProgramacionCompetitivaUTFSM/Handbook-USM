@@ -1,7 +1,7 @@
 // Corre en O(sqrt(n))
-vector<int> primeFactors(int n) {
-  vector<int> factors;
-  for (int i = 2; (i*i) <= n; i++) {
+vector<ll> primeFactors(ll n) {
+  vector<ll> factors;
+  for (ll i = 2; (i*i) <= n; i++) {
     while (n % i == 0) {
       factors.push_back(i);
       n /= i;
