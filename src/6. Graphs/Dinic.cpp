@@ -2,8 +2,7 @@
 struct Dinic {
   struct Edge { ll to, rev; ll f, c; };
   ll n, t_; vector<vector<Edge>> G;
-  vector<ll> D;
-  vector<ll> q, W;
+  vector<ll> D, q, W;
   bool bfs(ll s, ll t) {
     W.assign(n, 0); D.assign(n, -1); D[s] = 0;
     ll f = 0, l = 0; q[l++] = s;
