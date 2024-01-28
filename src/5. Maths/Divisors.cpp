@@ -1,5 +1,5 @@
-void getDivisors(ll n, vector<ll> &ans) {
-  vector<ll> left, right;
+vector<ll> getDivisors(ll n) {
+  vector<ll> left, right, ans;
   for (ll i = 1; i * i <= n; i++)
     if (n % i == 0) {
       if (i != n / i)
@@ -16,4 +16,5 @@ void getDivisors(ll n, vector<ll> &ans) {
   }
   while(i < left.size()) ans[i + j - 1] = left[i++];    
   while(j < right.size()) ans[i + j - 1] = right[j++];
+  return ans;
 }
