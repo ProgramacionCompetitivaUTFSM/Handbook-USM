@@ -1,5 +1,5 @@
-struct Edge { int from, to, weight; };
 struct BellmanFord {
+  struct Edge { int from, to, weight; };
   int n, last_updated = -1; const int INF = 1e18;
   vector<int> p, dist;
   BellmanFord(vector<Edge> &G, int s) {
