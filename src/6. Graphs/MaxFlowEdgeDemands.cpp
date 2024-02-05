@@ -10,7 +10,6 @@ struct MaxFlowEdgeDemands {
   // to check is a feasible solution, all edges of
   // super-sink (N) node should be saturated
   ll max_flow(ll s, ll t) {
-    ll sp = N, tp = N+1;
     mf.add_edge(t, s, inf);
     for (ll i = 0; i < N; i++) {
       mf.add_edge(N, i, in[i]);
