@@ -1,17 +1,24 @@
-# Handbook USM
+# USM Handbook
 
-**Dependencies:**
-- pdflatex
-- pdftk
+Bienvenido al mejor apunte numero 13!
 
-**To generate LaTeX, do:**
 
-```bash
-./compile.sh
+## Requeriments
+- Typst
+
+## How to compile
+
+```sh
+typst compile main.typ
 ```
 
-Then, open the copypaste.txt file, copy the commands, and paste them into the terminal.
+## Rules
 
-Now you have created handbook.pdf!
-
-Warning: You need to delete the handbook.pdf before you use the command!
+- Each folder must be written separated by "-" and in lowercase
+- Every file name must be written in lowercase
+- Only file extensions allowed are ".cpp" and ".typ
+- If the filename length is more than 18 characters, use a short name (example: knuth-morris-pratt to kmp)
+- Forbidden the use of macros like "rep", "repx" or any variant
+- Every template code must have a description in their first lines
+- The tabulation for each file must be of **2** spaces
+- Each file must be atomic, that means you can not put two differents codes on the same file (Sometimes is needed btw)
