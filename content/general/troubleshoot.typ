@@ -1,4 +1,3 @@
-
 *Pre-submit:*
 - Write a few simple test cases if sample is not enough.
 - Are time limits close? If so, generate max cases.

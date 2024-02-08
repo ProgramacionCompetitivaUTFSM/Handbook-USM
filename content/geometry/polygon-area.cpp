@@ -1,4 +1,5 @@
 /*
+ * Descripcion:*
 */
 // Recuerda que si quieres sumar varias areas factoriza 1/2
 template<typename T>

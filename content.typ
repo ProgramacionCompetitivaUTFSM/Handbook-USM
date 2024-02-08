@@ -13,7 +13,7 @@
   font: "New Computer Modern",
   size: 7pt
 )
-
+ 
 // Utils
 #let title-case(string) = {
 
@@ -152,6 +152,9 @@
         }
       }
     }
-    pagebreak()
+    if i != content-list.len()-1 {
+      pagebreak()
+    }
+    
   }
 }

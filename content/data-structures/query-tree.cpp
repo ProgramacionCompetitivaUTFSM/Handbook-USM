@@ -3,7 +3,6 @@ struct query{
   bool status;
   query(int _v,int _u) : v(_v),u(_u) {};
 };
-
 struct query_tree{
   vector<vector<query>> tree;
   int size;

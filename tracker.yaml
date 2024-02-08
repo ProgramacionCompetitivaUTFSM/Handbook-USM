@@ -91,9 +91,16 @@ content:
     - lca.cpp
     - bellman-ford.cpp
     
-    
   - geometry:
+    - point-2d.cpp
     - convex-hull.cpp
+    - lattice-point.cpp
+    - nearest-2-points.cpp
+    - order-by-angle.cpp
+    - order-by-slope.cpp
+    - point-inside-polygon.cpp
+    - polygon-area.cpp
+    - segment.cpp
   - dynamic-programming:
     - lis.cpp
     - knuth.cpp

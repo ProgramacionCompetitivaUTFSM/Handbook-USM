@@ -1,5 +1,5 @@
 /*
- *Description:* Solves assignament problem in $O(n^3)$. If the matrix is rectangular in $O(n^2 m)$, where $n$ is the longest side
+ *Description:* Solves assignament problem in $O(n^3)$. If the matrix is rectangular in $O(n^2 m)$, where $n <= m$
  *Status:* Tested
 */
 void Hungarian(vector<vector<int>> &A, vector<pair<int, int>> &result, int &C, const int INF = 1e6 + 1) {
