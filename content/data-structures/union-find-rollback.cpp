@@ -1,3 +1,7 @@
+/*
+ *Description:* Same utility of normal union-find, but you can rollback the last union. Runs on $O( alpha (n) ) $
+ *Status:* Highly tested
+*/
 struct op{
   int v,u;
   int v_value,u_value;

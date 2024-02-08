@@ -1,3 +1,7 @@
+/*
+ *Description:* Allow us to solve dynamic conectivity offline
+ *Status:* Tested
+*/
 struct query{
   int v,u;
   bool status;

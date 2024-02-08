@@ -1,3 +1,7 @@
+/*
+ *Description:* Segment tree but saves a new version of the tree for each update, build $O(n)$, query $O(log n)$, new nodes for each update $O(log n)$
+ *Status:* Tested on CSES
+*/
 template<class T, T _m(T, T)>
 struct persistent_segment_tree {
   vector<T> ST;

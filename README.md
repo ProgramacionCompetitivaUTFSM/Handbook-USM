@@ -26,3 +26,12 @@ typst compile main.typ
 ## Objectives
 - Shorten codes
 - Writing descriptions and testing codes
+
+## To be added
+- More dynamic programming techniques
+- Monotonic tree
+- Cartesian tree
+- LCA using RMQ
+- Disjoint Sparse Table
+- Voronoi/Delaunay
+- Line, circle and more things for geometry

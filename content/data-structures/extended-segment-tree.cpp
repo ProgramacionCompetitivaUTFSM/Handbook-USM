@@ -1,3 +1,7 @@
+/*
+ *Description:* More flexible version of normal segment tree, same time complexities
+ *Status:* Tested
+*/
 template<class tree_node, class query_input, class query_output>
 struct extended_segment_tree{
 	vector<tree_node> ST;

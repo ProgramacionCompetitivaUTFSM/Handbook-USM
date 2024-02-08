@@ -1,3 +1,7 @@
+/*
+ *Description:* Acts like a array, allow us to reverse, sum, remove, slice and remove in $O(log n)$
+ *Status:* Tested
+*/
 struct implicit_treap {
   static mt19937_64 MT;
   struct node { node *left, *right;

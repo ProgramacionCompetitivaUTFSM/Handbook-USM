@@ -1,3 +1,7 @@
+/*
+ *Description:* Built-in version of C++ of select and rank operations in sets
+ *Status:* Tested
+*/
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
@@ -7,7 +11,6 @@ typedef tree<int, null_type, less<int>, rb_tree_tag,
     ordered_set;
 
 ordered_set p;
-
 p.insert(5); p.insert(2); p.insert(6); p.insert(4); // O(log n)
 // value at 3rd index in sorted array. O(log n). Output: 6
 cout << "Value at 3rd index: " << *p.find_by_order(3) << endl;
