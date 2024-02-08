@@ -1,4 +1,3 @@
-// Todas las operaciones son O(1)
 template <typename T>
 struct min_queue {
   min_stack<T> in, out;
@@ -7,14 +6,12 @@ struct min_queue {
   int size() { return in.size() + out.size(); }
   void pop() {
     if (out.empty())
-    for (;in.size(); in.pop())
-      out.push(in.top());
+    for (;in.size(); in.pop()) out.push(in.top());
     out.pop();
   }
   T front() {
     if (!out.empty()) return out.top();
-    for (;in.size(); in.pop())
-      out.push(in.top());
+    for (;in.size(); in.pop()) out.push(in.top());
     return out.top();
   }
   T getMin() {
