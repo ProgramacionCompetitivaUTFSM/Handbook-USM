@@ -69,7 +69,17 @@
 // Template code
 #let template-code(title: [], only-code: [], body) = {
   
-  place(dy: -8pt, dx: 228pt)[
+
+  block(
+    breakable: false,
+    radius: 5pt,
+    inset: 1em,
+    stroke: 0.9pt,
+    spacing: 1.5em,
+    width: 100%
+  )[
+
+  #place(dy: -15pt, dx: 220pt)[
     #block(
       fill: black,
       inset: 3pt,
@@ -80,15 +90,6 @@
       ]
     ]
   ]
-
-  block(
-    breakable: false,
-    radius: 5pt,
-    inset: 1em,
-    stroke: 0.9pt,
-    spacing: 1.5em,
-    width: 100%
-  )[
 
   #place(dy: -15pt)[
 
