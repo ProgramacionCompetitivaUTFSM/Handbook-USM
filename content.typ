@@ -42,7 +42,6 @@
 // Remove spaces and line breaks, everything to lowercase and get the slice the first 6 characters
 #let get-code-hash(string) = {
   string = string.replace(regex("[\n\t\s]"), "")
-  string = lower(string)
   return hex(md5(string)).slice(0, 6)
 }
 
