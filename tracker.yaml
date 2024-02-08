@@ -2,6 +2,7 @@ content:
   - general:
     - template.cpp
     - troubleshoot.typ
+    - hash.typ
   - strings:
     - rolling-hashing.cpp
     - k-rolling-hashing.cpp

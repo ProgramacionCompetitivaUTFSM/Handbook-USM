@@ -1,7 +1,7 @@
 // Todas las operaciones son O(1)
 template <typename T>
 struct min_queue {
-    MinStack<T> in, out;
+    min_stack<T> in, out;
     void push(T x) { in.push(x); }
     bool empty() { return in.empty() && out.empty(); }
     int size() { return in.size() + out.size(); }

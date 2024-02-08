@@ -1,3 +1,6 @@
+// Custom lib
+#import "lib/hash.typ": md5, hex
+
 // Settings
 #set page(
   paper: "a4",
@@ -36,6 +39,13 @@
   }
 }
 
+// Remove spaces and line breaks, everything to lowercase and get the slice the first 6 characters
+#let get-code-hash(string) = {
+  string = string.replace(regex("[\n\t\s]"), "")
+  string = lower(string)
+  return hex(md5(string)).slice(0, 6)
+}
+
 #let comments-regex = regex("\/\*[\s\S]*?\*\/")
 
 #let get-description-from-code(string) = {
@@ -57,7 +67,20 @@
 }
 
 // Template code
-#let template-code(title: [], body) = {
+#let template-code(title: [], only-code: [], body) = {
+  
+  place(dy: -8pt, dx: 228pt)[
+    #block(
+      fill: black,
+      inset: 3pt,
+    )[
+      #text(fill: green)[\#]
+      #text(fill: white, weight: "semibold")[
+        #get-code-hash(only-code)
+      ]
+    ]
+  ]
+
   block(
     breakable: false,
     radius: 5pt,
@@ -68,6 +91,7 @@
   )[
 
   #place(dy: -15pt)[
+
     #block(
       fill: black,
       inset: 3pt
@@ -118,11 +142,13 @@
           let all-code = raw(file, lang: "cpp")
           let comments = get-description-from-code(content-to-string(all-code))
           let without-comments = remove-description-from-code(content-to-string(all-code))
-           template-code(title: template-title)[
+          
+           template-code(title: template-title, only-code: without-comments)[
             #eval(comments, mode: "markup")
             #line(length: 100%)
             #raw(without-comments, lang: "cpp")
           ]
+
         }
       }
     }

@@ -22,3 +22,7 @@ typst compile main.typ
 - Every template code must have a description in their first lines
 - The tabulation for each file must be of **2** spaces
 - Each file must be atomic, that means you can not put two differents codes on the same file (Sometimes is needed btw)
+
+## Objectives
+- Shorten codes
+- Writing descriptions and testing codes
