@@ -1,7 +1,8 @@
 /*
- * Descripcion:*
+ * Descripcion:* Get the area of a polygon
+ - If you want the double of the area, just enable the flag
+ *Status:* Highly tested
 */
-// Recuerda que si quieres sumar varias areas factoriza 1/2
 template<typename T>
 T polygonArea(vector<Point2D<T>> P, bool x2 = 0) {
   T area = 0;

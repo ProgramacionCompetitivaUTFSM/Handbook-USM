@@ -1,3 +1,7 @@
+/*
+ *Description:* Longest increasing subsequence in $O(n log n)$, allow us to recover the sequence
+ *Status:* Highly tested
+*/
 template <class I> vector<int> LIS(const vector<I> &S) {
   if (S.empty()) return {};
   vector<int> prev(S.size());
@@ -11,7 +15,7 @@ template <class I> vector<int> LIS(const vector<I> &S) {
   int L = res.size(), cur = res.back().second;
   vector<int> ans(L);
   while (L--) ans[L] = cur, cur = prev[cur];
-  /* Get the sequence
+  /* Recover the sequence
   for (int i = 0; i+1 < ans.size(); i++)
     ans[i] = S[ans[i]];
   */

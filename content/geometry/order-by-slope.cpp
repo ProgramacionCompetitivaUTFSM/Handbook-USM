@@ -1,3 +1,7 @@
+/*
+ *Description:* Sort the points depending the angle
+ *Status:* Not tested
+*/
 template <typename T>
 void orderBySlope(vector<Point2D<T>> &P) {
   sort(P.begin(), P.end(), [](const Point2D<T> &p1, const Point2D<T> &p2) {

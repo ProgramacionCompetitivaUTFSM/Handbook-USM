@@ -1,3 +1,7 @@
+/*
+ *Description:* Segment implementation
+ *Status:* Partially tested
+*/
 template<typename T >
 struct Segment {
   Point2D< T > P;

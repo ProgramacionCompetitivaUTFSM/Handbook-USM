@@ -1,3 +1,7 @@
+/*
+ *Description:* Get the convex hull of the cloud of points, allow collinear points if is needed
+ *Status:* Highly tested
+*/
 template<typename T>
 vector<Point2D<T>> convexHull(vector<Point2D<T>> cloud, bool ac = 0) {
   int n = cloud.size(), k = 0;

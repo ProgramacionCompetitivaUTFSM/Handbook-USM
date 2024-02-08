@@ -1,3 +1,7 @@
+/*
+ *Description:* Allow us to find cycles in any function
+ *Status:* Not tested
+*/
 template<typename T, T f(T)>
 pair<ll, ll> tortoise_hare(T x0) {  
   T t = f(x0); T h = f(f(x0));

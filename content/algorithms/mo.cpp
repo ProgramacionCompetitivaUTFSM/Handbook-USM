@@ -1,3 +1,7 @@
+/*
+ *Description:* Allow us to answer queries offline with sqrt decomposition
+ *Status:* Tested
+*/
 template<class T, class T2>
 struct MoAlgorithm {
   vector<T> ans;

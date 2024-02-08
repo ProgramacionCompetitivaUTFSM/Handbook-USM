@@ -1,3 +1,7 @@
+/*
+ *Description:* 2D Range queries, Runs on $O(log n dot log m)$ per operation
+ *Status:* Tested
+*/
 struct fenwick_tree_2d {
   int N, M;
   vector < vector < int >> BIT;

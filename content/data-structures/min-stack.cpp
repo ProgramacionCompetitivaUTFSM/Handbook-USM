@@ -1,4 +1,7 @@
-// Todas las operaciones son O(1)
+/*
+ *Description:* Get the minumum element of the stack, runs on $O(1)$ $O(1)$ per operation amortized. Can be modified to get the maximum just changing the function
+ *Status:* Tested on Maximum Subarray Sum II CSES
+*/
 template <typename T>
 struct min_stack {
   stack<pair<T, T>> S;

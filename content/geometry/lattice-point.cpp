@@ -1,8 +1,8 @@
 /*
- *Description:*
+ *Description:* How many integers point are inside or in the bounds of the polygon
+ - Only works for integers points
+ *Status:* Tested on CSES
 */
-// (Solo funciona con coordenadas enteras
-// Esto usa el teorema de Pick's
 pair<int, int> latticePoints(vector<Point2D<int>> &P) {
   P.push_back(P.front());
   int area = 0, bounds = 0;

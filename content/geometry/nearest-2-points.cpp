@@ -1,3 +1,7 @@
+/*
+ *Description:* Using divide and conquer, allow us to know what are the two nearest point between them
+ *Status:* Tested on CSES
+*/
 #define sq(x) ((x)*(x))
 template <typename T>
 pair<Point2D<T>, Point2D<T>> nearestPoints(vector<Point2D<T>> &P, int l, int r) {

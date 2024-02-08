@@ -1,3 +1,7 @@
+/*
+ *Description:* Range queries, build $O(n)$, query and update $O(log n)$
+ *Status:* Highly tested
+*/
 template<class T, T m_(T, T)> struct segment_tree{
   int n; vector<T> ST;
   segment_tree(){}

@@ -1,5 +1,7 @@
-template <typename T>
-struct min_queue {
+/*
+ *Description:* Get the minumum element of the queue, runs on $O(1)$ per operation amortized. Can be modified to get the maximum just changing the function
+ *Status:* Tested on Maximum Subarray Sum II CSES
+*/
   min_stack<T> in, out;
   void push(T x) { in.push(x); }
   bool empty() { return in.empty() and out.empty(); }

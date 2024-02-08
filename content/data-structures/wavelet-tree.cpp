@@ -1,3 +1,7 @@
+/*
+ *Description:* Succint data structure to store strings in compressed space. It generalizes rank and select operations. Runs on $O(log sigma)$, where $sigma$ is the size of the alphabet
+ *Status:* Tested
+*/
 struct WT {
   typedef vi::iterator iter;
   vvi r0; vi arrCopy; int n, s, q, w;

@@ -1,3 +1,7 @@
+/*
+ *Description:* Finds sets and merges elements, complexity $O( alpha(n))$. $alpha(10^(600)) approx 4$
+ *Status:* Highly tested
+*/
 struct union_find {
   vector<int> e;
   union_find(int n) { e.assign(n, -1); }

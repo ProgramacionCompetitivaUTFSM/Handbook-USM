@@ -1,3 +1,7 @@
+/*
+ *Description:* Represents a forest of unrooted trees. You can add and remove edges (as long as the result is still a forest), and check whether two nodes are in the same tree. Runs on $O(log n)$ per operation.
+ *Status:* Tested
+*/
 struct Node { // Splay tree. Root's pp contains tree's parent.
   Node *p = 0, *pp = 0, *c[2];
   bool flip = 0;

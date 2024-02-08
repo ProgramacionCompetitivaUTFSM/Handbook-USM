@@ -1,3 +1,7 @@
+/*
+ *Description:* Segment tree but with range updates, build $O(n)$, query and update $O(log n)$
+ *Status:* Highly tested
+*/
 template<
   class T1, // answer value stored on nodes
   class T2, // lazy update value stored on nodes

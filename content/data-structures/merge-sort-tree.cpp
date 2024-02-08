@@ -1,3 +1,7 @@
+/*
+ *Description:* Segment tree, each node of which contains a sorted vector of every element in its range. $O(log^2 n)$ per operation
+ *Status:* Not tested
+*/
 template <typename T>
 struct merge_sort_tree {
   int N;

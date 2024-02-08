@@ -1,3 +1,8 @@
+/*
+ *Description:* Range queries and updates, precomputed $O(n log n)$, query/update $O(log n)$
+  - Sum operation can be changed to xor
+ *Status:* Tested
+*/
 struct fenwick_tree {
   vector <int> bit; int n;
   fenwick_tree(int n): n(n) { bit.assign(n, 0); }
