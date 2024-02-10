@@ -18,11 +18,13 @@ content:
   - data-structures:
     - min-queue.cpp
     - min-stack.cpp
+    - min-deque.cpp
 
     - union-find.cpp
     - union-find-rollback.cpp
 
     - sparse-table.cpp
+    - disjoint-sparse-table.cpp
 
     - segment-tree.cpp
     - segment-tree-lazy.cpp
@@ -89,6 +91,7 @@ content:
     - hungarian.cpp
     - kosaraju.cpp
     - lca.cpp
+    - lca-rmq.cpp
     - bellman-ford.cpp
     
   - geometry:
