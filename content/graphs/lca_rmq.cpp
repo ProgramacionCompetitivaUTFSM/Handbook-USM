@@ -1,5 +1,6 @@
 /*
  *Description:* Computes lowest common ancestor, precomputed in $O(V log V)$, $O(1)$ per query. Rooted in 0
+ *Status:* Tested on CSES
 */
 struct lca_rmq {
   using pll = pair<ll, ll>;
