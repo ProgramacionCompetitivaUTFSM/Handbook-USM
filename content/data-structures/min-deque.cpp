@@ -4,7 +4,7 @@
 */
 template<typename T>
 struct min_deque {
-  min_stack<T> l, r, t;
+min_stack<T> l, r, t;
 	void rebalance() {
 		bool f = false;
 		if (r.empty()) {f = true; l.swap(r);}
