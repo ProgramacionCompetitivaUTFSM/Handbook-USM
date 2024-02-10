@@ -109,3 +109,4 @@ content:
     - knuth.cpp
     - egg-drop.cpp
     - d&c.cpp
+    - convex-hull-trick.cpp
