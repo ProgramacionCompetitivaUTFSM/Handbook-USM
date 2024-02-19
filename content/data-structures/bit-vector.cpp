@@ -1,5 +1,5 @@
 /*
- *description:* A more flexible dynamic bit_vector, with operations access, set, not
+ *Description:* A more flexible dynamic bit_vector, with operations `access`, `set`, `not` and `push_back`
  *status:* partially tested
 */
 struct bit_vector {

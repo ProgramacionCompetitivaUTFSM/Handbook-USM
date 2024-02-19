@@ -20,6 +20,7 @@ content:
     - min-stack.cpp
     - min-deque.cpp
 
+    - bit-vector.cpp
     - union-find.cpp
     - union-find-rollback.cpp
 
