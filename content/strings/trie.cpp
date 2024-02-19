@@ -32,7 +32,7 @@ struct trie {
             i++;
         }else break;
     }
-    count_ends += counts[u];
+    if(i == s.size()) count_ends += counts[u];
     return count_ends;
   }
 };
