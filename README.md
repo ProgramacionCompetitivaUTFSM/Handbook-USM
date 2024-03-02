@@ -29,9 +29,5 @@ typst compile main.typ
 
 ## To be added
 - More dynamic programming techniques
-- Monotonic tree
-- Cartesian tree
-- LCA using RMQ
-- Disjoint Sparse Table
 - Voronoi/Delaunay
 - Line, circle and more things for geometry
