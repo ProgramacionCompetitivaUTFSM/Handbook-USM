@@ -3,7 +3,7 @@
  *Status:* Partially Tested
 */
 struct centroid_decomp {
-  int n, sz, centroid;
+  int n, centroid;
   vector<bool> vis;
   vector<int> subtr;
   void dfs(int v, vector< vector< int > > & adj){
