@@ -1,13 +1,14 @@
 /*
  *Description:* centroid decomposition algorithm
- *Status:* No Tested
+ *Status:* Partially tested
 */
 struct centroid_decomp {
     int n;
     vector<bool> vis;
     vector<int> subtr, parent;
     vector<vector<int>> adj;
-    // Opcional
+    // Optional
+    // Here you can insert the functions for traversing the partition
     // ----------
     void dfs(int v,int p = -1){
         for(int u: adj[v]){
@@ -27,20 +28,26 @@ struct centroid_decomp {
     int get_centroid(int v, int p, int sz){
         for (int to : adj[v]){
             if (to == p || vis[to]) continue;
-            if (subtr[to]*2 > sz) return get_centroid(to,v,sz);
+            if (subtr[to]*2> sz) return get_centroid(to,v,sz);
         }
         return v;
     }
     int build(int v = 0){
         int centroid = get_centroid(v,v,calculate_subtree(v,v));
-        // Opcional
+        // Optional
+        // Here you can call functions for traversing the partition
         // ----------
         dfs(centroid);
         // ----------
         vis[centroid] = 1;
         for (int to : adj[centroid]){
             if (vis[to]) continue;
+            build(to);
+            // Optional
+            // ----------
+            // Save parent centroid (Optional)
             parent[build(to)] = centroid;
+            // ----------
         }
         return centroid;
     }
