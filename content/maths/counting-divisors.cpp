@@ -3,7 +3,7 @@
  *Status:* Tested on codeforces
 */
 const int MX_P = 1e6 + 1;
-EratosthenesSieve sieve(MX_P);
+eratosthenes_sieve sieve(MX_P);
 int counting_divisors(int n) {
   int ret = 1;
   for (int p : sieve.primes) {
