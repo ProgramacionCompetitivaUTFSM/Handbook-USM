@@ -46,10 +46,12 @@ content:
     - lct.cpp
     - wavelet-tree.cpp
   - maths:
+    - mulmod.cpp
     - fraction.cpp
 
     - binary-pow.cpp
     - binary-pow-128-bits.cpp
+    - binary-pow-mulmod.cpp
     - tetration.cpp
 
     - extended-gcd.cpp
@@ -71,7 +73,10 @@ content:
     - fft.cpp
     - ntt.cpp
     - poly-shift.cpp
+    - non-deterministic-miller-rabin.cpp
     - miller-rabin.cpp
+    - pollard_rho.cpp
+    - fast-prime-factorization.cpp
 
     - gauss.cpp
 
