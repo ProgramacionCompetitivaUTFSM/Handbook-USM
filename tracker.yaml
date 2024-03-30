@@ -75,7 +75,7 @@ content:
     - poly-shift.cpp
     - non-deterministic-miller-rabin.cpp
     - miller-rabin.cpp
-    - pollard_rho.cpp
+    - pollard-rho.cpp
     - fast-prime-factorization.cpp
 
     - gauss.cpp
