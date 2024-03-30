@@ -1,5 +1,5 @@
 /*
-  *Description: Finds a non-trivial factor of a composite number $n$ using Pollard's Rho algorithm.
+  *Description:* Finds a non-trivial factor of a composite number $n$ using Pollard's Rho algorithm.
   *Status:* Partially tested
 */
 ll pollard_rho(ll n) {
