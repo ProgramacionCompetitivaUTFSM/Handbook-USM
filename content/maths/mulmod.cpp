@@ -3,6 +3,6 @@
   *Status:* Partially tested
 */
 ll mulmod(ll a, ll b, ll m) {
-	ll r=a*b-(ll)((ld)a*b/m+.5)*m;
-	return r<0?r+m:r;
+  ll r=a*b-(ll)((ld)a*b/m+.5)*m;
+  return r<0?r+m:r;
 }
