@@ -8,7 +8,7 @@ vector<Point2D<T>> convexHull(vector<Point2D<T>> cloud, bool ac = 0) {
   sort(cloud.begin(), cloud.end(), [](Point2D<T> &a, Point2D<T> &b) {
     return a.x < b.x or (a.x == b.x and a.y < b.y);
   });
-  if (n <= 2 or (ac and n <= 3)) return cloud;
+  if (n <= 2) return cloud;
   bool allCollinear = true;
   for (int i = 2; i < n; ++i) {
     if (((cloud[1] - cloud[0]) ^ (cloud[i] - cloud[0])) != 0) {
