@@ -5,27 +5,24 @@
 struct query {
   ll l, r, i;
 };
-template<class T, class T2, void add(T2&, T), void rem(T2&, T), T answer(T2&, query)>
+template<class T, typename U, class T2>
 struct mo_algorithm {
-  vector<T> ans;
-  mo_algorithm(vector<T> &v, vector<query> &queries) {
-    ll block_sz = 1;
-    T2 ds(v.size());
+  vector<U> ans;
+  template<typename... Args>
+  mo_algorithm(vector<T> &v, vector<query> &queries, Args... args) {
+    T2 ds(args...);
+    ll block_sz = sqrtl(v.size());
     ans.assign(queries.size(), -1);
-    block_sz = sqrtl(v.size());
     sort(queries.begin(), queries.end(), [&](auto &a, auto &b) {
-      int ba = a.l/block_sz;
-      int bb = b.l/block_sz;
-      if(ba != bb) return ba < bb;
-      return (ba&1) ? (a.r<b.r) : (a.r>b.r);
-    }); 
-    int l = 0, r = -1;
+      return a.l/block_sz != b.l/block_sz ? a.l/block_sz < b.l/block_sz : a.r < b.r;
+    });
+    ll l = 0, r = -1;
     for (query q : queries) {
-      while (l > q.l) l--, add(ds, v[l]);
-      while (r < q.r) r++, add(ds, v[r]);
-      while (l < q.l) remove(ds, v[l]), l++;
-      while (r > q.r) remove(ds, v[r]), r--;
-      ans[q.i] = answer(ds, q);
+      while (l > q.l) ds.add(v[--l]);
+      while (r < q.r) ds.add(v[++r]);
+      while (l < q.l) ds.remove(v[l++]);
+      while (r > q.r) ds.remove(v[r--]);
+      ans[q.i] = ds.answer(q);
     }
   }
 };
