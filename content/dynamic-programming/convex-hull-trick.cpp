@@ -1,10 +1,11 @@
 /*
- *Description:* Given lines mantains a convex space to minimum queries
+ *Description:* Given lines mantains a convex space to maximum queries, $a$ is the slope and $b$ the constant.
  *Important:* Sort slopes before use
- *Status:* Not tested
+ *Status:* Partially tested
 */
-struct CHT {
+struct convex_hull_trick {
   vector<ll> A, B;
+  const ll inf = numeric_limits<ll>::max()/4;
   double cross(ll i, ll j, ll k) {
     return 1.0*(A[j] - A[i]) * (B[k] - B[i]) - 1.0*(A[k] - A[i]) * (B[j] - B[i]);
   }
@@ -14,10 +15,10 @@ struct CHT {
       A.erase(A.end() - 2), B.erase(B.end() - 2);
   }
   ll query(ll x) {
-    if(A.empty()) return (long long)1e18;
+    if(A.empty()) return inf;
     ll l = 0, r = A.size() - 1;
     while (l < r) {
-      ll mid = l + (r - l)/2;
+      ll mid = (l + r)/2;
       ll f1 = A[mid] * x + B[mid];
       ll f2 = A[mid + 1] * x + B[mid + 1];
       if(f1 > f2) l = mid + 1;
