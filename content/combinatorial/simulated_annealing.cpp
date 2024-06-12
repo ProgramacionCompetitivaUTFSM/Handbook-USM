@@ -22,26 +22,26 @@
 template<typename ans, class repr, repr neighbor(repr &u), ans eval(repr&)> 
 struct simulated_annealing {
   ans best, eval_s;
-  simulated_annealing(ld time_limit, ld t_0, ld t_f, ld a) {
+  simulated_annealing(double time_limit, double t_0, double t_f, double a) {
     time_t start = clock();
     for(;;) {
-      repr s; // Random valid state
+      repr s;
       best = eval_s = eval(s);
-      for (ld t=t_0; t>=t_f; t*=a) {
+      for (double t=t_0; t>=t_f; t*=a) {
         repr next = neighbor(s);
         ans eval_nxt = eval(next);
-        if ( (eval_nxt < best)) {
+        if (eval_nxt < best) {
           best = eval_nxt;
           s = next;
-        }else if (P(eval_s, eval_nxt, t) > ((ld)rand())/RAND_MAX) {
+        } else if (P(eval_s, eval_nxt, t) > ((double)rand())/RAND_MAX) {
           s = next;
           eval_s = eval_nxt;
         }
       }
-      if((ld)(clock()-start)*1.0/CLOCKS_PER_SEC > time_limit) break;
+      if((double)(clock()-start)*1.0/CLOCKS_PER_SEC > time_limit) break;
     }
   }
-  ld P(ld old_val, ld new_val, ld temp) {
-    return exp((old_val - new_val) / temp);
+  double P(double old_val, double new_val, double temp) {
+    return exp(((old_val - new_val) ) / temp);
   }
 };
