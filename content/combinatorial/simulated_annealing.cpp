@@ -14,7 +14,7 @@
  *
  * Tips:
  * - Always write your intermediate solution to a file periodically (e.g., every ~1 million iterations) to ensure partial scores if the process is interrupted.
- * - To choose a good $t_0$ and $alpha$, start with a high $t_0$ and a low $\alpha$, then adjust based on how the temperature and energy function behave. Use binary search on $\alpha$ to find an optimal cooling rate.
+ * - To choose a good $t_0$ and $alpha$, start with a high $t_0$ and a low $alpha$, then adjust based on how the temperature and energy function behave. Use binary search on $alpha$ to find an optimal cooling rate.
  * - Running the simulated annealing for a longer time with a larger $alpha$ is generally better than restarting with a previous solution and a lower $t_0$.
  * 
  * Status: Tested in DIY Tree (Codeforces).
