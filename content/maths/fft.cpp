@@ -36,8 +36,8 @@ struct FFT {
     fft(in); for (auto &x : in) x *= x;
     for(int i = 0; i < n; ++i) out[i] = in[-i & (n - 1)] - conj(in[i]);
     fft(out); for(int i = 0; i < res.size(); ++i) res[i] = imag(out[i]) / (4 * n);
-    vector<int> resint(n);
-    for (int i = 0; i < n; i++) resint[i] = round(res[i]);
+    vector<int> resint(res.size());
+    for (int i = 0; i < res.size(); i++) resint[i] = round(res[i]);
     return resint;
   }
   vector<int> convMod(vector<int> &a, vector<int> &b, int mod) {
