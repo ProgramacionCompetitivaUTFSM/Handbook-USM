@@ -59,7 +59,7 @@ struct FFT {
       int bv = (int)(imag(outl[i])+.5) + (int)(real(outs[i])+.5);
       res[i] = ((av % mod * cut + bv) % mod * cut + cv) % mod;
     }
-    vector<int> resint(n);
+    vector<int> resint(res.size());
     for (int i = 0; i < n; i++) resint[i] = round(res[i]);
     return resint;
   }
