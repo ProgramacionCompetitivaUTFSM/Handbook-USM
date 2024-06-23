@@ -7,26 +7,26 @@ bool euler_directed_graph(vector<vector<int>> &adj, vector<int> &path){
     outdeg[i] = adj[i].size();
     for (int x : adj[i])
       indeg[x] ++;
+  }
+  for (int i = 0; i < n; i ++){
+    int dif = outdeg[i] - indeg[i];
+    if (dif == 1){
+      if (v1 == -1) v1 = i;
+      else return false;
     }
-    for (int i = 0; i < n; i ++){
-      int dif = outdeg[i] - indeg[i];
-      if (dif == 1){
-        if (v1 == -1) v1 = i;
-        else return false;
-      }
-      else if (dif == -1){
-        if (v2 == -1) v2 = i;
-        else return false;
-      }
-      else if (dif != 0) return false;
+    else if (dif == -1){
+      if (v2 == -1) v2 = i;
+      else return false;
     }
-    if (v1 != v2 and (v1 == -1 or v2 == -1)) return false;
-    int first = v1;
-    if (v1 != -1) adj[v2].push_back(v1);
-    else 
-      for (int i = 0; i < n; i ++)
-        if (outdeg[i] > 0)
-          first = i;
+    else if (dif != 0) return false;
+  }
+  if (v1 != v2 and (v1 == -1 or v2 == -1)) return false;
+  int first = v1;
+  if (v1 != -1) adj[v2].push_back(v1);
+  else 
+    for (int i = 0; i < n; i ++)
+      if (outdeg[i] > 0)
+        first = i;
   stack<int> st;
   st.push(first);
   vector<int> res;
