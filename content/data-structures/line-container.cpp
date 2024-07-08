@@ -3,10 +3,10 @@
 */
 struct Line {
   mutable ll a, b, c;
-  bool operator < (Line r) const {
+  bool operator<(Line r) const {
     return a < r.a;
   }
-  bool operator < (ll x) const {
+  bool operator<(ll x) const {
     return c < x;
   }
 };
