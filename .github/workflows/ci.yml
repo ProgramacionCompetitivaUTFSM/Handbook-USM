@@ -1,0 +1,36 @@
+name: handbook-compile
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        profile: minimal
+        override: true
+
+    - name: Install Typst
+      run: cargo install typst
+
+    - name: Compile Handbook
+      run: typst compile main.typ
+
+    - name: Upload compiled document
+      uses: actions/upload-artifact@v2
+      with:
+        name: compiled-document
+        path: main.pdf
