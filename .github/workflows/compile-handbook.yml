@@ -22,7 +22,7 @@ jobs:
         profile: minimal
         override: true
 
-  install_compile_deploy:
+  install_compile_release:
 
     runs-on: ubuntu-latest
 
@@ -32,29 +32,28 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Install Typst, Compile Document, and Deploy
+    - name: Install Typst and Compile Document
       run: |
         sudo apt update
         sudo apt install -y cargo
         cargo install typst-cli
         typst compile main.typ
         ls -al # List files to check if main.pdf exists
-        if [ -f "main.pdf" ]; then
-          mkdir -p public
-          cp main.pdf public/
-          cd public
-          git init
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git add .
-          git commit -m "Deploy PDF to GitHub Pages"
-          git push --force "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" main:gh-pages
-        else
-          echo "main.pdf not found, skipping deployment."
-        fi
     
-    - name: Upload compiled document
-      uses: actions/upload-artifact@v2
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
       with:
-        name: compiled-document
-        path: main.pdf
+        tag_name: 'v1.0.${{ github.run_number }}'
+        release_name: 'Release v1.0.${{ github.run_number }}'
+        draft: false
+        prerelease: false
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload compiled document as release asset
+      uses: actions/upload-release-asset@v1
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: main.pdf
+        asset_name: main.pdf
+        asset_content_type: application/pdf
