@@ -22,7 +22,7 @@ jobs:
         profile: minimal
         override: true
 
-  install_typst:
+  install_and_compile:
 
     runs-on: ubuntu-latest
 
@@ -32,26 +32,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Install Typst
+    - name: Install Typst and Compile Document
       run: |
         sudo apt update
         sudo apt install -y cargo
         cargo install typst-cli
-        echo "::add-path::$(cargo bin)"
+        typst compile main.typ
     
-  compile:
-
-    runs-on: ubuntu-latest
-
-    needs: install_typst
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Compile Handbook
-      run: typst compile main.typ
-
     - name: Upload compiled document
       uses: actions/upload-artifact@v2
       with:
@@ -62,7 +49,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    needs: compile
+    needs: install_and_compile
 
     steps:
     - name: Checkout repository
