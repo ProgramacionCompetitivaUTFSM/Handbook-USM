@@ -45,6 +45,7 @@ content:
 
     - lct.cpp
     - wavelet-tree.cpp
+    - line-container.cpp
   - maths:
     - mulmod.cpp
     - fraction.cpp
