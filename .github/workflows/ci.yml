@@ -2,20 +2,20 @@ name: handbook-compile
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
+    - uses: actions/checkout@v4
     - name: Set up Rust
       uses: actions-rs/toolchain@v1
       with:
@@ -24,7 +24,7 @@ jobs:
         override: true
 
     - name: Install Typst
-      run: cargo install typst
+      run: cargo install typst-cli
 
     - name: Compile Handbook
       run: typst compile main.typ
