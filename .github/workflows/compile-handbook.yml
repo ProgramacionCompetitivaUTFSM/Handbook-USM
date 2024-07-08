@@ -1,0 +1,18 @@
+name: compile-pdf
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install Typst
+      run: cargo install typst-cli
+    - name: Compile Handbook
+      run: typst compile main.typ
