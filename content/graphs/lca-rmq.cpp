@@ -10,7 +10,8 @@ struct lca_rmq {
   ll t = 0, n;
   static pll _min(pll a, pll b) { return min(a, b); }
   sparse_table<pll, lca_rmq::_min> st;
-  lca_rmq(vector<vector<int>> &T): n(T.size()) {
+  lca_rmq(){}
+  lca_rmq(vector<vector<int>> &T, ll rooted = 0): n(T.size()) {
     in = out = depth = vector<int>(n, -1);
     linear.resize(2*n);
     auto dfs = [&](int u, int d, auto&&dfs) -> void {
@@ -22,7 +23,7 @@ struct lca_rmq {
       }
       out[u] = t;
     };
-    dfs(0, 0, dfs);
+    dfs(rooted, 0, dfs);
     st = sparse_table<pll, lca_rmq::_min>(linear);
   }
   ll query(int u, int v) {
