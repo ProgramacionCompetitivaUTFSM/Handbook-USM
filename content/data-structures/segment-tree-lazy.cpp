@@ -86,3 +86,10 @@ struct segment_tree_lazy{
     return query(1, 0, n - 1, a, b);
   }
 };
+ll merge(ll a, ll b){ return a + b; }
+void pushUpd(ll u1, ll &u2, int l1, int r1, int l2, int r2){
+  u2 += u1;
+}
+void applyUpd(ll u, ll &v, int l, int r){
+  v += (r - l + 1) * u;
+}
