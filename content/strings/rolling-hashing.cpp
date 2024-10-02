@@ -1,3 +1,7 @@
+/*
+ *Description:*
+ *Status:*
+*/
 template<class T>
 struct rolling_hashing {
   int base, mod; 

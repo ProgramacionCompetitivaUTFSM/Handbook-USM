@@ -1,5 +1,5 @@
 /*
-  *Description:* Compute the first values for the mobius funcion in $O(nlog(n))$.
+  *Description:* Compute the first values for the mobius funcion in $ O(n log(n)) $.
   *Status:* Tested in codeforces.
 */
 vector<int> mobius_sieve(int mxn){

@@ -1,3 +1,7 @@
+/*
+ *Description:* ?
+ *Status:* ?
+*/
 template<class T>
 struct rolling_hashing {
   vector<int> base, mod; int n, k;

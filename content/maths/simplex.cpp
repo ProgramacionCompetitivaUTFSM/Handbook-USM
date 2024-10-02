@@ -1,5 +1,5 @@
 /*
- *Description:* optimizes linear function, based of linear restrictions, in $O(n^{2})$
+ *Description:* Optimizes linear function, based of linear restrictions, in $O(n^2)$
  *Status:* Not tested
 */
 template<class T> struct Simplex {

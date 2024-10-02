@@ -1,4 +1,3 @@
-// Corre en O(n log(log(n)) ))
 /*
   *Description:* Get all prime numbers up to $n$, runs on $O(n log(log (n)) ) $
   *Status:* Highly tested

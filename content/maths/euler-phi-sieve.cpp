@@ -1,5 +1,5 @@
 /*
-  *Description:* Return $phi(n)$ for all positive $n$, runs on $O(n log(log(n)))$
+  *Description:* Return $phi(n)$ for all positive $n$, runs on $O(n log ( log ( n ) ) )$
   *Status:* Not tested
 */
 struct euler_phi {

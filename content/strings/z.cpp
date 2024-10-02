@@ -1,3 +1,7 @@
+/*
+ *Description:*
+ *Status:*
+*/
 struct Z {
   int n, m;
   vector<int> z;

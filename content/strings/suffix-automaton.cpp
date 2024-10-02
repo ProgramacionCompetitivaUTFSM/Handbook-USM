@@ -1,3 +1,7 @@
+/*
+ *Description:*
+ *Status:*
+*/
 struct SuffixAutomaton {
   struct state {
     int len, link;

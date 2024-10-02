@@ -1,3 +1,7 @@
+/*
+ *Description:* Get euler path
+ *Status:* ?
+*/
 bool euler_directed_graph(vector<vector<int>> &adj, vector<int> &path){
   path.resize(0);
   int n = adj.size();

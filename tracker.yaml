@@ -12,9 +12,12 @@ content:
     - trie.cpp
     - suffix-array.cpp
     - suffix-automaton.cpp
+    - min-rotation.cpp
+    - aho-corasick.cpp
   - algorithms:
     - tortoise-hare.cpp
     - mo.cpp
+    - mo-rollback.cpp
   - data-structures:
     - min-queue.cpp
     - min-stack.cpp
@@ -44,6 +47,7 @@ content:
     - implicit-treap.cpp
 
     - lct.cpp
+    - succinct-indexable-dictionary.cpp
     - wavelet-tree.cpp
     - line-container.cpp
   - maths:
@@ -69,6 +73,8 @@ content:
     - euler-phi.cpp
     - euler-phi-sieve.cpp
 
+    - mobius-sieve.cpp
+
     - factorial.cpp
 
     - fft.cpp
@@ -80,7 +86,7 @@ content:
     - fast-prime-factorization.cpp
 
     - gauss.cpp
-
+    - simplex.cpp
     - matrix.cpp
 
   - graphs:
@@ -89,6 +95,7 @@ content:
     - floyd-warshall.cpp
     - dijkstra.cpp
     - kruskal.cpp
+    - bridges.cpp
     - dinic.cpp
     - mfed.cpp
     - articulation-points.cpp
@@ -99,7 +106,10 @@ content:
     - kosaraju.cpp
     - lca.cpp
     - lca-rmq.cpp
+    - centroid-decomposition.cpp
     - bellman-ford.cpp
+    - euler-directed-graph.cpp
+    - johnson.cpp
     
   - geometry:
     - point-2d.cpp
@@ -111,9 +121,16 @@ content:
     - point-inside-polygon.cpp
     - polygon-area.cpp
     - segment.cpp
+    - halfplane.cpp
+    - halfplane-intersection.cpp
+    
   - dynamic-programming:
     - lis.cpp
     - knuth.cpp
     - egg-drop.cpp
     - d&c.cpp
     - convex-hull-trick.cpp
+    - line-container.cpp
+  - combinatorial:
+    - weighted-matroid-intersection.cpp
+    - simulated-annealing.cpp

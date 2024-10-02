@@ -1,3 +1,7 @@
+/*
+ *Description:*
+ *Status:*
+*/
 struct SA {
   int n;
   vector<int> C, R, R_, sa, sa_, lcp;

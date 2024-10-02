@@ -1,3 +1,7 @@
+/*
+ *Description:* ?
+ *Status:* ?
+*/
 struct AhoCorasick {
   enum {
     alpha = 26, first = 'a'
