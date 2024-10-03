@@ -7,8 +7,8 @@
   requires binpow(be careful with overflow), and montgomery
  *Status:* Tested on codeforces, every prime above
 */
-using ll = uint64_t;
-template<ll mod, ll gen>
+using ull = uint64_t;
+template<ull mod, ull gen>
 struct fast_ntt {
     fast_ntt() {};
     vector<int> bit_sort(int n) {
@@ -22,20 +22,20 @@ struct fast_ntt {
         }
         return rev;
     }
-    void ntt(vector<ll>& a, vector<int>& rev, montgomery& red, ll inv_n, ll root, ll inv_root, bool invert) {
+    void ntt(vector<ull>& a, vector<int>& rev, montgomery& red, ull inv_n, ull root, ull inv_root, bool invert) {
         int n = (int)a.size();
         for (int i = 0; i < n; ++i)
             if (i < rev[i])
                 swap(a[i], a[rev[i]]);
-        ll w = invert ? inv_root : root;
-        vector<ll> W(n >> 1, red.transform(1));
+        ull w = invert ? inv_root : root;
+        vector<ull> W(n >> 1, red.transform(1));
         for (int i = 1; i < (n >> 1); ++i)
             W[i] = red.multiply(W[i-1], w);
         int lim = __lg(n);
         for (int i = 0; i < lim; ++i)
             for (int j = 0; j < n; ++j)
                 if (!(j & (1 << i))) {
-                    ll t = red.multiply(a[j ^ (1 << i)], W[(j & ((1 << i) - 1)) * (n >> (i + 1))]);
+                    ull t = red.multiply(a[j ^ (1 << i)], W[(j & ((1 << i) - 1)) * (n >> (i + 1))]);
                     a[j ^ (1 << i)] = a[j] >= t ? a[j] - t : a[j] + mod - t;
                     a[j] = a[j] + t < mod ? a[j] + t : a[j] + t - mod;
                 }
@@ -43,7 +43,7 @@ struct fast_ntt {
             for (int i = 0; i < n; i++)
                 a[i] = red.multiply(a[i], inv_n);
     }
-    vector<ll> conv(vector<ll> a, vector<ll> b) {
+    vector<ull> conv(vector<ull> a, vector<ull> b) {
         montgomery red(mod);
         for (auto& x : a)
             x = red.transform(x);
@@ -55,9 +55,9 @@ struct fast_ntt {
         n <<= 1;
         a.resize(n);
         b.resize(n);
-        ll inv_n = red.transform(bin_pow(n, mod-2, mod));
-        ll root = red.transform(bin_pow(gen, (mod-1)/n, mod));
-        ll inv_root = red.transform(bin_pow(red.reduce(root), mod-2, mod));
+        ull inv_n = red.transform(bin_pow(n, mod-2, mod));
+        ull root = red.transform(bin_pow(gen, (mod-1)/n, mod));
+        ull inv_root = red.transform(bin_pow(red.reduce(root), mod-2, mod));
         auto rev = bit_sort(n);
         ntt(a, rev, red, inv_n, root, inv_root, false);
         ntt(b, rev, red, inv_n, root, inv_root, false);
