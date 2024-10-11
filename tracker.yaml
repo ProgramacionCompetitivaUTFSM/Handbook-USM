@@ -102,6 +102,7 @@ content:
     - dinic.cpp
     - mfed.cpp
     - articulation-points.cpp
+    - dominator-tree.cpp
     - hld.cpp
     - ahld.cpp
     - eppstein.cpp
