@@ -115,6 +115,7 @@ content:
     - euler-directed-graph.cpp
     - johnson.cpp
     - 4-cycle.cpp
+    - 3-cycle.cpp
   - geometry:
     - point-2d.cpp
     - convex-hull.cpp
