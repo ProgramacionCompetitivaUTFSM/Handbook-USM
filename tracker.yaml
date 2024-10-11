@@ -114,7 +114,7 @@ content:
     - bellman-ford.cpp
     - euler-directed-graph.cpp
     - johnson.cpp
-    - 3-cycle.cpp
+    - 4-cycle.cpp
   - geometry:
     - point-2d.cpp
     - convex-hull.cpp
