@@ -1,5 +1,5 @@
 /*
- * Description: * Acts like an array, allowing us to reverse, sum, remove, slice, order of, and remove in $O(\log n)$
+ * Description: * Acts like an array, allowing us to reverse, sum, remove, slice, order of, and remove in $O(log n)$
  * Status: * Tested
  */
 #include <ext/pb_ds/assoc_container.hpp>
