@@ -113,7 +113,7 @@ content:
     - centroid-decomposition.cpp
     - bellman-ford.cpp
     - euler-directed-graph.cpp
-    - johnson.cpp
+    - min-cost-flow.cpp
     - 4-cycle.cpp
     - 3-cycle.cpp
   - geometry:
