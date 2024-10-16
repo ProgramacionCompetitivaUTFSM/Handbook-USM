@@ -10,7 +10,8 @@ struct implicit_treap {
     N *l, *r, *p; int s, pr, v; bool rv;
     N(int x): l(0), r(0), p(0), s(1), pr(MT()), v(x), rv(0) {}
   } *rt = 0;
-  gp_hash_table<int, N*> mp; // Remove if TLE (this is for order_of)
+  gp_hash_table<int, N*> mp; // Mapping values to nodes for order_of
+
   int sz(N *t) { return t ? t->s : 0; }
   void upd(N *t) {
     if (t->l) t->l->p = t;
@@ -45,10 +46,7 @@ struct implicit_treap {
     b->rv ^= 1;
     merge(rt, a, b), merge(rt, rt, c);
   }
-  void push_back(int x) {
-    N* n = new N(x);
-    mp[x] = n, merge(rt, rt, n);
-  }
+  void push_back(int x) { N* n = new N(x); mp[x] = n; merge(rt, rt, n); }
   int order_of(int x) {
     N* t = mp[x];
     vector<N*> path;
@@ -65,5 +63,13 @@ struct implicit_treap {
     }
     return idx;
   }
+  N* find(N* t, int k) {
+    push(t);
+    if (sz(t->l) == k) return t;
+    if (k < sz(t->l)) return find(t->l, k);
+    else return find(t->r, k - sz(t->l) - 1);
+  }
+  int operator[](int k) { return find(rt, k)->v; }
+  void merge(implicit_treap& o) { merge(rt, rt, o.rt); }
 };
 mt19937_64 implicit_treap::MT(chrono::system_clock::now().time_since_epoch().count());
