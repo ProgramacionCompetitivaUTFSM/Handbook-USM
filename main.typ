@@ -21,6 +21,7 @@
 - Gabriel Carmona (MrYhatoh)
 - Carlos Lagos (CharlesLakes)
 - Sebastián Torrealba (storrealbac)
+- Abner Vidal (abner_vidal)
 
 *Contributors:*
 - Javier Oliva (JOliva)
