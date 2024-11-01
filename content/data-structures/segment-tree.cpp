@@ -1,5 +1,5 @@
 /*
- *Description:* Range queries, build $O(n)$, query and update $O(log n)$
+ *Description:* Range queries, build $O(n)$, query and update $O(log n)$, [0, n - 1]
  *Status:* Highly tested
 */
 template<class T, T m_(T, T)> struct segment_tree{
