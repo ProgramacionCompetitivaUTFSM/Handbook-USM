@@ -1,7 +1,5 @@
-// Custom lib
 #import "lib/hash.typ": md5, hex
 
-// Settings
 #set page(
   paper: "a4",
   columns: 2,
@@ -13,17 +11,15 @@
   font: "New Computer Modern",
   size: 7pt
 )
- 
-// Utils
-#let title-case(string) = {
 
+#let title-case(string) = {
   if string.len() <= 3 {
     return upper(string)
   }
 
   return string.replace(
     regex("[A-Za-z]+('[A-Za-z]+)?"),
-    word => upper(word.text.first()) + lower(word.text.slice(1)),
+    word => upper(word.text.first()) + lower(word.text.slice(1))
   )
 }
 
@@ -39,10 +35,9 @@
   }
 }
 
-// Remove spaces and line breaks, everything to lowercase and get the slice the first 6 characters
 #let get-code-hash(string) = {
   string = string.replace(regex("[\n\t\s]"), "")
-  return hex(md5(string)).slice(0, 6)
+  hex(md5(string)).slice(0, 6)
 }
 
 #let comments-regex = regex("\/\*[\s\S]*?\*\/")
@@ -51,24 +46,24 @@
   let comments = string.find(comments-regex)
 
   if type(comments) != str or string.trim().at(0) != "/" {
-    return "#text(red)[*You must provide a description for each template code!*]"
+    return text(red)[*You must provide a description for each template code!*]
   }
 
   let lines = comments.split("\n")
-  return lines.slice(1, lines.len() - 1).join("\\").trim()
+  lines.slice(1, lines.len() - 1).join("\\").trim()
 }
 
 #let remove-description-from-code(string) = {
   if string.trim().at(0) != "/" {
     return string
   }
-  return string.replace(comments-regex, "", count: 1).trim()
+  string.replace(comments-regex, "", count: 1).trim()
 }
 
-// Template code
 #let template-code(title: [], only-code: [], body) = {
+  let code-lines = only-code.split("\n").len()
+  let text-size = if code-lines > 90 { 5.3pt } else { 7pt }
   
-
   block(
     breakable: false,
     radius: 5pt,
@@ -77,31 +72,31 @@
     spacing: 1.5em,
     width: 100%
   )[
-
-  #place(dy: -15pt, dx: 220pt)[
-    #block(
-      fill: black,
-      inset: 3pt,
-    )[
-      #text(fill: green)[\#]
-      #text(fill: white, weight: "semibold")[
-        #get-code-hash(only-code)
+    #place(dy: -15pt, dx: 220pt)[
+      #block(
+        fill: black,
+        inset: 3pt,
+      )[
+        #text(fill: green)[\#]
+        #text(fill: white, weight: "semibold")[
+          #get-code-hash(only-code)
+        ]
       ]
     ]
-  ]
 
-  #place(dy: -15pt)[
-
-    #block(
-      fill: black,
-      inset: 3pt
-    )[
-      #text(fill: white, weight: "semibold")[
-        #title
+    #place(dy: -15pt)[
+      #block(
+        fill: black,
+        inset: 3pt
+      )[
+        #text(fill: white, weight: "semibold")[
+          #title
+        ]
       ]
     ]
-  ]
-  #body
+
+    #set text(size: text-size)
+    #body
   ]
 }
 
@@ -109,7 +104,6 @@
   text(weight: "black", size: 15pt)[#title]
 }
 
-// Chapter
 #let typst-section(title: [], content: []) = {
   block(
     breakable: false,
@@ -143,18 +137,16 @@
           let comments = get-description-from-code(content-to-string(all-code))
           let without-comments = remove-description-from-code(content-to-string(all-code))
           
-           template-code(title: template-title, only-code: without-comments)[
+          template-code(title: template-title, only-code: without-comments)[
             #eval(comments, mode: "markup")
             #line(length: 100%)
             #raw(without-comments, lang: "cpp")
           ]
-
         }
       }
     }
-    if i != content-list.len()-1 {
+    if i != content-list.len() - 1 {
       pagebreak()
     }
-    
   }
 }
