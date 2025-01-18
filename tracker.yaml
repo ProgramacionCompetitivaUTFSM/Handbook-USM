@@ -18,6 +18,7 @@ content:
     - tortoise-hare.cpp
     - mo.cpp
     - mo-rollback.cpp
+    - mo-update.cpp
   - data-structures:
     - min-queue.cpp
     - min-stack.cpp
