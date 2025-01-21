@@ -1,5 +1,5 @@
 /*
- *Description:* Allow us to answer queries and updates offline with block decomposition in $O(q \cdot n^{\frac{2}{3}})$
+ *Description:* Allow us to answer queries and updates offline with block decomposition in $O(q dot n^(2/3) )$
  *Status:* Not tested 
 */
 struct query {
