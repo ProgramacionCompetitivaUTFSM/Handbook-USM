@@ -37,6 +37,7 @@ content:
     - dynamic-segment-tree.cpp
     - extended-segment-tree.cpp
     - query-tree.cpp
+    - sqrt-decomposition.cpp
     - merge-sort-tree.cpp
 
     - ordered-set.cpp
