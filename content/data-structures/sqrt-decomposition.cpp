@@ -16,7 +16,7 @@ struct sqrt_decomp {
   }
   void update(int pos, T val) {
     st[pos] = val;
-    int block = pos/sq, lb = block*sq, rb = block*sq+sq-1;
+    int block = pos/sq, lb = block*sq, rb = min(block*sq+sq-1,n-1);
     T vl;
     for (int i = lb; i <= rb; i++)
       vl = ((i == lb)?st[i]:merge(vl,st[i]));
