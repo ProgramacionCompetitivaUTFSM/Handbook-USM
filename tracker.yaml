@@ -33,6 +33,7 @@ content:
 
     - segment-tree.cpp
     - segment-tree-lazy.cpp
+    - iterative-segment-tree-lazy.cpp
     - persistent-segment-tree.cpp
     - dynamic-segment-tree.cpp
     - extended-segment-tree.cpp
