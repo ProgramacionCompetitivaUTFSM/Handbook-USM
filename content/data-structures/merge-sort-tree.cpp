@@ -1,31 +1,25 @@
 /*
- *Description:* Segment tree, each node of which contains a sorted vector of every element in its range. $O(log^2 n)$ per operation
- *Status:* Not tested
+ *Description:* Iterative merge sort tree. Each node stores sorted elements in its range.
+  - Query: Count elements > k in range [i, j]. O(log^2 n) per operation.
+  - Build: O(n log n)
+ *Status:* Distinct Values Queries (CSES)
 */
 template <typename T>
 struct merge_sort_tree {
-  int N;
-  vector<vector<T>> ST;
-  void build(int n, int l, int r, vector<T> &vs) {
-    if (l == r) ST[n] = {vs[l]};
-    else {
-      build(n * 2, l, (r + l) / 2, vs);
-      build(n * 2 + 1, (r + l) / 2 + 1, r, vs);
-      merge(ST[n * 2].begin(), ST[n * 2].end(), ST[n * 2 + 1].begin(), ST[n * 2 + 1].end(), back_inserter(ST[n]));
-    }
-  }
-  merge_sort_tree() {}
+  int N; vector<vector<T>> ST;
+  merge_sort_tree(){}
   merge_sort_tree(vector<T> &vs) {
-    N = vs.size(); ST.resize(4 * N + 3);
-    build(1, 0, N - 1, vs);
+    N = vs.size(); ST.resize(2 * N);
+    for (int i = 0; i < N; i++) ST[i + N] = {vs[i]};
+    for (int i = N - 1; i > 0; i--)
+      merge(ST[i<<1].begin(), ST[i<<1].end(), ST[i<<1|1].begin(), ST[i<<1|1].end(), back_inserter(ST[i]));
   }
-  int query(int i, int j, int k) { return query(0, N - 1, 1, i, j, k); }
-  int query(int l, int r, int n, int i, int j, int k) {
-    if (l >= i && r <= j)
-      return upper_bound(ST[n].begin(), ST[n].end(), k) - ST[n].begin();
-    int mid = (r + l) / 2;
-    if (mid < i) return query(mid + 1, r, n * 2 + 1, i, j, k);
-    if (mid >= j) return query(l, mid, n * 2, i, j, k);
-    return query(l, mid, n * 2, i, j, k) + query(mid + 1, r, n * 2 + 1, i, j, k);
+  int query(int i, int j, int k) {
+    int res = 0;
+    for (i += N, j += N + 1; i < j; i >>= 1, j >>= 1) {
+      if (i & 1) res += ST[i].size() - (upper_bound(ST[i].begin(), ST[i].end(), k) - ST[i].begin()), i++;
+      if (j & 1) --j, res += ST[j].size() - (upper_bound(ST[j].begin(), ST[j].end(), k) - ST[j].begin());
+    }
+    return res;
   }
 };
