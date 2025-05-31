@@ -84,6 +84,7 @@ content:
     - fft.cpp
     - ntt.cpp
     - fast-ntt.cpp
+    - fwht.cpp
     - poly-shift.cpp
     - non-deterministic-miller-rabin.cpp
     - miller-rabin.cpp
