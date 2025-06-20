@@ -30,6 +30,7 @@ content:
 
     - sparse-table.cpp
     - disjoint-sparse-table.cpp
+    - range-query-constant.cpp
 
     - segment-tree.cpp
     - segment-tree-lazy.cpp
