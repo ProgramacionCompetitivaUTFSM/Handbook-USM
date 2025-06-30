@@ -1,6 +1,6 @@
 /*
  *Description:* A more flexible dynamic bit_vector, with operations `access`, `set`, `not` and `push_back`
- *status:* partially tested
+ *Status:* Partially tested
 */
 struct bit_vector {
   uint64_t size;

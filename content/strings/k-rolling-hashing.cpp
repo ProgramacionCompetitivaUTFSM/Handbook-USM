@@ -1,6 +1,6 @@
 /*
- *Description:* ?
- *Status:* ?
+ *Description:* Rolling hash with multiple hash functions for collision resistance
+ *Status:* Tested
 */
 template<class T>
 struct rolling_hashing {

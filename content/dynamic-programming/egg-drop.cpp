@@ -1,6 +1,6 @@
 /*
- *Description:* ?
- *Status:*
+ *Description:* Egg dropping problem with binary search optimization
+ *Status:* Tested
 */
 vector<vector<ll>> egg_drop(ll h,ll k){
   vector<vector<ll>> dp(h + 1,vector<ll>(k + 1));

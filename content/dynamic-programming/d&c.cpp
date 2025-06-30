@@ -1,6 +1,6 @@
 /*
- *Description:* ?
- *Status:* ? (we need to change this xd)
+ *Description:* Divide and conquer optimization for DP with quadrangle inequality
+ *Status:* Tested
 */
 // dp(i, j) = min dp(i-1,k-1) + C(k,j) for all k in [0, j]
 // C(a,c) + C(b, d) <= C(a,d) + C(b,c) for all a <= b <= c <= d

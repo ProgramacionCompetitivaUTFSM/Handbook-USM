@@ -1,5 +1,6 @@
 /*
-  Description: Line container, useful for convex hull trick
+ *Description:* Line container for convex hull trick optimization in DP
+ *Status:* Tested
 */
 struct Line {
   mutable ll a, b, c;

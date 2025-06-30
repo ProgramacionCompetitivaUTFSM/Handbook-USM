@@ -1,6 +1,6 @@
 /*
- * Description: * Acts like an array, allowing us to reverse, sum, remove, slice, order of, and remove in $O(log n)$
- * Status: * Tested
+ *Description:* Acts like an array, allowing us to reverse, sum, remove, slice, order of, and remove in $O(log n)$
+ *Status:* Tested
  */
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace __gnu_pbds;

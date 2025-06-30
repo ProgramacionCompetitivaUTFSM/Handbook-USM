@@ -1,5 +1,5 @@
 /*
- Description: Optimizes the function `eval` by exploring the neighbor solutions using simulated annealing.
+ *Description:* Optimizes the function `eval` by exploring the neighbor solutions using simulated annealing.
  - `time_limit`: The maximum time to run the algorithm.
  - `t_i`: Initial temperature.
  - `t_f`: Final temperature.
@@ -11,7 +11,7 @@
  Tips:
  - Always write your intermediate solution to a file periodically (e.g., every ~1 million iterations) to ensure partial scores if the process is interrupted.
  - To choose a good $t_i$ and $alpha$, start with a high $t_0$ and a low $alpha$, then adjust based on how the temperature and energy function behave.
- Status: Tested with sudoku.
+ *Status:* Tested with sudoku.
 */
 template<class T, class repr>
 struct simulated_annealing {

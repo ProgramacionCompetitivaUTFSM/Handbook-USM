@@ -1,5 +1,6 @@
 /*
  *Description:* Solves $f(x + c) = sum_0^(n-1) b_i dot x^i$
+ *Status:* Tested
 */
 vector<int> polyShift(vector<int> &a, int shift) {
   // change for any mod for ntt

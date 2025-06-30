@@ -1,6 +1,6 @@
 /*
- *Description:* ?
- *Status:* ?
+ *Description:* Aho-Corasick algorithm for multiple pattern matching in text
+ *Status:* Tested
 */
 struct AhoCorasick {
   enum {

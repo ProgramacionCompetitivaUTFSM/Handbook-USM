@@ -1,6 +1,6 @@
 /*
   *Author:* 
-  *Description:* Computes XOR, OR and AND convolution of two arrays in $O(nlog(n))$.
+  *Description:* Computes XOR, OR and AND convolution of two arrays in $O(n log n)$.
   op = 0 -> OR, op = 1 -> AND, op = 2 -> XOR, mxn and n must be powers of two.
   *Status:* Tested on CSES
 */

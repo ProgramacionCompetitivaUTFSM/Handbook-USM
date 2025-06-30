@@ -1,6 +1,6 @@
 /*
  *Description:* Just traverse a graph in dfs order
- *Status*: Tested
+ *Status:* Tested
 */
 void dfs(int s) {
   if (visited[s]) return;

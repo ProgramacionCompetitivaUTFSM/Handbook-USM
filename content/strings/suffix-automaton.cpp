@@ -1,6 +1,6 @@
 /*
- *Description:*
- *Status:*
+ *Description:* Suffix automaton (DAWG) for string processing, $O(n)$ construction
+ *Status:* Tested
 */
 struct SuffixAutomaton {
   struct state {

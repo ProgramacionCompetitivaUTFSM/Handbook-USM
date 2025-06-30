@@ -1,6 +1,6 @@
 /*
- *Description:*
- *Status:*
+ *Description:* Z-algorithm for string matching, finds all occurrences in $O(n+m)$
+ *Status:* Tested
 */
 struct Z {
   int n, m;

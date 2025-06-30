@@ -1,6 +1,6 @@
 /*
- *Description:*
- *Status:*
+ *Description:* Suffix array construction with LCP array using radix sort, $O(n log n)$
+ *Status:* Tested
 */
 struct SA {
   int n;

@@ -1,6 +1,6 @@
 /*
- *Description:*
- *Status:*
+ *Description:* Trie (prefix tree) for string storage and prefix queries
+ *Status:* Tested
 */
 struct trie {
   vector <vector<ll>> tree;

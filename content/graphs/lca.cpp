@@ -1,5 +1,6 @@
 /*
  *Description:* Computes lowest common ancestor, precomputed in $O(V log V)$, $O(log V)$ per query, uses binary lifting and works for directed and undirected graphs.
+ *Status:* Tested
 */
 struct LCA {
   vector<vector<int>> T, parent;

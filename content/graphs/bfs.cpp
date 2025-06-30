@@ -1,6 +1,6 @@
 /*
  *Description:* Just traverse a graph in bfs order
- *Status*: Tested
+ *Status:* Tested
 */
 visited[x] = true;
 distance[x] = 0;

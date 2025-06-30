@@ -1,6 +1,6 @@
 /*
- *Description:* Get euler path
- *Status:* ?
+ *Description:* Find Eulerian path in directed graphs using Hierholzer's algorithm
+ *Status:* Tested
 */
 bool euler_directed_graph(vector<vector<int>> &adj, vector<int> &path){
   path.resize(0);

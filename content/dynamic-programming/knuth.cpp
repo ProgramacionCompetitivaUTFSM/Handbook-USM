@@ -1,6 +1,6 @@
 /*
- *Description:* ?
- *Status:* ? (we need to change this xd)
+ *Description:* Knuth-Yao optimization for DP (optimal binary search trees)
+ *Status:* Tested
 */
 int N;
 vector<int> A;

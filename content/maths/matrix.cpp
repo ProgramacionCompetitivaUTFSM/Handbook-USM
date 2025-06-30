@@ -1,7 +1,7 @@
 /*
  *Author:* Carlos Lagos
- *Description:* Matrix and their operations
- *Status:* ??
+ *Description:* Matrix operations including multiplication and binary exponentiation
+ *Status:* Tested
 */
 
 template<class T>

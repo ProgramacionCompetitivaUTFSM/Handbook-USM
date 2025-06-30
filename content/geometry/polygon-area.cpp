@@ -1,5 +1,5 @@
 /*
- * Descripcion:* Get the area of a polygon
+ *Description:* Get the area of a polygon
  - If you want the double of the area, just enable the flag
  *Status:* Highly tested
 */
