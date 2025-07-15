@@ -87,6 +87,7 @@ content:
     - fast-ntt.cpp
     - fwht.cpp
     - poly-shift.cpp
+    - sieveking-kung.cpp
     - non-deterministic-miller-rabin.cpp
     - miller-rabin.cpp
     - pollard-rho.cpp
