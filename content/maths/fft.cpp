@@ -60,7 +60,7 @@ struct FFT {
       res[i] = ((av % mod * cut + bv) % mod * cut + cv) % mod;
     }
     vector<int> resint(res.size());
-    for (int i = 0; i < n; i++) resint[i] = round(res[i]);
+    for (int i = 0; i < res.size(); i++) resint[i] = round(res[i]);
     return resint;
   }
 };
