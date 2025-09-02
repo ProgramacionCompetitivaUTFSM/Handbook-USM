@@ -31,3 +31,6 @@ typst compile main.typ
 - More dynamic programming techniques
 - Voronoi/Delaunay
 - Line, circle and more things for geometry
+- Convex Hull 3D
+- Karatsuba polynomial multiplication
+- More polynomial operations
