@@ -1,36 +1,93 @@
-# USM Handbook
+# 📚 USM Competitive Programming Handbook
 
-Bienvenido al mejor apunte numero 13!
+A comprehensive collection of algorithms and data structures for competitive programming, maintained by Universidad Técnica Federico Santa María (USM) students.
 
+## 🚀 Quick Start
 
-## Requeriments
-- Typst
+### Prerequisites
+- [Typst](https://typst.app/) - A modern markup-based typesetting system
 
-## How to compile
-
-```sh
+### Compilation
+```bash
 typst compile main.typ
 ```
 
-## Rules
+This generates a PDF handbook with all algorithms organized by category.
 
-- Each folder must be written separated by "-" and in lowercase
-- Every file name must be written in lowercase
-- Only file extensions allowed are ".cpp" and ".typ
-- If the filename length is more than 18 characters, use a short name (example: knuth-morris-pratt to kmp)
-- Forbidden the use of macros like "rep", "repx" or any variant
-- Every template code must have a description in their first lines
-- The tabulation for each file must be of **2** spaces
-- Each file must be atomic, that means you can not put two differents codes on the same file (Sometimes is needed btw)
+## 📖 Contents
 
-## Objectives
-- Shorten codes
-- Writing descriptions and testing codes
+The handbook includes implementations for:
 
-## To be added
-- More dynamic programming techniques
-- Voronoi/Delaunay
-- Line, circle and more things for geometry
-- Convex Hull 3D
-- Karatsuba polynomial multiplication
-- More polynomial operations
+- **🔧 General** - Templates and troubleshooting guides
+- **🔤 Strings** - String processing algorithms (KMP, Z-algorithm, Suffix Array, Trie, etc.)
+- **⚡ Algorithms** - General algorithms (Mo's algorithm, Tortoise-Hare cycle detection)
+- **📊 Data Structures** - Advanced data structures (Segment Trees, Fenwick Trees, Treaps, etc.)
+- **🧮 Mathematics** - Number theory, linear algebra, and polynomial operations
+- **📈 Graphs** - Graph algorithms (DFS, BFS, Shortest paths, Network flows, etc.)
+- **📐 Geometry** - Computational geometry (Convex Hull, Point operations, etc.)
+- **🎯 Dynamic Programming** - DP optimizations and classic problems
+- **🔀 Combinatorics** - Advanced combinatorial algorithms
+
+## 📝 Contributing Guidelines
+
+### Code Style
+- **Naming**: Use lowercase with hyphens for folders and files (`knuth-morris-pratt` → `kmp`)
+- **File Extensions**: Only `.cpp` and `.typ` files allowed
+- **Indentation**: Use exactly **2 spaces** (no tabs)
+- **Length**: Keep filenames under 18 characters when possible
+- **Atomicity**: Each file should contain only one algorithm/data structure
+
+### Code Requirements
+- **Documentation**: Every C++ file must start with a multi-line comment describing the algorithm
+- **No Macros**: Avoid competitive programming macros like `rep`, `repx`, etc.
+- **Clean Code**: Write readable, well-structured code
+
+### File Structure
+```
+content/
+├── algorithms/            # General algorithms
+├── combinatorial/         # Combinatorial algorithms
+├── data-structures/       # Advanced data structures
+├── dynamic-programming/   # DP techniques
+├── general/               # Templates and utilities
+├── geometry/              # Computational geometry
+├── graphs/                # Graph algorithms
+├── maths/                 # Mathematical algorithms
+└── strings/               # String algorithms
+```
+
+## 🎯 Project Goals
+
+1. **Concise Implementations** - Provide short, efficient algorithm implementations
+2. **Educational Value** - Include clear descriptions and explanations
+3. **Competitive Ready** - Code optimized for programming contests
+4. **Comprehensive Coverage** - Cover all essential competitive programming topics
+
+## 🚧 Roadmap
+
+- [ ] Additional dynamic programming techniques
+- [ ] Voronoi diagrams and Delaunay triangulation
+- [ ] Extended geometry primitives (lines, circles, 3D operations)
+- [ ] 3D Convex Hull algorithms
+- [ ] Karatsuba polynomial multiplication
+- [ ] Advanced polynomial operations
+
+## 👥 Team
+
+**Maintainers:**
+- Gabriel Carmona (MrYhatoh)
+- Carlos Lagos (CharlesLakes) 
+- Sebastián Torrealba (storrealbac)
+- Abner Vidal (abner_vidal)
+
+**Contributors:**
+- Javier Oliva (JOliva)
+- Marcelo Lemus (MarceloL)
+
+## 📄 License
+
+This project is licensed under the terms specified in the [LICENSE](LICENSE) file.
+
+---
+
+*Built with ❤️ for the competitive programming community at USM*
