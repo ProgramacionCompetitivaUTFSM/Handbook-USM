@@ -1,5 +1,5 @@
 /*
- *Description:* dynamicacly insert a*x + b lines and query for maximum at any x and operations have complexity O(log N)
+ *Description:* Dynamically insert a*x + b lines and query for maximum at any x and operations have complexity O(log N)
  *Status:* Tested on CSES
 */
 struct Line {
