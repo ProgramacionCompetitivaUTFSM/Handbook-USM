@@ -8,11 +8,11 @@ struct Line{
   ll eval(ll x){ return a*x + b;}  
 };
 
-struct LiChao{  
+struct li_chao{  
   const ll INF = 1e18;
   ll L,R; 
   vector<Line> st;
-  LiChao(ll l,ll r){
+  li_chao(ll l,ll r){
     L = l, R = r+1;
     st = vector<Line>(4*(r - l + 1),Line(0,INF));
   };
