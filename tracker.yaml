@@ -143,6 +143,8 @@ content:
     - d&c.cpp
     - convex-hull-trick.cpp
     - line-container.cpp
+    - li-chao-tree.cpp
   - combinatorial:
     - weighted-matroid-intersection.cpp
     - simulated-annealing.cpp
+
