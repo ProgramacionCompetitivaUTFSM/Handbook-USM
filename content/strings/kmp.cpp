@@ -2,6 +2,8 @@
   *Description:* Find occurrences of a pattern within given text, runs in $O(n + m)$, where $n$ and $m$ are the lengths of the text and pattern respectively.
   *Status:* Tested on CSES
 */
+
+// Memory-efficient string matching version
 template<class T> struct KMP {
   T pattern; vector<int> lps;
   KMP(T &pat): pattern(pat) {
@@ -34,3 +36,19 @@ template<class T> struct KMP {
     return matches;
   }
 };
+
+// Simple version
+template<class T>
+vector<int> prefix(T &S) {
+  vector<int> P(S.size());
+  P[0] = 0;
+  for(int i = 1; i < S.size(); ++ i) {
+    P[i] = P[i - 1];
+    while(P[i] > 0 && S[P[i]] != S[i]) 
+      P[i] = P[P[i] - 1];
+    if(S[P[i]] == S[i]) 
+      ++ P[i];
+  }
+  return P;
+}
+
