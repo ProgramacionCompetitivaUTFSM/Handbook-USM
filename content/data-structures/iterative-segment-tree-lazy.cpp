@@ -12,20 +12,12 @@ struct segment_tree_lazy {
         for (int i = n-1; i > 0; i--) st[i] = merge(st[i<<1],st[i<<1|1]);
     }
     void calc(int pos, int sz){
+        st[pos] = merge(st[pos<<1],st[pos<<1|1]);
         if (lazy[pos].upd()) applyUpd(st[pos],lazy[pos],sz);
-        else st[pos] = merge(st[pos<<1],st[pos<<1|1]);
     }
     void apply(int pos, T2 val, int sz){
         applyUpd(st[pos],val,sz);
         if (pos < n) pushUpd(val,lazy[pos],sz);
-    }
-    void build(int l, int r){
-        int sz = 2;
-        for (l += n, r += n-1; l > 1; sz <<= 1){
-            l >>= 1, r >>= 1;
-            for (int i = r; i >= l; i--)
-                apply(i,sz);
-        }
     }
     void push(int l, int r){
         int s = h, sz = 1<<(h-1);
