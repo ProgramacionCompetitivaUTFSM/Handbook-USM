@@ -54,6 +54,7 @@ content:
     - succinct-indexable-dictionary.cpp
     - wavelet-tree.cpp
     - line-container.cpp
+    - kd-tree.cpp
   - maths:
     - mulmod.cpp
     - fraction.cpp
@@ -144,6 +145,7 @@ content:
     - convex-hull-trick.cpp
     - line-container.cpp
     - li-chao-tree.cpp
+    - li-chao-segment.cpp
   - combinatorial:
     - weighted-matroid-intersection.cpp
     - simulated-annealing.cpp
