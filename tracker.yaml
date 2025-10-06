@@ -96,6 +96,7 @@ content:
     - lagrange-point.cpp
 
     - gauss.cpp
+    - xor-basis.cpp
     - simplex.cpp
     - matrix.cpp
 
