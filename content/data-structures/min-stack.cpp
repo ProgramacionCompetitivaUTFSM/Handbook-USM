@@ -4,14 +4,15 @@
 */
 template <typename T>
 struct min_stack {
-  stack<pair<T, T>> S;
+  vector<pair<T, T>> S;
   void push(T x) {
-    T new_min = S.empty() ? x : min(x, S.top().second);
-    S.push({x, new_min});
+    T new_min = S.empty() ? x : min(x, S.back().second);
+    S.push_back({x, new_min});
   }
   bool empty() { return S.empty(); }
   int size() { return S.size(); }
-  void pop() { S.pop(); }
-  T top() { return S.top().first; }
-  T getMin() { return S.top().second; }
+  void pop() { S.pop_back(); }
+  T top() { return S.back().first; }
+  T getmin() { return S.back().second; }
+  void swap(min_stack & other) noexcept { S.swap(other.S); }
 };
