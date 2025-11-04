@@ -108,6 +108,7 @@ content:
     - kruskal.cpp
     - bridges.cpp
     - dinic.cpp
+    - hopcroft-karp.cpp
     - mfed.cpp
     - articulation-points.cpp
     - dominator-tree.cpp
