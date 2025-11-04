@@ -3,7 +3,7 @@
  *Description:* Computes maximal matching in  $O (|E| dot sqrt(|V|))$, faster than Dinic.
  *Status:* Tested on CSES
 */
-struct HopcroftKarp {
+struct hopcroft_karp {
   const int INF = 1e9;
   int n; vector<int> l, r, d, ptr, g_edges, g_start, q;
   int q_h, q_t;
