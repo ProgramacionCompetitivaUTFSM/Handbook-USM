@@ -26,4 +26,22 @@ template<class T, T m_(T, T)> struct segment_tree{
     if (!hasL) return ansR; if (!hasR) return ansL;
     return m_(ansL, ansR);
   }
+  // first index >= l such that ST[i] >= k, -1 if doesnt exist
+  int walk(int l, T k) {
+    vector<int> L, R;
+    int r = n - 1;
+    for (l += n, r += n + 1; l < r; l >>= 1, r >>= 1) {
+      if (l & 1) L.push_back(l++);
+      if (r & 1) R.push_back(--r);
+    }
+    reverse(R.begin(), R.end());
+    L.insert(L.end(), R.begin(), R.end());
+    for (int v : L) {
+      if (ST[v] >= k) {
+        while (v < n) v = (ST[v << 1] >= k) ? (v << 1) : (v << 1 | 1);
+        return v - n;
+      }
+    }
+    return -1;
+  }
 };
