@@ -23,24 +23,18 @@ jobs:
       run: |
         typst compile main.typ
         ls -al # List files to check if main.pdf exists
-    
+
     - name: Create Release
       id: create_release
-      uses: actions/create-release@v1
+      uses: softprops/action-gh-release@v2
       with:
-        tag_name: 'v1.0.${{ github.run_number }}'
-        release_name: 'Release v1.0.${{ github.run_number }}'
-        draft: false
-        prerelease: false
+        tag_name: v1.0.${{ github.run_number }}
+        name: "Release v1.0.${{ github.run_number }}"
+        generate_release_notes: true
+        files: main.pdf
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload compiled document as release asset
-      uses: actions/upload-release-asset@v1
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: main.pdf
-        asset_name: main.pdf
-        asset_content_type: application/pdf
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      if: steps.create_release.outputs.upload_url != ''
+      run: echo "✅ main.pdf attached to release ${{ steps.create_release.outputs.upload_url }}"
