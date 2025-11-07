@@ -33,6 +33,7 @@ content:
     - range-query-constant.cpp
 
     - segment-tree.cpp
+    - segment-tree-with-walk.cpp
     - segment-tree-lazy.cpp
     - iterative-segment-tree-lazy.cpp
     - persistent-segment-tree.cpp
