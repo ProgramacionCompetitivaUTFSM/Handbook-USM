@@ -24,12 +24,18 @@ jobs:
         typst compile main.typ
         ls -al # List files to check if main.pdf exists
 
+    - name: Generate version tag
+      id: version
+      run: |
+        echo "date=$(date +'%Y.%m.%d')" >> $GITHUB_OUTPUT
+        echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v2
       with:
-        tag_name: v1.1.${{ github.run_number }}
-        name: "Release v1.1.${{ github.run_number }}"
+        tag_name: ${{ steps.version.outputs.date }}-${{ steps.version.outputs.sha }}
+        name: "Release ${{ steps.version.outputs.date }}-${{ steps.version.outputs.sha }}"
         generate_release_notes: true
         files: main.pdf
       env:
