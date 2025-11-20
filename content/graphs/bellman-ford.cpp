@@ -3,12 +3,12 @@
  *Status:* Tested on CSES
 */
 struct BellmanFord {
-  struct Edge { int from, to, weight; };
-  int n, last_updated = -1; const int INF = 1e18;
-  vector<int> p, dist;
-  BellmanFord(vector<Edge> &G, int s) {
-    n = G.size(); dist.assign(n+2, INF);
-    p.assign(n+2, -1); dist[s] = 0;
+  struct Edge { int from, to; ll weight; };
+  int n, last_updated = -1; const ll INF = 1e18;
+  vector<int> p; vector<ll> dist;
+  BellmanFord(vector<Edge> &G, int s, int _n) {
+    n = _n; dist.assign(n+1,INF);
+    p.assign(n+1,-1); dist[s] = 0;
     for (int i = 1; i <= n; i++) {
       last_updated = -1;
       for (Edge &e : G)
