@@ -4,14 +4,6 @@
  - Uses XOR trick: `v ^= E[e].first ^ E[e].second` to traverse edges.
  - `vertices`: vertex sequence of size $m+1$.
  - `edges`: edge index sequence of size $m$.
- Usage:
-```cpp
- undirected_euler_trail euler(n);
- euler.add_edge(u, v);
- if (euler.solve()) {
-     // euler.vertices, euler.edges
- }
-```
  *Complexity:* $O(V + E)$
  *Status:* Tested on https://judge.yosupo.jp/problem/eulerian_trail_undirected
 */
