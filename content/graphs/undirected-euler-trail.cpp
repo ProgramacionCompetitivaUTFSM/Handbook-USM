@@ -1,20 +1,20 @@
-/**
- * Eulerian Trail (Undirected Graphs)
- * 
- * Finds an Eulerian trail/circuit in an undirected graph using Hierholzer's algorithm.
- * Handles self-loops and parallel edges.
- * 
- * Usage:
- *   undirected_euler_trail euler(n);
- *   euler.add_edge(u, v);
- *   if (euler.solve()) {
- *       euler.vertices;  // vertex sequence (size m+1)
- *       euler.edges;     // edge index sequence (size m)
- *   }
- * 
- * Complexity: O(V + E)
- * Tested: https://judge.yosupo.jp/problem/eulerian_trail_undirected
- */
+/*
+ *Description:* Finds an Eulerian trail/circuit in an undirected graph using Hierholzer's algorithm. Handles self-loops and parallel edges.
+ - A trail exists iff 0 or 2 vertices have odd degree and the graph is connected.
+ - Uses XOR trick: `v ^= E[e].first ^ E[e].second` to traverse edges.
+ - `vertices`: vertex sequence of size $m+1$.
+ - `edges`: edge index sequence of size $m$.
+ Usage:
+```cpp
+ undirected_euler_trail euler(n);
+ euler.add_edge(u, v);
+ if (euler.solve()) {
+     // euler.vertices, euler.edges
+ }
+```
+ *Complexity:* $O(V + E)$
+ *Status:* Tested on https://judge.yosupo.jp/problem/eulerian_trail_undirected
+*/
 struct undirected_euler_trail {
   ll n, m = 0;
   vector<vector<ll>> adj;
