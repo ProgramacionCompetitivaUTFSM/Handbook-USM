@@ -40,13 +40,14 @@ struct FFT {
     for (int i = 0; i < res.size(); i++) resint[i] = round(res[i]);
     return resint;
   }
-  vector<int> convMod(vector<int> &a, vector<int> &b, int mod) {
+  vector<ll> convMod(vector<ll> &a, vector<ll> &b, ll mod) {
     if (a.empty() || b.empty()) return {};
     vector<d> res(a.size() + b.size() - 1);
-    int B = 32 - __builtin_clz(res.size()), n = 1 << B, cut = int(sqrt(mod));
+    int B = 32 - __builtin_clz(res.size()), n = 1 << B;
+    ll cut = (ll)sqrt(mod);
     vector<complex<d>> L(n), R(n), outs(n), outl(n);
-    for (int i = 0; i < a.size(); i++) L[i] = complex<d>(a[i]/cut, a[i]%cut);
-    for (int i = 0; i < b.size(); i++) R[i] = complex<d>(b[i]/cut, b[i]%cut);
+    for (int i = 0; i < (int)a.size(); i++) L[i] = complex<d>(a[i]/cut, a[i]%cut);
+    for (int i = 0; i < (int)b.size(); i++) R[i] = complex<d>(b[i]/cut, b[i]%cut);
     fft(L), fft(R);
     for (int i = 0; i < n; i++) {
       int j = -i & (n-1);
@@ -54,13 +55,13 @@ struct FFT {
       outs[j] = (L[i] - conj(L[j])) * R[i] / ((d)2.0 * n) / complex<d>(0, 1);
     }
     fft(outl), fft(outs);
-    for (int i = 0; i < res.size(); i++) {
-      int av = (int)(real(outl[i])+.5), cv = (int)(imag(outs[i])+.5);
-      int bv = (int)(imag(outl[i])+.5) + (int)(real(outs[i])+.5);
+    for (int i = 0; i < (int)res.size(); i++) {
+      ll av = (ll)(real(outl[i])+.5), cv = (ll)(imag(outs[i])+.5);
+      ll bv = (ll)(imag(outl[i])+.5) + (ll)(real(outs[i])+.5);
       res[i] = ((av % mod * cut + bv) % mod * cut + cv) % mod;
     }
-    vector<int> resint(res.size());
-    for (int i = 0; i < res.size(); i++) resint[i] = round(res[i]);
-    return resint;
+    vector<ll> resll(res.size());
+    for (int i = 0; i < (int)res.size(); i++) resll[i] = (ll)round(res[i]);
+    return resll;
   }
 };
