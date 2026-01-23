@@ -6,7 +6,7 @@
 template<class T1, class T2>
 struct min_cost_flow {
   struct edge {int v; T1 c,f; T2 w; };
-  vvi g; vector<T2> dist,pot; vector<T1> fl;
+  vector<vector<int>> g; vector<T2> dist,pot; vector<T1> fl;
   vector<bool> vis; vector<int> par; vector<edge> e;
   min_cost_flow(int n):g(n),dist(n),pot(n),fl(n),vis(n),par(n){}
   void add_edge(int u, int v, T1 c, T2 w){
