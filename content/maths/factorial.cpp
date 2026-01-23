@@ -13,4 +13,4 @@ struct Factorial {
       finv[i] = (finv[i-1] * inv[i]) % mod;
     }
   }
-}
+};
