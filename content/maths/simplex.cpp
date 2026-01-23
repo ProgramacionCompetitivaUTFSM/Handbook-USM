@@ -22,20 +22,21 @@ template<class T> struct Simplex {
     }
     bool next_point(){
         int idx = -1; T mx;
-        for (int i = 0; i < a[0].size(); i++){
+        for (int i = 0; i < (int)a[0].size(); i++){
             T z = 0;
-            for (int j = 0; j < d.size(); j++)
+            for (int j = 0; j < (int)d.size(); j++)
                 z += a[j][i]*d[j];
             if (idx == -1 || mx < c[i]-z)
                 mx = c[i]-z, idx = i;
         }
         if (mx > 0){
             int idx2 = -1; T mn;
-            for (int i = 0; i < b.size(); i++){
+            for (int i = 0; i < (int)b.size(); i++){
                 if (a[i][idx] == 0 || b[i]/a[i][idx] <= 0) continue;
                 if (idx2 == -1 || mn > b[i]/a[i][idx])
                     mn = b[i]/a[i][idx], idx2 = i;
             }
+            if (idx2 == -1) return 0; // unbounded
             pivot(idx2,idx);
             return 1;
         }
