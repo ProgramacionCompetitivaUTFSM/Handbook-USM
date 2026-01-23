@@ -23,7 +23,7 @@ int gauss(vector<vector<ll>> a, vector<ll> & ans) {
 
     for (int i = 0; i < n; ++i)
       if (i != row) {
-        ll c = ((ll) a[i][col] * binpow(round(a[row][col]), MOD - 2, MOD)) % MOD;
+        ll c = (a[i][col] * binpow(a[row][col], MOD - 2, MOD)) % MOD;
         for (int j = col; j <= m; ++j)
           a[i][j] = ((a[i][j] - a[row][j] * c) % MOD + MOD) % MOD;
       }
@@ -33,7 +33,7 @@ int gauss(vector<vector<ll>> a, vector<ll> & ans) {
   ans.assign(m, 0);
   for (int i = 0; i < m; ++i)
     if (where[i] != -1)
-      ans[i] = ((ll) a[where[i]][m] * binpow(round(a[where[i]][i]), MOD - 2, MOD)) % MOD;
+      ans[i] = (a[where[i]][m] * binpow(a[where[i]][i], MOD - 2, MOD)) % MOD;
 
   for (int i = 0; i < m; ++i)
     if (where[i] == -1)
