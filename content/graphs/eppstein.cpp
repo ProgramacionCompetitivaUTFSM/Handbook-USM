@@ -5,7 +5,7 @@
 struct Eppstein {
   #define x first
   #define y second
-  using T = int; const T INF = 1e18;
+  using T = ll; const T INF = 1e15;
   using Edge = pair<int, T>;
   struct Node { int E[2] = {}, s{0};  Edge x;  };
   T shortest;
