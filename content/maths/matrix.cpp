@@ -19,21 +19,17 @@ vector<vector<T>> multWithoutMOD(vector<vector<T>> &a, vector<vector<T>> &b){
 }
 
 template<class T>
-vector<vector<T>> mult(vector<vector<T>> a, vector<vector<T>> b,long long mod){
+vector<vector<T>> mult(vector<vector<T>> a, vector<vector<T>> b, ll mod){
     int n = a.size(),m = b[0].size(),l = a[0].size();
     vector<vector<T>> ans(n,vector<T>(m,0));
     for(int i = 0; i < n; i++){
         for(int j = 0; j < m; j++){
             for(int k = 0; k < l; k++){
-                T temp = (a[i][k]*b[k][j]) % mod;
+                T temp = ((ll)a[i][k]*b[k][j]) % mod;
                 ans[i][j] = (ans[i][j] + temp) % mod;
             }
         }
     }
-    /*
-    for(auto &line: ans)
-        for(T &a: line) a = (a % mod + mod) % mod;
-    */
     return ans;
 }
 
