@@ -2,9 +2,10 @@
  *Description:* Solves assignament problem in $O(n^3)$. If the matrix is rectangular in $O(n^2 m)$, where $n <= m$
  *Status:* Tested
 */
-void Hungarian(vector<vector<int>> &A, vector<pair<int, int>> &result, int &C, const int INF = 1e6 + 1) {
+void Hungarian(vector<vector<ll>> &A, vector<pair<int, int>> &result, ll &C, const ll INF = 1e15) {
   int n = A.size() - 1, m = A[0].size() - 1;
-  vector<int> minv(m + 1), u(n + 1), v(m + 1), p(m + 1), way(m + 1);
+  vector<ll> minv(m + 1), u(n + 1), v(m + 1);
+  vector<int> p(m + 1), way(m + 1);
   vector<bool> used(m + 1);
   for (int i = 1; i <= n; ++i) {
     p[0] = i; int j0 = 0;
@@ -14,10 +15,11 @@ void Hungarian(vector<vector<int>> &A, vector<pair<int, int>> &result, int &C, c
       used[j] = false;
     do {
       used[j0] = true;
-      int i0 = p[j0], delta = INF, j1;
+      int i0 = p[j0], j1;
+      ll delta = INF;
       for (int j = 1; j <= m; ++j)
         if (!used[j]) {
-          int cur = A[i0][j] - u[i0] - v[j];
+          ll cur = A[i0][j] - u[i0] - v[j];
           if (cur < minv[j]) minv[j] = cur, way[j] = j0;
           if (minv[j] < delta) delta = minv[j], j1 = j;
         }
