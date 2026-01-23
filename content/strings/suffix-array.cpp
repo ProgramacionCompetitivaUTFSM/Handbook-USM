@@ -2,6 +2,7 @@
  *Description:* Suffix array construction with LCP array using radix sort, $O(n log n)$
  *Status:* Tested
 */
+using ll = long long;
 struct SA {
   int n;
   vector<int> C, R, R_, sa, sa_, lcp;
