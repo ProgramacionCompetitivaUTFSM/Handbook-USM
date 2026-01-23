@@ -3,7 +3,7 @@
  Time complexity O(k), where k is the amount of points
  *Status:* Tested on codeforces
 */
-ll lagrange_point(vector<ll> & p, ll x){
+ll lagrange_point(vector<ll> & p, ll x, ll mod){
     int n = p.size();
     if (x < n) return p[x];
     vector<ll> pref(n+1,1), suff(n+1,1);
