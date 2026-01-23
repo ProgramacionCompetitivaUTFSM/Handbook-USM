@@ -5,9 +5,9 @@
 bool miller_rabin(uint64_t n) {
   if (n <= 1) return false;
   auto check = [](uint64_t n, uint64_t a, uint64_t d, uint64_t s) {
-    int x = binpow(a, d, n); // Usar binpow de 128bits
+    uint64_t x = binpow(a, d, n); // Usar binpow de 128bits
     if (x == 1 or x == n-1) return false;
-    for (int r = 1; r < s; r++) {
+    for (uint64_t r = 1; r < s; r++) {
       x = (__uint128_t)x*x % n;
       if (x == n-1) return false;
     }
