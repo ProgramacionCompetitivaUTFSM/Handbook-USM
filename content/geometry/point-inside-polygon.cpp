@@ -2,7 +2,7 @@
  *Description:* Check if a point is inside, bounds or out of the polygon
  - 0: Bounds
  - 1: Inside
- - 2: Out
+ - -1: Out
  *Status:* Tested
 */
 template<typename T>
