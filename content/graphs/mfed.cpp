@@ -2,6 +2,7 @@
  *Description:* Max flow but with lowerbound of flow for each edge. To check is a feasible solution, all edges of super-sink (N) node should be saturated
  *Status:* Tested
 */
+const ll inf = 1e15;
 struct max_flow_edge_demands {
   Dinic mf;
   vector<ll> in, out;
