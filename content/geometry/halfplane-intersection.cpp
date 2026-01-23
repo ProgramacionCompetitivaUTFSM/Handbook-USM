@@ -2,6 +2,8 @@
  *Description:* Halfplane intersection
  *Status:* Partially tested
 */
+const ld inf = 1e18;
+const ld eps = 1e-9;
 vector<Point2D<ld>> hp_intersect(vector<Halfplane> &H) {
   Point2D<ld> box[4] = {{inf, inf}, {-inf, inf}, {-inf, -inf}, {inf, -inf}};
   for (int i = 0; i < 4; i++) {
