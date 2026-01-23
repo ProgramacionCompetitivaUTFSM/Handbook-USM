@@ -2,6 +2,7 @@
  *Description:* Line container for convex hull trick optimization in DP
  *Status:* Tested
 */
+const ll INF = 1e15;
 struct Line {
   mutable ll a, b, c;
   bool operator<(Line r) const {

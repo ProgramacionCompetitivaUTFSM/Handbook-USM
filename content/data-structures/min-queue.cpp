@@ -18,9 +18,9 @@ struct min_queue {
     for (;in.size(); in.pop()) out.push(in.top());
     return out.top();
   }
-  T getMin() {
-    if (in.empty()) return out.getMin();
-    if (out.empty()) return in.getMin();
-    return min(in.getMin(), out.getMin());
+  T getmin() {
+    if (in.empty()) return out.getmin();
+    if (out.empty()) return in.getmin();
+    return min(in.getmin(), out.getmin());
   }
 };

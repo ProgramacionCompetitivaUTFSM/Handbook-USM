@@ -2,6 +2,7 @@
  *Description:* A short self-balancing tree. It acts as a sequential container with log-time splits/joins, and is easy to augment with additional data.
  *Status:* Tested
 */
+const ll INF = 1e15;
 struct treap {
   static mt19937_64 MT;
   struct node {

@@ -22,7 +22,7 @@ struct sqrt_decomp {
       vl = ((i == lb)?st[i]:merge(vl,st[i]));
     bl[block] = vl;
   }
-  int query(int l, int r){
+  T query(int l, int r){
     T res; bool hasR = 0;
     for (int i = l/sq; i <= r/sq; i++){
       int lb = i*sq, rb = i*sq+sq-1;
