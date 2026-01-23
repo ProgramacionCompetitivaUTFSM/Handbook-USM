@@ -2,7 +2,7 @@
  *Description:*  Optimizes multiplication with large modules, useful for fast_ntt.
  *Status:* Tested on codeforces.
 */
-using ull = uint64_t
+using ull = uint64_t;
 struct montgomery {
     ull n, nr;
     constexpr montgomery(ull n) : n(n), nr(1) {
