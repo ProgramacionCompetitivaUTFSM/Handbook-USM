@@ -7,7 +7,7 @@ struct hopcroft_karp {
   const int INF = 1e9;
   int n; vector<int> l, r, d, ptr, g_edges, g_start, q;
   int q_h, q_t;
-  HopcroftKarp(int _n, const vector<vector<int>>& adj) : n(_n) {
+  hopcroft_karp(int _n, const vector<vector<int>>& adj) : n(_n) {
     l.assign(2*n+1, 0); r.assign(2*n+1, 0); d.assign(2*n+1, 0); ptr.assign(2*n+1, 0);
     g_start.resize(n+2); q.resize(n+10); q_h = q_t = 0;
     for (int u = 1; u <= n; u++) {
