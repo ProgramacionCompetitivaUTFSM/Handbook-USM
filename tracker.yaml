@@ -143,7 +143,6 @@ content:
     
   - dynamic-programming:
     - lis.cpp
-    - knuth.cpp
     - egg-drop.cpp
     - d&c.cpp
     - convex-hull-trick.cpp
@@ -155,3 +154,5 @@ content:
     - simulated-annealing.cpp
 
 
+  - utilities:
+    - berlekamp-massey.py
