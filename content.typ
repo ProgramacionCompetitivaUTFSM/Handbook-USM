@@ -40,12 +40,16 @@
   hex(md5(string)).slice(0, 6)
 }
 
-#let comments-regex = regex("\/\*[\s\S]*?\*\/")
+// Language configuration: extension -> (syntax-highlight-name, comment-regex, comment-start-pattern)
+#let lang-config = (
+  "cpp": ("cpp", regex("\/\*[\s\S]*?\*\/"), "/"),
+  "py": ("python", regex("\"\"\"[\s\S]*?\"\"\""), "\"\"\""),
+)
 
-#let get-description-from-code(string) = {
-  let comments = string.find(comments-regex)
+#let get-description-from-code(string, comment-regex, start-pattern) = {
+  let comments = string.find(comment-regex)
 
-  if type(comments) != str or string.trim().at(0) != "/" {
+  if type(comments) != str or not string.trim().starts-with(start-pattern) {
     return text(red)[*You must provide a description for each template code!*]
   }
 
@@ -53,11 +57,11 @@
   lines.slice(1, lines.len() - 1).join("\\").trim()
 }
 
-#let remove-description-from-code(string) = {
-  if string.trim().at(0) != "/" {
+#let remove-description-from-code(string, comment-regex, start-pattern) = {
+  if not string.trim().starts-with(start-pattern) {
     return string
   }
-  string.replace(comments-regex, "", count: 1).trim()
+  string.replace(comment-regex, "", count: 1).trim()
 }
 
 #let template-code(title: [], only-code: [], body) = {
@@ -132,15 +136,16 @@
         
         if file-extension == "typ" {
           typst-section(title: template-title, content: file)
-        } else if file-extension == "cpp" {
-          let all-code = raw(file, lang: "cpp")
-          let comments = get-description-from-code(content-to-string(all-code))
-          let without-comments = remove-description-from-code(content-to-string(all-code))
-          
+        } else if file-extension in lang-config {
+          let (lang-name, comment-regex, start-pattern) = lang-config.at(file-extension)
+          let all-code = raw(file, lang: lang-name)
+          let comments = get-description-from-code(content-to-string(all-code), comment-regex, start-pattern)
+          let without-comments = remove-description-from-code(content-to-string(all-code), comment-regex, start-pattern)
+
           template-code(title: template-title, only-code: without-comments)[
             #eval(comments, mode: "markup")
             #line(length: 100%)
-            #raw(without-comments, lang: "cpp")
+            #raw(without-comments, lang: lang-name)
           ]
         }
       }
