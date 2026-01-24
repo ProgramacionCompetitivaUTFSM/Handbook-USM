@@ -21,6 +21,7 @@ ll crt(vector<ll> a, vector<ll> m) {
     M = M * m[i] / d;
     ans %= M;
     ans = ans < 0 ? ans + M : ans;
+    M = M / (lll)__gcd((ll)M, (ll)m[i]) * m[i];
   }
   return ans;
 }
