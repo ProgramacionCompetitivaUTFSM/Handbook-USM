@@ -104,6 +104,20 @@
   ]
 }
 
+#let template-category-title(title) = {
+  block(spacing: 1.5em)[
+    #text(weight: "black", size: 18pt)[#title]
+    #v(-0.5em)
+    #line(length: 100%, stroke: 1.5pt)
+  ]
+}
+
+#let template-subcategory-title(title) = {
+  block(spacing: 1em)[
+    #text(weight: "bold", size: 12pt, fill: rgb("#444"))[#sym.triangle.filled.r #title]
+  ]
+}
+
 #let template-section-title(title) = {
   text(weight: "black", size: 15pt)[#title]
 }
@@ -121,32 +135,51 @@
   ]
 }
 
+#let render-file(path, file-name) = {
+  let file-extension = path.split(".").at(-1)
+  let template-title = title-case(file-name.split(".").at(0).split("-").join(" "))
+  let file = read(path)
+
+  if file-extension == "typ" {
+    typst-section(title: template-title, content: file)
+  } else if file-extension in lang-config {
+    let (lang-name, comment-regex, start-pattern) = lang-config.at(file-extension)
+    let all-code = raw(file, lang: lang-name)
+    let comments = get-description-from-code(content-to-string(all-code), comment-regex, start-pattern)
+    let without-comments = remove-description-from-code(content-to-string(all-code), comment-regex, start-pattern)
+
+    template-code(title: template-title, only-code: without-comments)[
+      #eval(comments, mode: "markup")
+      #line(length: 100%)
+      #raw(without-comments, lang: lang-name)
+    ]
+  }
+}
+
 #for x in yaml("tracker.yaml") {
   let content-list = x.at(1)
   for i in range(0, content-list.len()) {
-    for (folder-name, files) in content-list.at(i) {
-      let title-section = title-case(folder-name.split("-").join(" "))
-      template-section-title(title-section)
-      
-      for file-name in files {
-        let path = "content/" + folder-name + "/" + file-name
-        let file-extension = path.split(".").at(-1)
-        let template-title = title-case(file-name.split(".").at(0).split("-").join(" "))
-        let file = read(path)
-        
-        if file-extension == "typ" {
-          typst-section(title: template-title, content: file)
-        } else if file-extension in lang-config {
-          let (lang-name, comment-regex, start-pattern) = lang-config.at(file-extension)
-          let all-code = raw(file, lang: lang-name)
-          let comments = get-description-from-code(content-to-string(all-code), comment-regex, start-pattern)
-          let without-comments = remove-description-from-code(content-to-string(all-code), comment-regex, start-pattern)
+    let topic-entry = content-list.at(i)
+    for (topic-name, items) in topic-entry {
+      // Show main category title
+      let category-title = title-case(topic-name.split("-").join(" "))
+      template-category-title(category-title)
 
-          template-code(title: template-title, only-code: without-comments)[
-            #eval(comments, mode: "markup")
-            #line(length: 100%)
-            #raw(without-comments, lang: lang-name)
-          ]
+      for item in items {
+        if type(item) == str {
+          // Direct file in topic (no subtopic)
+          let path = "content/" + topic-name + "/" + item
+          render-file(path, item)
+        } else if type(item) == dictionary {
+          // Subtopic with files
+          for (subtopic-name, files) in item {
+            let subcategory-title = title-case(subtopic-name.split("-").join(" "))
+            template-subcategory-title(subcategory-title)
+            for file-name in files {
+              let path = "content/" + topic-name + "/" + subtopic-name + "/" + file-name
+              render-file(path, file-name)
+            }
+          }
         }
       }
     }
