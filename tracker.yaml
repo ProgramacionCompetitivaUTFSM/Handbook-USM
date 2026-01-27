@@ -128,6 +128,7 @@ content:
     - 3-cycle.cpp
     - chromatic-number.cpp
     - undirected-euler-trail.cpp
+    - chu-liu.cpp
   - geometry:
     - point-2d.cpp
     - convex-hull.cpp
