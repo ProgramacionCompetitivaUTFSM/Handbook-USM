@@ -145,6 +145,7 @@ content:
     - lis.cpp
     - egg-drop.cpp
     - d&c.cpp
+    - knuth.cpp
     - convex-hull-trick.cpp
     - line-container.cpp
     - li-chao-tree.cpp

@@ -1,22 +1,31 @@
 /*
- *Description:* Divide and conquer optimization for DP with quadrangle inequality
+ *Description:* Divide and conquer DP optimization. $O(k n^2)$ to $O(k n log n)$.
  *Status:* Tested
 */
-// dp(i, j) = min dp(i-1,k-1) + C(k,j) for all k in [0, j]
-// C(a,c) + C(b, d) <= C(a,d) + C(b,c) for all a <= b <= c <= d
-vp c;
-vl acum1, acum2;
-ll cost(ll i, ll j) {
-  return c[j].first * (acum1[j+1] - acum1[i]) - (acum2[j+1] - acum2[i]);
+const ll INF = 1e18;
+int n;
+vector<ll> dp, ndp;
+
+ll cost(int l, int r); // define your cost function
+
+void dac_solve(int l, int r, int optl, int optr) {
+  if (l > r) return;
+  int mid = (l + r) / 2, opt = optl;
+  ndp[mid] = INF;
+  for (int k = optl; k <= min(mid - 1, optr); k++) {
+    ll val = dp[k] + cost(k + 1, mid);
+    if (val < ndp[mid]) ndp[mid] = val, opt = k;
+  }
+  dac_solve(l, mid - 1, optl, opt);
+  dac_solve(mid + 1, r, opt, optr);
 }
-vector<ll> last, now;
-void compute(int l, int r, int optl, int optr) {
-    if (l > r) return;
-    int mid = (l + r) / 2;
-    pair<ll, int> best = {cost(0, mid), -1};
-    for(int k = max(1, optl); k < min(mid, optr) + 1; k++)
-        best = min(best, {last[k - 1] + cost(k, mid), k});
-    now[mid] = best.first;
-    compute(l, mid - 1, optl, best.second);
-    compute(mid + 1, r, best.second, optr);
+
+ll dac_dp(int layers) {
+  dp.assign(n + 1, INF); dp[0] = 0;
+  for (int i = 0; i < layers; i++) {
+    ndp.assign(n + 1, INF);
+    dac_solve(1, n, 0, n - 1);
+    swap(dp, ndp);
+  }
+  return dp[n];
 }
