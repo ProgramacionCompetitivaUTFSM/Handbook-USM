@@ -1,10 +1,8 @@
 /*
- *Description:* Minimum spanning arborescence (directed MST), optimized Edmonds/Chu-Liu algorithm
-  using lazy skew heaps
-  *Complexity:* $O(E log V)$,
-  returns -1 if not reachable
-*Status:* Tested
- */
+ *Description:* Minimum spanning arborescence (directed MST), optimized Edmonds/Chu-Liu algorithm using lazy skew heaps
+ *Complexity:* $O(E log V)$, returns $(-1, emptyset)$ if not reachable
+ *Status:* Tested (Fastest Speedrun)
+*/
 template <class T> struct fast_chu_liu {
   struct edge {
     int u, v;
