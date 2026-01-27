@@ -139,10 +139,12 @@ content:
     - point-inside-polygon.cpp
     - polygon-area.cpp
     - halfplane-intersection.cpp
+    - minimum-enclosing-circle.cpp
   - primitives:
     - point-2d.cpp
     - segment.cpp
     - halfplane.cpp
+    - circle.cpp
 - dynamic-programming:
   - classic:
     - lis.cpp
