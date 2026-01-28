@@ -117,6 +117,7 @@ content:
   - connectivity:
     - dfs.cpp
     - bfs.cpp
+    - tarjan.cpp
     - bridges.cpp
     - articulation-points.cpp
     - dominator-tree.cpp
