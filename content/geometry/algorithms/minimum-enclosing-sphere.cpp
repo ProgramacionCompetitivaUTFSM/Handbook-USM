@@ -1,11 +1,11 @@
 /*
  *Description:* Smallest Enclosing Sphere using simulated annealing
- *Time:* O(iterations * n), roughly O(n) with high constant
+ *Time:* $O("iterations" dot n)$, roughly $O(n)$ with high constant
  *Status:* Tested
  */
 
 template <typename T>
-sphere<T> minimum_ennclosing_sphere(vector<point3d<T>> p, int it = 100000) {
+sphere<T> minimum_enclosing_sphere(vector<point3d<T>> p, int it = 100000) {
   int n = p.size();
   if (n == 0) return sphere<T>();
   if (n == 1) return sphere<T>(p[0], 0);
