@@ -132,7 +132,9 @@ content:
 - geometry:
   - algorithms:
     - convex-hull.cpp
+    - in-convex.cpp
     - lattice-point.cpp
+    - minkowski.cpp
     - nearest-2-points.cpp
     - order-by-angle.cpp
     - order-by-slope.cpp
@@ -140,6 +142,7 @@ content:
     - polygon-area.cpp
     - halfplane-intersection.cpp
     - minimum-enclosing-circle.cpp
+    
   - primitives:
     - point-2d.cpp
     - segment.cpp
