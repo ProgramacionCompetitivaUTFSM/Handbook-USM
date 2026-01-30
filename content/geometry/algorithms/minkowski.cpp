@@ -1,7 +1,7 @@
 /*
  *Description:* Minkowski sum of two CONVEX polygons (handles degenerate)
- *Complexity:* $O(n + m)
-$ */
+ *Complexity:* $O(n + m)$
+*/
 template <typename T>
 vector<Point2D<T>> minkowski(vector<Point2D<T>> &p, vector<Point2D<T>> &q) {
   vector<Point2D<T>> v;
