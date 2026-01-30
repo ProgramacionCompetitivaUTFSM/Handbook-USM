@@ -1,7 +1,7 @@
 /*
- * Description: 3D Convex Hull using randomized incremental algorithm
- * Time: $O(n log n)$ expected
- * Status: Tested
+ *Description:* 3D Convex Hull using randomized incremental algorithm
+ *Time:* $O(n log n)$ expected
+ *Status:* Tested
  */
 template <typename T> struct convex_hull_3d {
   using pt = point3d<T>;
