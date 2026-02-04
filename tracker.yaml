@@ -142,6 +142,7 @@ content:
     - polygon-area.cpp
     - halfplane-intersection.cpp
     - minimum-enclosing-circle.cpp
+    - convex-hull-3d.cpp
   - primitives:
     - point-2d.cpp
     - segment.cpp
