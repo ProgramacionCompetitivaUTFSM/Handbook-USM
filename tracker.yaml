@@ -118,6 +118,7 @@ content:
     - dfs.cpp
     - bfs.cpp
     - tarjan.cpp
+    - tarjan-scc.cpp
     - bridges.cpp
     - articulation-points.cpp
     - dominator-tree.cpp
