@@ -1,0 +1,24 @@
+name: test-compile-wf
+
+on:
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  test-compile-wf:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install Typst
+      run: |
+        wget https://github.com/typst/typst/releases/latest/download/typst-x86_64-unknown-linux-musl.tar.xz
+        tar -xf typst-x86_64-unknown-linux-musl.tar.xz
+        sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
+
+    - name: Test Compile WF
+      run: |
+        typst compile main-wf.typ
+        ls -al main-wf.pdf
