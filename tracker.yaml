@@ -5,6 +5,9 @@ content:
     - hash.typ
   - templates:
     - template.cpp
+  - tricks:
+    - debugging-tricks.typ
+    - optimization-tricks.typ
 - strings:
   - pattern-matching:
     - rolling-hashing.cpp
@@ -25,6 +28,7 @@ content:
     - min-deque.cpp
     - wavelet-tree.cpp
     - succinct-indexable-dictionary.cpp
+    - interval-container.cpp
   - union-find:
     - bit-vector.cpp
     - union-find.cpp
@@ -56,7 +60,15 @@ content:
     - implicit-treap.cpp
     - lct.cpp
 - maths:
+  - reference:
+    - equations.typ
+    - trigonometry.typ
+    - geometry.typ
+    - calculus.typ
+    - sums-series.typ
+    - probability.typ
   - number-theory:
+    - number-theory-reference.typ
     - extended-gcd.cpp
     - crt.cpp
     - prime-factors.cpp
@@ -71,6 +83,8 @@ content:
     - non-deterministic-miller-rabin.cpp
     - pollard-rho.cpp
     - fast-prime-factorization.cpp
+    - mod-sqrt.cpp
+    - continued-fractions.cpp
   - modular:
     - mulmod.cpp
     - binary-pow.cpp
@@ -90,7 +104,13 @@ content:
     - poly-shift.cpp
     - sieveking-kung.cpp
     - lagrange-point.cpp
+  - numerical:
+    - berlekamp-massey.cpp
+    - linear-recurrence.cpp
+    - integrate.cpp
   - combinatorics:
+    - combinatorics-reference.typ
+    - special-numbers.typ
     - fraction.cpp
     - factorial.cpp
     - tetration.cpp
@@ -103,6 +123,9 @@ content:
     - mfed.cpp
     - hungarian.cpp
     - min-cost-flow.cpp
+    - general-matching.cpp
+    - global-min-cut.cpp
+    - gomory-hu.cpp
   - trees:
     - lca.cpp
     - lca-rmq.cpp
@@ -125,7 +148,9 @@ content:
     - kosaraju.cpp
     - euler-directed-graph.cpp
     - undirected-euler-trail.cpp
+    - 2sat.cpp
   - misc:
+    - graph-theory-reference.typ
     - 4-cycle.cpp
     - 3-cycle.cpp
     - chromatic-number.cpp
@@ -133,6 +158,13 @@ content:
     - fast-chu-liu.cpp
     - tortoise-hare.cpp
 - geometry:
+  - primitives:
+    - point-2d.cpp
+    - segment.cpp
+    - halfplane.cpp
+    - circle.cpp
+    - line-distance.cpp
+    - segment-distance.cpp
   - algorithms:
     - convex-hull.cpp
     - lattice-point.cpp
@@ -144,11 +176,12 @@ content:
     - halfplane-intersection.cpp
     - minimum-enclosing-circle.cpp
     - convex-hull-3d.cpp
-  - primitives:
-    - point-2d.cpp
-    - segment.cpp
-    - halfplane.cpp
-    - circle.cpp
+    - circle-intersection.cpp
+    - circle-tangents.cpp
+    - circle-polygon-intersection.cpp
+    - polygon-center.cpp
+    - polygon-cut.cpp
+    - hull-diameter.cpp
 - dynamic-programming:
   - classic:
     - lis.cpp
@@ -157,9 +190,10 @@ content:
     - d&c.cpp
     - knuth.cpp
     - convex-hull-trick.cpp
-    - line-container.cpp
     - li-chao-tree.cpp
     - li-chao-segment.cpp
+  - misc:
+    - fast-knapsack.cpp
 - utilities:
   - berlekamp-massey.py
 - combinatorial:

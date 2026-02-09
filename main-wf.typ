@@ -16,7 +16,7 @@
       columns: 2,
       stroke: none,
       align: (left, left),
-      [*Team:*], [Team Name],
+      [*Team:*], [La CASneta],
       [*University:*], [UTFSM],
     )
   ],
