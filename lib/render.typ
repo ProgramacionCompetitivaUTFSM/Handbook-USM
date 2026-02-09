@@ -1,5 +1,8 @@
 #import "hash.typ": md5, hex
 
+#let current-category = state("current-category", none)
+#let current-subcategory = state("current-subcategory", none)
+
 #let default-config = (
   code-text-size: 7pt,
   code-small-text-size: 5.3pt,
@@ -67,48 +70,43 @@
   string.replace(comment-regex, "", count: 1).trim()
 }
 
-#let template-code(config, title: [], only-code: [], body) = {
+#let template-code(config, title: [], only-code: [], description: none, body) = {
   let code-lines = only-code.split("\n").len()
   let text-size = if code-lines > config.code-small-threshold { config.code-small-text-size } else { config.code-text-size }
-
-  let code-content = [
-    #place(top + right, dy: -15pt)[
-      #block(
-        fill: black,
-        inset: 3pt,
-      )[
-        #text(fill: green)[\#]
-        #text(fill: white, weight: "semibold")[
-          #get-code-hash(only-code)
-        ]
-      ]
-    ]
-
-    #place(dy: -15pt)[
-      #block(
-        fill: black,
-        inset: 3pt
-      )[
-        #text(fill: white, weight: "semibold")[
-          #title
-        ]
-      ]
-    ]
-
-    #set text(size: text-size)
-    #body
-  ]
 
   if config.breakable {
     block(
       breakable: true,
       inset: 0pt,
       stroke: (left: 0.9pt, right: 0.9pt),
-      above: 1em,
+      above: 0.6em,
       width: 100%
     )[
-      #line(length: 100%, stroke: 0.9pt)
-      #pad(1em)[#code-content]
+      #block(breakable: false, width: 100%)[
+        #line(length: 100%, stroke: 0.9pt)
+        #pad(x: 1em, top: 0.4em)[
+          #place(top + right, dy: -0.4em - 15pt)[
+            #block(fill: black, inset: 3pt)[
+              #text(fill: green)[\#]
+              #text(fill: white, weight: "semibold")[#get-code-hash(only-code)]
+            ]
+          ]
+          #place(dy: -0.4em - 15pt)[
+            #block(fill: black, inset: 3pt)[
+              #text(fill: white, weight: "semibold")[#title]
+            ]
+          ]
+          #if description != none {
+            set text(size: text-size)
+            description
+            line(length: 100%)
+          }
+        ]
+      ]
+      #pad(x: 1em)[
+        #set text(size: text-size)
+        #body
+      ]
       #line(length: 100%, stroke: 0.9pt)
     ]
   } else {
@@ -120,12 +118,30 @@
       spacing: 1.5em,
       width: 100%
     )[
-      #code-content
+      #place(top + right, dy: -15pt)[
+        #block(fill: black, inset: 3pt)[
+          #text(fill: green)[\#]
+          #text(fill: white, weight: "semibold")[#get-code-hash(only-code)]
+        ]
+      ]
+      #place(dy: -15pt)[
+        #block(fill: black, inset: 3pt)[
+          #text(fill: white, weight: "semibold")[#title]
+        ]
+      ]
+      #set text(size: text-size)
+      #if description != none {
+        description
+        line(length: 100%)
+      }
+      #body
     ]
   }
 }
 
 #let template-category-title(config, title) = {
+  current-category.update(title)
+  current-subcategory.update(none)
   block(spacing: config.category-spacing)[
     #text(weight: "black", size: config.category-size)[#title]
     #v(-0.5em)
@@ -134,6 +150,7 @@
 }
 
 #let template-subcategory-title(config, title) = {
+  current-subcategory.update(title)
   block(spacing: config.subcategory-spacing)[
     #text(weight: "bold", size: config.subcategory-size, fill: rgb("#444"))[#sym.triangle.filled.r #title]
   ]
@@ -144,16 +161,41 @@
 }
 
 #let typst-section(config, title: [], content: []) = {
-  block(
-    breakable: false,
-    inset: 1em,
-    stroke: 0.9pt,
-    spacing: 2em,
-    width: 100%
-  )[
-    #align(center)[#text(size: config.description-size, weight: "bold")[#title]]
-    #eval(content, mode: "markup")
-  ]
+  if config.breakable {
+    block(
+      breakable: true,
+      inset: 0pt,
+      stroke: (left: 0.9pt, right: 0.9pt),
+      above: 0.6em,
+      width: 100%
+    )[
+      #block(breakable: false, width: 100%)[
+        #line(length: 100%, stroke: 0.9pt)
+        #pad(x: 1em)[
+          #place(dy: -15pt)[
+            #block(fill: black, inset: 3pt)[
+              #text(fill: white, weight: "semibold")[#title]
+            ]
+          ]
+        ]
+      ]
+      #pad(x: 1em, bottom: 1em)[
+        #eval(content, mode: "markup")
+      ]
+      #line(length: 100%, stroke: 0.9pt)
+    ]
+  } else {
+    block(
+      breakable: false,
+      inset: 1em,
+      stroke: 0.9pt,
+      spacing: 2em,
+      width: 100%
+    )[
+      #align(center)[#text(size: config.description-size, weight: "bold")[#title]]
+      #eval(content, mode: "markup")
+    ]
+  }
 }
 
 #let render-file(config, path, file-name) = {
@@ -161,29 +203,20 @@
   let template-title = title-case(file-name.split(".").at(0).split("-").join(" "))
   let file = read(path)
 
+  [#metadata(template-title) <section-title>]
+
   if file-extension == "typ" {
     typst-section(config, title: template-title, content: file)
   } else if file-extension in lang-config {
     let (lang-name, comment-regex, start-pattern) = lang-config.at(file-extension)
     let all-code = raw(file, lang: lang-name)
     let comments = get-description-from-code(content-to-string(all-code), comment-regex, start-pattern)
-    let without-comments = remove-description-from-code(content-to-string(all-code), comment-regex, start-pattern)
+    let without-comments = remove-description-from-code(content-to-string(all-code), comment-regex, start-pattern).trim()
 
-    if config.breakable {
-      template-code(config, title: template-title, only-code: without-comments)[
-        #block(breakable: false)[
-          #eval(comments, mode: "markup")
-          #line(length: 100%)
-        ]
-        #raw(without-comments, lang: lang-name)
-      ]
-    } else {
-      template-code(config, title: template-title, only-code: without-comments)[
-        #eval(comments, mode: "markup")
-        #line(length: 100%)
-        #raw(without-comments, lang: lang-name)
-      ]
-    }
+    let desc = [#eval(comments, mode: "markup")]
+    template-code(config, title: template-title, only-code: without-comments, description: desc)[
+      #raw(without-comments, lang: lang-name)
+    ]
   }
 }
 
