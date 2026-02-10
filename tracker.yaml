@@ -169,7 +169,9 @@ content:
     - sphere.cpp
   - algorithms:
     - convex-hull.cpp
+    - in-convex.cpp
     - lattice-point.cpp
+    - minkowski.cpp
     - nearest-2-points.cpp
     - order-by-angle.cpp
     - order-by-slope.cpp
