@@ -160,11 +160,13 @@ content:
 - geometry:
   - primitives:
     - point-2d.cpp
+    - point-3d.cpp
     - segment.cpp
     - halfplane.cpp
     - circle.cpp
     - line-distance.cpp
     - segment-distance.cpp
+    - sphere.cpp
   - algorithms:
     - convex-hull.cpp
     - lattice-point.cpp
@@ -175,6 +177,7 @@ content:
     - polygon-area.cpp
     - halfplane-intersection.cpp
     - minimum-enclosing-circle.cpp
+    - minimum-enclosing-sphere.cpp
     - convex-hull-3d.cpp
     - circle-intersection.cpp
     - circle-tangents.cpp
