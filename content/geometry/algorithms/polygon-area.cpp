@@ -5,6 +5,7 @@
 */
 template<typename T>
 T polygonArea(vector<Point2D<T>> P, bool x2 = 0) {
+  if (P.size() < 3) return (T)0;
   T area = 0;
   for(int i = 0; i < P.size()-1; ++i)
     area += P[i]^(P[i+1]);
