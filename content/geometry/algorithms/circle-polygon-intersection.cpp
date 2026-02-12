@@ -13,10 +13,10 @@ ld circlePoly(P c, ld r, vector<P>& ps) {
     auto a = (d|p)/d.norm(), b = (p.norm()-r*r)/d.norm();
     auto det = a*a - b;
     if (det <= 0) return arg(p,q) * r2;
-    auto s = max(0.0, -a-sqrt(det));
-    auto t = min(1.0, -a+sqrt(det));
-    if (t < 0 || 1 <= s) return arg(p,q) * r2;
-    P u = p + d*s, v = q + d*(t-1);
+    auto s = max(0.0L, -a-sqrt(det));
+    auto t = min(1.0L, -a+sqrt(det));
+    if (t < 0 or 1 <= s) return arg(p,q) * r2;
+    P u = p + d*s, v = p + d*t;
     return arg(p,u)*r2 + (u^v)/2 + arg(v,q)*r2;
   };
   ld sum = 0;
