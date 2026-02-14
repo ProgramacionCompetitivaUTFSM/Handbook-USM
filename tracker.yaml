@@ -126,6 +126,7 @@ content:
     - general-matching.cpp
     - global-min-cut.cpp
     - gomory-hu.cpp
+    - push-relabel.cpp
   - trees:
     - lca.cpp
     - lca-rmq.cpp
