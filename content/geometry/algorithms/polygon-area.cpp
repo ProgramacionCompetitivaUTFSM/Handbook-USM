@@ -4,7 +4,7 @@
  *Status:* Highly tested
 */
 template<typename T>
-T polygonArea(vector<Point2D<T>> P, bool x2 = 0) {
+T polygon_area(vector<point2d<T>> P, bool x2 = 0) {
   if (P.size() < 3) return (T)0;
   T area = 0;
   for(int i = 0; i < P.size()-1; ++i)

@@ -3,9 +3,9 @@
  *Status:* Highly tested
 */
 template<typename T>
-vector<Point2D<T>> convexHull(vector<Point2D<T>> cloud, bool ac = 0) {
+vector<point2d<T>> convex_hull(vector<point2d<T>> cloud, bool ac = 0) {
   int n = cloud.size(), k = 0;
-  sort(cloud.begin(), cloud.end(), [](Point2D<T> &a, Point2D<T> &b) {
+  sort(cloud.begin(), cloud.end(), [](point2d<T> &a, point2d<T> &b) {
     return a.x < b.x or (a.x == b.x and a.y < b.y);
   });
   if (n <= 2) return cloud;
@@ -15,8 +15,8 @@ vector<Point2D<T>> convexHull(vector<Point2D<T>> cloud, bool ac = 0) {
       allCollinear = false; break;
     }
   }
-  if (allCollinear) return ac ? cloud : vector<Point2D<T>>{cloud[0], cloud.back()};
-  vector<Point2D<T>> ch(2 * n);
+  if (allCollinear) return ac ? cloud : vector<point2d<T>>{cloud[0], cloud.back()};
+  vector<point2d<T>> ch(2 * n);
   auto process = [&](int st, int end, int stp, int t, auto cmp) {
     for (int i = st; i != end; i += stp) {
       while (k >= t and cmp(ch[k - 1], ch[k - 2], cloud[i])) k--;

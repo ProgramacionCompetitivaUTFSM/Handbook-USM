@@ -1,9 +1,9 @@
 /*
- *Description:* Area of intersection of a circle (center $c$, radius $r$) with a CCW polygon. $O(n)$. Uses Point2D.
+ *Description:* Area of intersection of a circle (center $c$, radius $r$) with a CCW polygon. $O(n)$. Uses point2d.
  *Status:* KACTL based, not self tested
 */
-using P = Point2D<ld>;
-ld circlePoly(P c, ld r, vector<P>& ps) {
+using P = point2d<ld>;
+ld circle_poly(P c, ld r, vector<P>& ps) {
   auto arg = [](P p, P q) {
     return atan2(p^q, p|q);
   };

@@ -1,9 +1,9 @@
 /*
- *Description:* Computes the pair of points where two circles intersect. Returns false if no intersection. Uses Point2D.
+ *Description:* Computes the pair of points where two circles intersect. Returns false if no intersection. Uses point2d.
  *Status:* KACTL based, not self tested
 */
-using P = Point2D<ld>;
-bool circleInter(P a, P b, ld r1, ld r2,
+using P = point2d<ld>;
+bool circle_inter(P a, P b, ld r1, ld r2,
     pair<P,P>* out) {
   if (a.sqdist(b) < 1e-18) return false;
   P vec = b - a;

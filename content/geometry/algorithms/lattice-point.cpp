@@ -3,12 +3,12 @@
  - Only works for integers points
  *Status:* Tested on CSES
 */
-pair<ll, ll> latticePoints(vector<Point2D<ll>> &P) {
+pair<ll, ll> lattice_points(vector<point2d<ll>> &P) {
   P.push_back(P.front());
   ll area = 0, bounds = 0;
   for(int i = 0; i < (int)P.size()-1; ++i) {
     area += P[i]^(P[i+1]);
-    Point2D<ll> p = P[i+1]-P[i];
+    point2d<ll> p = P[i+1]-P[i];
     bounds += abs(__gcd(p.x, p.y));
   }
   ll inside = (abs(area) - bounds + 2)/2;
