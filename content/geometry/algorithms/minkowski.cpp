@@ -3,14 +3,14 @@
  *Complexity:* $O(n + m)$
 */
 template <typename T>
-vector<Point2D<T>> minkowski(vector<Point2D<T>> &p, vector<Point2D<T>> &q) {
-  vector<Point2D<T>> v;
+vector<point2d<T>> minkowski(vector<point2d<T>> &p, vector<point2d<T>> &q) {
+  vector<point2d<T>> v;
   if (min(p.size(), q.size()) < 3) {
     for (auto &a : p) for (auto &b : q)
       v.push_back(a + b);
-    return convexHull(v);
+    return convex_hull(v);
   }
-  auto reorder = [](vector<Point2D<T>> &v) {
+  auto reorder = [](vector<point2d<T>> &v) {
     if (((v[1] - v[0]) ^ (v[2] - v[0])) < 0)
       reverse(v.begin(), v.end());
     int pos = 0;

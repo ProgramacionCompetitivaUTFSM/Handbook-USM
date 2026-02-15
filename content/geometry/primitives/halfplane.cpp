@@ -2,16 +2,16 @@
  *Description:* Halfplane
  *Status:* Partially tested
 */
-struct Halfplane {
-  Point2D<ld> p, pq;
+struct halfplane {
+  point2d<ld> p, pq;
   ld angle;
-  Halfplane() {}
-  Halfplane(Point2D<ld> &a, Point2D<ld> &b) : p(a), pq(b - a) {
+  halfplane() {}
+  halfplane(point2d<ld> &a, point2d<ld> &b) : p(a), pq(b - a) {
     angle = atan2l(pq.y, pq.x);
   }
-  bool out(Point2D<ld> r) { return ((pq) ^ (r - p)) < -eps; }
-  bool operator<(Halfplane &e) { return angle < e.angle; }
-  friend Point2D<ld> inter(Halfplane &s, Halfplane &t) {
+  bool out(point2d<ld> r) { return ((pq) ^ (r - p)) < -eps; }
+  bool operator<(halfplane &e) { return angle < e.angle; }
+  friend point2d<ld> inter(halfplane &s, halfplane &t) {
     ld alpha = ((t.p - s.p) ^ t.pq) / ((s.pq) ^ (t.pq));
     return s.p + (s.pq * alpha);
   }

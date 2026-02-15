@@ -3,10 +3,10 @@
  *Returns:* 1 inside, 0 border, -1 outside
  *Complexity:* $O(log n)$
  */
-template <typename T> int inConvex(vector<Point2D<T>> &P, Point2D<T> q) {
+template <typename T> int in_convex(vector<point2d<T>> &P, point2d<T> q) {
   int n = P.size();
   if (n < 3) return -1;
-  Point2D<T> q0 = q - P[0];
+  point2d<T> q0 = q - P[0];
   T c1 = (P[1] - P[0]) ^ q0, c2 = (P[n - 1] - P[0]) ^ q0;
   if (c1 < 0 || c2 > 0) return -1;
   int l = 1, r = n - 1;
