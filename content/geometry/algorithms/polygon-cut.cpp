@@ -1,9 +1,9 @@
 /*
- *Description:* Returns polygon with everything to the left of line $s -> e$ cut away. Uses Point2D.
+ *Description:* Returns polygon with everything to the left of line $s -> e$ cut away. Uses point2d.
  *Status:* KACTL based, not self tested
 */
-using P = Point2D<ld>;
-vector<P> polygonCut(vector<P>& poly, P s, P e) {
+using P = point2d<ld>;
+vector<P> polygon_cut(vector<P>& poly, P s, P e) {
   vector<P> res;
   int n = poly.size();
   for (int i = 0; i < n; i++) {

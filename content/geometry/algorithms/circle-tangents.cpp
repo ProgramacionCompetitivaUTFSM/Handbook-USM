@@ -1,8 +1,8 @@
 /*
- *Description:* External tangents of two circles (negate $r_2$ for internal). Returns 0, 1 or 2 tangents. `.first`/`.second` = tangency points on circle 1/2. Set $r_2 = 0$ for point tangents. Uses Point2D.
+ *Description:* External tangents of two circles (negate $r_2$ for internal). Returns 0, 1 or 2 tangents. `.first`/`.second` = tangency points on circle 1/2. Set $r_2 = 0$ for point tangents. Uses point2d.
  *Status:* KACTL based, not self tested
 */
-using P = Point2D<ld>;
+using P = point2d<ld>;
 vector<pair<P,P>> tangents(P c1, ld r1,
     P c2, ld r2) {
   P d = c2 - c1;

@@ -1,9 +1,9 @@
 /*
- *Description:* Returns the centroid (center of mass) of a polygon. $O(n)$. Uses Point2D.
+ *Description:* Returns the centroid (center of mass) of a polygon. $O(n)$. Uses point2d.
  *Status:* KACTL based, not self tested
 */
-using P = Point2D<ld>;
-P polygonCenter(vector<P>& v) {
+using P = point2d<ld>;
+P polygon_center(vector<P>& v) {
   P res(0, 0); ld A = 0;
   int n = v.size();
   for (int i = 0, j = n-1; i < n; j = i++) {
