@@ -128,6 +128,7 @@ content:
     - gomory-hu.cpp
     - push-relabel.cpp
     - hlpp.cpp
+    - min-cut.cpp
   - trees:
     - lca.cpp
     - lca-rmq.cpp

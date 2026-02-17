@@ -1,11 +1,12 @@
 /*
- *Author:* Pablo Messina
- *Source:* https://github.com/PabloMessina/Competitive-Programming-Material
- *Description:* Flow algorithm with complexity  $O (|E| dot |V|^2)$
- *Status:* Not tested
+*Author:* Pablo Messina
+*Source:* https://github.com/PabloMessina/Competitive-Programming-Material
+*Description:* Flow algorithm with complexity  $O (|E| dot |V|^2)$
+*Status:* Not tested
 */
+template<class T>
 struct Dinic {
-  struct Edge { ll to, rev; ll f, c; };
+  struct Edge { int to, rev; T f, c; bool r; };
   ll n, t_; vector<vector<Edge>> G;
   vector<ll> D, q, W;
   bool bfs(ll s, ll t) {
@@ -14,7 +15,7 @@ struct Dinic {
     while (f < l) {
       ll u = q[f++];
       for (const Edge &e : G[u]) if (D[e.to] == -1 && e.f < e.c)
-        D[e.to] = D[u] + 1, q[l++] = e.to;
+      D[e.to] = D[u] + 1, q[l++] = e.to;
     }
     return D[t] != -1;
   }
@@ -29,13 +30,13 @@ struct Dinic {
     return 0;
   }
   Dinic(ll N) : n(N), G(N), D(N), q(N) {}
-  void add_edge(ll u, ll v, ll cap) {
-    G[u].push_back({v, (ll)G[v].size(), 0, cap});
-    G[v].push_back({u, (ll)G[u].size() - 1, 0, 0}); // Use cap instead of 0 if bidirectional
+  void add_edge(int u, int v, T cap) {
+    G[u].push_back({v, (int)G[v].size(), 0, cap,0});
+    G[v].push_back({u, (int)G[u].size()-1, 0, 0,1}); // Use cap instead of 0 if bidirectional
   }
   ll max_flow(ll s, ll t) {
     t_ = t; ll ans = 0;
-    while (bfs(s, t)) while (ll dl = dfs(s, LLONG_MAX)) ans += dl;
+    while (bfs(s, t)) while (ll dl = dfs(s, numeric_limits<T>::max())) ans += dl;
     return ans;
   }
 };
