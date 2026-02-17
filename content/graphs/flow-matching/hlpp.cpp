@@ -1,27 +1,24 @@
 /*
- *Author:* Abner Vidal
- *Description:* Flow algorithm with complexity  $O (|V|^2 dot sqrt(|E|))$
- *Status:* Tested on CSES
+*Author:* Abner Vidal
+*Description:* Flow algorithm with complexity  $O (|V|^2 dot sqrt(|E|))$
+*Status:* Tested on CSES
 */
 template<class T>
 struct hlpp {
-  struct edge {int to,rev; T f,c;};
-  vector<edge> g; vector<vector<int>> adj;
-  vector<int> h,pt,cnt; vector<T> e;
+  struct Edge {int to,rev; T f,c; bool r; };
+  vector<vector<Edge>> G; vector<int> h,pt,cnt; vector<T> e;
   vector<vector<int>> q; int mx,n;
-  hlpp(int _n) : adj(_n), h(_n,_n), pt(_n,0), cnt(2*_n+1,0), e(_n,0), q(2*_n), mx(-1), n(_n) {}
+  hlpp(int _n) : G(_n),h(_n,_n), pt(_n,0), cnt(2*_n+1,0), e(_n,0), q(2*_n), mx(-1), n(_n) {}
   void add_edge(int u, int v, T cap){
-    int cur =  g.size();
-    adj[u].push_back(cur); g.push_back({v,cur+1,0,cap});
-    adj[v].push_back(cur+1); g.push_back({u,cur,0,0}); // use cap instead of 0, if bidirectional
+    G[u].push_back({v,(int)G[v].size(),0,cap,0});
+    G[v].push_back({u,(int)G[u].size()-1,0,0,1}); // use cap instead of 0, if bidirectional
   }
   void bfs(int s, int t){
     queue<int> qr; qr.push(t); h[t] = 0;
     while (!qr.empty()){
       int u = qr.front(); qr.pop();
-      for (int ev : adj[u]) {
-        int v = g[ev].to;
-        if (h[v] == n && g[g[ev].rev].c-g[g[ev].rev].f > 0) {
+      for (auto [v,rev,fl,cap,r] : G[u]) {
+        if (h[v] == n && G[v][rev].c-G[v][rev].f > 0) {
           h[v] = h[u]+1; cnt[h[v]]++;
           qr.push(v);
         }
@@ -29,9 +26,9 @@ struct hlpp {
     }
   }
   void push(int u, int ev) {
-    auto [v,rev,fl,cap] = g[ev];
+    auto [v,rev,fl,cap,r] = G[u][ev];
     T d = min(e[u],cap-fl);
-    g[ev].f += d; g[rev].f -= d;
+    G[u][ev].f += d; G[v][rev].f -= d;
     e[u] -= d; e[v] += d;
     if (d != 0 && e[v] == d){
       q[h[v]].push_back(v);
@@ -50,28 +47,27 @@ struct hlpp {
       }   
     }
     int d = 2*n;
-    for (int ev : adj[u]) {
-      auto& eg = g[ev];
+    for (auto &eg : G[u]) {
       if (eg.c-eg.f > 0) d = min(d, h[eg.to]);
     }
     if (d < 2*n) h[u] = d+1, cnt[h[u]]++;
   }
   void discharge(int u) {
     while (e[u] > 0) {
-      if (pt[u] < (int)adj[u].size()) {
-        auto [v,rev,fl,cap] = g[adj[u][pt[u]]]; 
-        if (cap-fl > 0 && h[u] > h[v]) push(u,adj[u][pt[u]]);
+      if (pt[u] < (int)G[u].size()) {
+        auto [v,rev,fl,cap,r] = G[u][pt[u]]; 
+        if (cap-fl > 0 && h[u] > h[v]) push(u,pt[u]);
         else pt[u]++;
       } else {
         relabel(u); pt[u] = 0;
-        if (h[u] >= n) break;
+        if (h[u] >= 2*n) break;
       }
     }
   }
   T max_flow(int s, int t){
-    bfs(s,t); cnt[0] = n; 
+    bfs(s,t); cnt[0] = 1; 
     h[s] = n; e[s] = numeric_limits<T>::max();
-    for (int to : adj[s]) push(s,to);
+    for (int i = 0; i < (int)G[s].size(); i++) push(s,i);
     while (mx != -1) {
       while (mx != -1 && q[mx].empty()) mx--;
       if (mx == -1) break;
@@ -79,7 +75,7 @@ struct hlpp {
       if (u != s && u != t) discharge(u);
     }
     T ans = 0;
-    for (int to : adj[t]) ans += g[g[to].rev].f;
+    for (auto &eg : G[t]) ans += G[eg.to][eg.rev].f;
     return ans;
   }
 };
