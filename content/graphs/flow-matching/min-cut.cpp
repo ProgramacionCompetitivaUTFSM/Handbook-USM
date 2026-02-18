@@ -1,7 +1,7 @@
 /*
-*Author:* Abner Vidal
-*Description:* Recovers the min-cut after running a max flow algorithm.
-*Status:* Tested on codeforces
+ *Author:* Abner Vidal
+ *Description:* Recovers the min-cut after running a max flow algorithm.
+ *Status:* Tested on codeforces
 */
 template<class Edge>
 vector<array<int,2>> min_cut(int s, vector<vector<Edge>> &G){

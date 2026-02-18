@@ -1,7 +1,7 @@
 /*
-*Author:* Abner Vidal
-*Description:* Flow algorithm with complexity  $O (|E| dot |V|^2)$
-*Status:* Tested on CSES
+ *Author:* Abner Vidal
+ *Description:* Flow algorithm with complexity  $O (|E| dot |V|^2)$
+ *Status:* Tested on CSES
 */
 template<class T>
 struct push_relabel {
