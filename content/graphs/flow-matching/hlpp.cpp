@@ -1,7 +1,7 @@
 /*
-*Author:* Abner Vidal
-*Description:* Flow algorithm with complexity  $O (|V|^2 dot sqrt(|E|))$
-*Status:* Tested on CSES
+ *Author:* Abner Vidal
+ *Description:* Flow algorithm with complexity  $O (|V|^2 dot sqrt(|E|))$
+ *Status:* Tested on CSES
 */
 template<class T>
 struct hlpp {

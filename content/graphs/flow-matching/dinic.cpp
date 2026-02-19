@@ -1,8 +1,8 @@
 /*
-*Author:* Pablo Messina
-*Source:* https://github.com/PabloMessina/Competitive-Programming-Material
-*Description:* Flow algorithm with complexity  $O (|E| dot |V|^2)$
-*Status:* Not tested
+ *Author:* Pablo Messina
+ *Source:* https://github.com/PabloMessina/Competitive-Programming-Material
+ *Description:* Flow algorithm with complexity  $O (|E| dot |V|^2)$
+ *Status:* Not tested
 */
 template<class T>
 struct Dinic {
