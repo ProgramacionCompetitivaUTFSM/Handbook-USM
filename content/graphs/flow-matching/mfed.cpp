@@ -3,21 +3,29 @@
  *Status:* Tested
 */
 const ll inf = 1e15;
-struct max_flow_edge_demands {
-  Dinic mf;
-  vector<ll> in, out;
-  ll N;
-  max_flow_edge_demands(ll N): N(N), mf(N+2), in(N), out(N) {}
-  void add_edge(ll u, ll v, ll cap, ll dem = 0) {
-    mf.add_edge(u, v, cap - dem);
-    out[u] += dem, in[v] += dem;
+template<typename MF>
+struct max_flow_edge_demands : MF {
+  vector<ll> in, out, dem;
+  vector<array<int,2>> eloc;
+  int N;
+  max_flow_edge_demands(int N): MF(N+2), N(N), in(N, 0), out(N, 0) {}
+  void add_edge(int u, int v, ll cap, ll d = 0) {
+    eloc.push_back({u, (int)MF::G[u].size()});
+    dem.push_back(d);
+    MF::add_edge(u, v, cap - d);
+    out[u] += d; in[v] += d;
   }
-  ll max_flow(ll s, ll t) {
-    mf.add_edge(t, s, inf);
-    for (ll i = 0; i < N; i++) {
-      mf.add_edge(N, i, in[i]);
-      mf.add_edge(i, N+1, out[i]);
+  bool feasible() {
+    ll total = 0;
+    for (int i = 0; i < N; i++) {
+      if (in[i])  MF::add_edge(N, i, in[i]),  total += in[i];
+      if (out[i]) MF::add_edge(i, N+1, out[i]);
     }
-    return mf.max_flow(N, N+1);
+    return MF::max_flow(N, N+1) == total;
   }
+  ll flow(int e) {
+    auto &[u, idx] = eloc[e];
+    return dem[e] + MF::G[u][idx].f;
+  }
+  int size() { return eloc.size(); }
 };
