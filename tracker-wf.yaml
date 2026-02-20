@@ -33,6 +33,8 @@ content:
     - general-matching.cpp
     - global-min-cut.cpp
     - gomory-hu.cpp
+    - min-cut.cpp
+    - hlpp.cpp
   - misc:
     - graph-theory-reference.typ
     - fast-chu-liu.cpp
@@ -40,6 +42,7 @@ content:
     - 3-cycle.cpp
     - chromatic-number.cpp
     - tortoise-hare.cpp
+    - chu-liu.cpp
 - data-structures:
   - sequences:
     - min-deque.cpp
@@ -127,12 +130,15 @@ content:
 - geometry:
   - primitives:
     - point-2d.cpp
+    - point-3d.cpp
+    - sphere.cpp
     - segment.cpp
     - halfplane.cpp
     - circle.cpp
     - line-distance.cpp
     - segment-distance.cpp
   - algorithms:
+    - in-convex.cpp
     - convex-hull.cpp
     - halfplane-intersection.cpp
     - point-inside-polygon.cpp
@@ -149,6 +155,8 @@ content:
     - polygon-center.cpp
     - polygon-cut.cpp
     - hull-diameter.cpp
+    - minkowski.cpp
+    - minimum-enclosing-sphere.cpp
 - strings:
   - pattern-matching:
     - rolling-hashing.cpp
