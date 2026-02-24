@@ -1,5 +1,5 @@
 /*
- *Description:* Computes the virtual tree given the nodes in $O(Klog V)$, uses binary lifting and works for directed and undirected graphs.
+ *Description:* Computes the virtual tree given the nodes in $O(K log V)$, uses binary lifting and works for directed and undirected graphs.
  *Status:* Tested
 */
 struct virtual_tree {
