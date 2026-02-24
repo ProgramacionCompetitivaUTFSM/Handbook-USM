@@ -19,10 +19,11 @@ jobs:
         tar -xf typst-x86_64-unknown-linux-musl.tar.xz
         sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
     
-    - name: Compile Document
+    - name: Compile Documents
       run: |
         typst compile main.typ
-        ls -al # List files to check if main.pdf exists
+        typst compile main-wf.typ
+        ls -al main.pdf main-wf.pdf
 
     - name: Generate version tag
       id: version
@@ -37,7 +38,9 @@ jobs:
         tag_name: ${{ steps.version.outputs.date }}-${{ steps.version.outputs.sha }}
         name: "Release ${{ steps.version.outputs.date }}-${{ steps.version.outputs.sha }}"
         generate_release_notes: true
-        files: main.pdf
+        files: |
+          main.pdf
+          main-wf.pdf
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

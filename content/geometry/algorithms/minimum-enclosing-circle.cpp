@@ -2,7 +2,7 @@
  *Description:* Minimum enclosing circle, Welzl algorithm $O(n)$ expected
  *Status:* Tested
  */
-circle<ld> minimum_enclosing_circle(vector<Point2D<ld>> p) {
+circle<ld> minimum_enclosing_circle(vector<point2d<ld>> p) {
   mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
   shuffle(p.begin(), p.end(), rng); 
   int n = p.size();

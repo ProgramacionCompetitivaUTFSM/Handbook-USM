@@ -1,36 +1,52 @@
 content:
 - general:
-  - debug:
-    - troubleshoot.typ
-    - hash.typ
   - templates:
     - template.cpp
   - tricks:
     - debugging-tricks.typ
     - optimization-tricks.typ
-- strings:
-  - pattern-matching:
-    - rolling-hashing.cpp
-    - k-rolling-hashing.cpp
-    - kmp.cpp
-    - z.cpp
-    - aho-corasick.cpp
-  - advanced:
-    - manacher.cpp
-    - trie.cpp
-    - suffix-array.cpp
-    - suffix-automaton.cpp
-    - min-rotation.cpp
+  - debug:
+    - troubleshoot.typ
+    - hash.typ
+- graphs:
+  - shortest-paths:
+    - bellman-ford.cpp
+    - eppstein.cpp
+  - trees:
+    - lca.cpp
+    - lca-rmq.cpp
+    - hld.cpp
+    - centroid-decomposition.cpp
+  - connectivity:
+    - tarjan.cpp
+    - tarjan-scc.cpp
+    - dominator-tree.cpp
+    - euler-directed-graph.cpp
+    - undirected-euler-trail.cpp
+    - 2sat.cpp
+  - flow-matching:
+    - dinic.cpp
+    - mfed.cpp
+    - hopcroft-karp.cpp
+    - hungarian.cpp
+    - min-cost-flow.cpp
+    - general-matching.cpp
+    - global-min-cut.cpp
+    - gomory-hu.cpp
+  - misc:
+    - graph-theory-reference.typ
+    - fast-chu-liu.cpp
+    - 4-cycle.cpp
+    - 3-cycle.cpp
+    - chromatic-number.cpp
+    - tortoise-hare.cpp
 - data-structures:
   - sequences:
-    - min-queue.cpp
-    - min-stack.cpp
     - min-deque.cpp
     - wavelet-tree.cpp
     - succinct-indexable-dictionary.cpp
     - interval-container.cpp
   - union-find:
-    - bit-vector.cpp
     - union-find.cpp
     - union-find-rollback.cpp
   - range-queries:
@@ -43,12 +59,10 @@ content:
     - iterative-segment-tree-lazy.cpp
     - persistent-segment-tree.cpp
     - dynamic-segment-tree.cpp
-    - extended-segment-tree.cpp
     - query-tree.cpp
-    - sqrt-decomposition.cpp
-    - merge-sort-tree.cpp
     - bit.cpp
     - bit-2d.cpp
+    - merge-sort-tree.cpp
     - line-container.cpp
     - kd-tree.cpp
     - mo.cpp
@@ -67,38 +81,40 @@ content:
     - calculus.typ
     - sums-series.typ
     - probability.typ
-  - number-theory:
-    - number-theory-reference.typ
-    - extended-gcd.cpp
-    - crt.cpp
-    - prime-factors.cpp
-    - counting-divisors.cpp
-    - divisors.cpp
-    - discrete-log.cpp
-    - erathostenes-sieve.cpp
-    - euler-phi.cpp
-    - euler-phi-sieve.cpp
-    - mobius-sieve.cpp
-    - miller-rabin.cpp
-    - non-deterministic-miller-rabin.cpp
-    - pollard-rho.cpp
-    - fast-prime-factorization.cpp
-    - mod-sqrt.cpp
-    - continued-fractions.cpp
   - modular:
     - mulmod.cpp
     - binary-pow.cpp
     - binary-pow-128-bits.cpp
     - binary-pow-mulmod.cpp
     - montgomery.cpp
+  - number-theory:
+    - number-theory-reference.typ
+    - extended-gcd.cpp
+    - crt.cpp
+    - prime-factors.cpp
+    - counting-divisors.cpp
+    - discrete-log.cpp
+    - erathostenes-sieve.cpp
+    - euler-phi.cpp
+    - euler-phi-sieve.cpp
+    - mobius-sieve.cpp
+    - miller-rabin.cpp
+    - pollard-rho.cpp
+    - fast-prime-factorization.cpp
+    - mod-sqrt.cpp
+    - continued-fractions.cpp
+  - combinatorics:
+    - combinatorics-reference.typ
+    - special-numbers.typ
+    - factorial.cpp
+    - tetration.cpp
   - linear-algebra:
     - gauss.cpp
     - xor-basis.cpp
-    - simplex.cpp
     - matrix.cpp
+    - simplex.cpp
   - polynomials:
     - fft.cpp
-    - ntt.cpp
     - fast-ntt.cpp
     - fwht.cpp
     - poly-shift.cpp
@@ -108,89 +124,43 @@ content:
     - berlekamp-massey.cpp
     - linear-recurrence.cpp
     - integrate.cpp
-  - combinatorics:
-    - combinatorics-reference.typ
-    - special-numbers.typ
-    - fraction.cpp
-    - factorial.cpp
-    - tetration.cpp
-- graphs:
-  - mst:
-    - kruskal.cpp
-  - flow-matching:
-    - dinic.cpp
-    - hopcroft-karp.cpp
-    - mfed.cpp
-    - hungarian.cpp
-    - min-cost-flow.cpp
-    - general-matching.cpp
-    - global-min-cut.cpp
-    - gomory-hu.cpp
-    - push-relabel.cpp
-    - hlpp.cpp
-    - min-cut.cpp
-  - trees:
-    - lca.cpp
-    - lca-rmq.cpp
-    - hld.cpp
-    - ahld.cpp
-    - centroid-decomposition.cpp
-    - virtual-tree.cpp
-  - shortest-paths:
-    - floyd-warshall.cpp
-    - dijkstra.cpp
-    - bellman-ford.cpp
-    - eppstein.cpp
-  - connectivity:
-    - dfs.cpp
-    - bfs.cpp
-    - tarjan.cpp
-    - tarjan-scc.cpp
-    - bridges.cpp
-    - articulation-points.cpp
-    - dominator-tree.cpp
-    - kosaraju.cpp
-    - euler-directed-graph.cpp
-    - undirected-euler-trail.cpp
-    - 2sat.cpp
-  - misc:
-    - graph-theory-reference.typ
-    - 4-cycle.cpp
-    - 3-cycle.cpp
-    - chromatic-number.cpp
-    - chu-liu.cpp
-    - fast-chu-liu.cpp
-    - tortoise-hare.cpp
 - geometry:
   - primitives:
     - point-2d.cpp
-    - point-3d.cpp
     - segment.cpp
     - halfplane.cpp
     - circle.cpp
     - line-distance.cpp
     - segment-distance.cpp
-    - sphere.cpp
   - algorithms:
     - convex-hull.cpp
-    - in-convex.cpp
-    - lattice-point.cpp
-    - minkowski.cpp
-    - nearest-2-points.cpp
-    - order-by-angle.cpp
-    - order-by-slope.cpp
+    - halfplane-intersection.cpp
     - point-inside-polygon.cpp
     - polygon-area.cpp
-    - halfplane-intersection.cpp
+    - nearest-2-points.cpp
     - minimum-enclosing-circle.cpp
-    - minimum-enclosing-sphere.cpp
     - convex-hull-3d.cpp
+    - order-by-angle.cpp
+    - order-by-slope.cpp
+    - lattice-point.cpp
     - circle-intersection.cpp
     - circle-tangents.cpp
     - circle-polygon-intersection.cpp
     - polygon-center.cpp
     - polygon-cut.cpp
     - hull-diameter.cpp
+- strings:
+  - pattern-matching:
+    - rolling-hashing.cpp
+    - kmp.cpp
+    - z.cpp
+    - aho-corasick.cpp
+  - advanced:
+    - suffix-array.cpp
+    - suffix-automaton.cpp
+    - manacher.cpp
+    - trie.cpp
+    - min-rotation.cpp
 - dynamic-programming:
   - classic:
     - lis.cpp
@@ -198,13 +168,10 @@ content:
   - optimization:
     - d&c.cpp
     - knuth.cpp
-    - convex-hull-trick.cpp
     - li-chao-tree.cpp
     - li-chao-segment.cpp
   - misc:
     - fast-knapsack.cpp
-- utilities:
-  - berlekamp-massey.py
 - combinatorial:
-  - simulated-annealing.cpp
   - weighted-matroid-intersection.cpp
+  - simulated-annealing.cpp

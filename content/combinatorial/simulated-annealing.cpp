@@ -16,7 +16,11 @@
 template<class T, class repr>
 struct simulated_annealing {
   T val;
-  double get_time(){ return chrono::duration<double>(chrono::high_resolution_clock::now().time_since_epoch()).count(); }
+  double get_time(){ 
+    return chrono::duration<double>(
+      chrono::high_resolution_clock::now().time_since_epoch()
+    ).count();
+  }
   double P(double old_val, double new_val, double temp) { return exp(((old_val-new_val))/temp); }
   simulated_annealing(double time_limit, double t_i, double t_f, repr & q){
     q.init();
