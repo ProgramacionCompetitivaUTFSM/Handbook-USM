@@ -76,6 +76,7 @@ content:
     - divisors.cpp
     - discrete-log.cpp
     - erathostenes-sieve.cpp
+    - fast-sieve.cpp
     - euler-phi.cpp
     - euler-phi-sieve.cpp
     - mobius-sieve.cpp
