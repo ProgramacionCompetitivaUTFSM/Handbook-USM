@@ -16,6 +16,8 @@
   category-line-stroke: 1pt,
   pagebreak-between-topics: false,
   breakable: true,
+  code-above: 1.5em,
+  subcategory-spacing-below: 1.2em,
 )
 
 #set page(
@@ -50,5 +52,48 @@
 
 #set columns(gutter: 0.2cm)
 #set text(font: "New Computer Modern", size: 6.5pt)
+
+// Index: only folders and subfolders
+#text(weight: "bold", size: 9pt)[Index]
+#v(0.2em)
+#line(length: 100%, stroke: 0.6pt)
+#v(0.3em)
+#let idx-data = yaml("tracker-wf.yaml")
+#context {
+  let cat-anchors = query(<category-anchor>)
+  let sub-anchors = query(<subcategory-anchor>)
+  let get-page(anchors, title) = {
+    let m = anchors.filter(a => a.value == title)
+    if m.len() > 0 { str(counter(page).at(m.first().location()).first()) } else { "" }
+  }
+  for x in idx-data {
+    let content-list = x.at(1)
+    for topic-entry in content-list {
+      for (topic-name, items) in topic-entry {
+        let cat = title-case(topic-name.split("-").join(" "))
+        let cat-page = get-page(cat-anchors, cat)
+        let subtopics = items.filter(i => type(i) == dictionary).map(i => {
+          let (name, _) = i.pairs().first()
+          let sub-name = title-case(name.split("-").join(" "))
+          (name: sub-name, page: get-page(sub-anchors, sub-name))
+        })
+        grid(columns: (1fr, auto), gutter: 0pt,
+          text(weight: "bold")[#cat],
+          text(weight: "bold")[#cat-page]
+        )
+        for sub in subtopics {
+          grid(columns: (auto, 1fr, auto), gutter: 0pt,
+            h(0.8em),
+            text(fill: rgb("#555"))[#sub.name],
+            text(fill: rgb("#555"))[#sub.page]
+          )
+        }
+      }
+    }
+  }
+}
+#v(0.3em)
+#line(length: 100%, stroke: 0.6pt)
+#v(0.8em)
 
 #render-from-tracker("tracker-wf.yaml", wf-config)
