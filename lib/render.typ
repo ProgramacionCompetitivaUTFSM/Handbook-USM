@@ -16,6 +16,8 @@
   category-line-stroke: 1.5pt,
   pagebreak-between-topics: true,
   breakable: false,
+  code-above: 0.6em,
+  subcategory-spacing-below: none,
 )
 
 #let title-case(string) = {
@@ -79,7 +81,8 @@
       breakable: true,
       inset: 0pt,
       stroke: (left: 0.9pt, right: 0.9pt),
-      above: 0.6em,
+      above: config.code-above,
+      below: config.code-above,
       width: 100%
     )[
       #block(breakable: false, width: 100%)[
@@ -142,6 +145,7 @@
 #let template-category-title(config, title) = {
   current-category.update(title)
   current-subcategory.update(none)
+  [#metadata(title) <category-anchor>]
   block(spacing: config.category-spacing)[
     #text(weight: "black", size: config.category-size)[#title]
     #v(-0.5em)
@@ -151,7 +155,9 @@
 
 #let template-subcategory-title(config, title) = {
   current-subcategory.update(title)
-  block(spacing: config.subcategory-spacing)[
+  [#metadata(title) <subcategory-anchor>]
+  let below = if config.subcategory-spacing-below != none { config.subcategory-spacing-below } else { config.subcategory-spacing }
+  block(above: config.subcategory-spacing, below: below)[
     #text(weight: "bold", size: config.subcategory-size, fill: rgb("#444"))[#sym.triangle.filled.r #title]
   ]
 }
