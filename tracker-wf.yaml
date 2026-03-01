@@ -17,6 +17,7 @@ content:
     - lca-rmq.cpp
     - hld.cpp
     - centroid-decomposition.cpp
+    - virtual-tree.cpp
   - connectivity:
     - tarjan.cpp
     - tarjan-scc.cpp

@@ -135,6 +135,7 @@ content:
     - hld.cpp
     - ahld.cpp
     - centroid-decomposition.cpp
+    - virtual-tree.cpp
   - shortest-paths:
     - floyd-warshall.cpp
     - dijkstra.cpp
