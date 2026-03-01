@@ -103,6 +103,7 @@ content:
     - euler-phi-sieve.cpp
     - mobius-sieve.cpp
     - miller-rabin.cpp
+    - non-deterministic-miller-rabin.cpp
     - pollard-rho.cpp
     - fast-prime-factorization.cpp
     - mod-sqrt.cpp
@@ -119,6 +120,7 @@ content:
     - simplex.cpp
   - polynomials:
     - fft.cpp
+    - ntt.cpp
     - fast-ntt.cpp
     - fwht.cpp
     - poly-shift.cpp
@@ -177,6 +179,7 @@ content:
   - optimization:
     - d&c.cpp
     - knuth.cpp
+    - convex-hull-trick.cpp
     - li-chao-tree.cpp
     - li-chao-segment.cpp
   - misc:
