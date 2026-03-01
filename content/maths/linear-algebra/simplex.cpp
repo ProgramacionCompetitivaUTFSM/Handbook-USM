@@ -1,52 +1,104 @@
 /*
- *Description:* Optimizes linear function, based of linear restrictions, in $O(n^2)$
- *Status:* Not tested
+ *Author:* KACTL Based
+ *Description:* Solves a general linear maximization problem:
+ maximize $c^T x$ subject to $A x <= b$, $x >= 0$.
+ Returns $-infinity$ if infeasible, $infinity$ if unbounded,
+ or the maximum value of $c^T x$ otherwise.
+ The input vector is set to an optimal $x$ (or in the unbounded
+ case, an arbitrary solution fulfilling the constraints).
+ Numerical stability is not guaranteed. For better performance,
+ define variables such that $x = 0$ is viable.
+ *Time:* $O(n m dot "pivots")$ per pivot. $O(2^n)$ worst case,
+ fast in practice.
+ *Usage:*
+    `lp_solver<double> lp(A, b, c);`
+    `vector<double> x;`
+    `double val = lp.solve(x);`
+ *Status:* Tested
 */
-template<class T> struct Simplex {
-    T ans;
-    vector<vector<T>> a;
-    vector<T> b,c,d;
-    void pivot(int ii, int jj){
-        d[ii] = c[jj];
-        T s1 = a[ii][jj];
-        for (int i = 0; i < a[0].size(); i++)
-            a[ii][i] /= s1;
-        b[ii] /= s1;
-        for (int i = 0; i < d.size(); i++){
-            if (i == ii || a[i][jj] == 0) continue;
-            T s2 = a[i][jj];
-            for (int j = 0; j < a[0].size(); j++)
-                a[i][j] -= s2*a[ii][j];
-            b[i] -= s2*b[ii];
-        }
+template<class T>
+struct lp_solver {
+  T eps = 1e-8, inf = 1e18;
+  int m, n;
+  vector<int> N, B;
+  vector<vector<T>> D;
+
+  lp_solver(vector<vector<T>> A, vector<T> b, vector<T> c)
+      : m(b.size()), n(c.size()),
+        N(n + 1), B(m), D(m + 2, vector<T>(n + 2)) {
+    for (int i = 0; i < m; i++)
+      for (int j = 0; j < n; j++)
+        D[i][j] = A[i][j];
+    for (int i = 0; i < m; i++)
+      B[i] = n + i, D[i][n] = -1, D[i][n + 1] = b[i];
+    iota(N.begin(), N.end() - 1, 0);
+    for (int j = 0; j < n; j++)
+      D[m][j] = -c[j];
+    N[n] = -1;
+    D[m + 1][n] = 1;
+  }
+
+  void pivot(int r, int s) {
+    T *a = D[r].data(), inv = 1 / a[s];
+    for (int i = 0; i < m + 2; i++) {
+      if (i == r || abs(D[i][s]) <= eps) continue;
+      T *b = D[i].data(), inv2 = b[s] * inv;
+      for (int j = 0; j < n + 2; j++)
+        b[j] -= a[j] * inv2;
+      b[s] = a[s] * inv2;
     }
-    bool next_point(){
-        int idx = -1; T mx;
-        for (int i = 0; i < (int)a[0].size(); i++){
-            T z = 0;
-            for (int j = 0; j < (int)d.size(); j++)
-                z += a[j][i]*d[j];
-            if (idx == -1 || mx < c[i]-z)
-                mx = c[i]-z, idx = i;
-        }
-        if (mx > 0){
-            int idx2 = -1; T mn;
-            for (int i = 0; i < (int)b.size(); i++){
-                if (a[i][idx] == 0 || b[i]/a[i][idx] <= 0) continue;
-                if (idx2 == -1 || mn > b[i]/a[i][idx])
-                    mn = b[i]/a[i][idx], idx2 = i;
-            }
-            if (idx2 == -1) return 0; // unbounded
-            pivot(idx2,idx);
-            return 1;
-        }
-        return 0;
+    for (int j = 0; j < n + 2; j++)
+      if (j != s) D[r][j] *= inv;
+    for (int i = 0; i < m + 2; i++)
+      if (i != r) D[i][s] *= -inv;
+    D[r][s] = inv;
+    swap(B[r], N[s]);
+  }
+
+  int sel(int lo, int hi, vector<T> &row, int phase = 0) {
+    int s = -1;
+    for (int j = lo; j < hi; j++)
+      if (N[j] != -phase)
+        if (s == -1 || pair{row[j], N[j]} < pair{row[s], N[s]})
+          s = j;
+    return s;
+  }
+
+  bool simplex(int phase) {
+    int x = m + phase - 1;
+    for (;;) {
+      int s = sel(0, n + 1, D[x], phase);
+      if (D[x][s] >= -eps) return true;
+      int r = -1;
+      for (int i = 0; i < m; i++) {
+        if (D[i][s] <= eps) continue;
+        if (r == -1 ||
+            pair{D[i][n+1] / D[i][s], B[i]} <
+            pair{D[r][n+1] / D[r][s], B[r]})
+          r = i;
+      }
+      if (r == -1) return false;
+      pivot(r, s);
     }
-    Simplex(vector<vector<T>> & _a, vector<T> & _b, vector<T> & _c) : a(_a),b(_b),c(_c){
-        d.resize(b.size(),0);
-        while (next_point());
-        ans = 0;
-        for (int i = 0; i < b.size(); i++)
-            ans += b[i]*d[i];
+  }
+
+  T solve(vector<T> &x) {
+    int r = 0;
+    for (int i = 1; i < m; i++)
+      if (D[i][n + 1] < D[r][n + 1]) r = i;
+    if (D[r][n + 1] < -eps) {
+      pivot(r, n);
+      if (!simplex(2) || D[m + 1][n + 1] < -eps)
+        return -inf;
+      for (int i = 0; i < m; i++)
+        if (B[i] == -1)
+          pivot(i, sel(0, n + 1, D[i]));
     }
+    bool ok = simplex(1);
+    x.assign(n, 0);
+    for (int i = 0; i < m; i++)
+      if (B[i] < n)
+        x[B[i]] = D[i][n + 1];
+    return ok ? D[m][n + 1] : inf;
+  }
 };
