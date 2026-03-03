@@ -192,6 +192,8 @@ content:
     - polygon-center.cpp
     - polygon-cut.cpp
     - hull-diameter.cpp
+    - delaunay.cpp
+    - delaunay-graph.cpp
 - dynamic-programming:
   - classic:
     - lis.cpp

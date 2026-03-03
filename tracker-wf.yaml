@@ -159,6 +159,8 @@ content:
     - polygon-center.cpp
     - polygon-cut.cpp
     - hull-diameter.cpp
+    - delaunay.cpp
+    - delaunay-graph.cpp
     - minkowski.cpp
     - minimum-enclosing-sphere.cpp
 - strings:

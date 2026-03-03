@@ -51,6 +51,7 @@ template <typename T> struct point3d {
     return dot(a ^ b);
   }
 
+  bool nonzero() const { return x != 0 || y != 0 || z != 0; }
   T norm() const { return dot(*this); }
   T sq_dist(const point3d<T> &b) const { return (*this - b).norm(); }
   double abs() const { return sqrt((double)norm()); }
