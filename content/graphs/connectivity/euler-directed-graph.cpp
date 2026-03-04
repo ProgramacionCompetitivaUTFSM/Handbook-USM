@@ -1,65 +1,55 @@
 /*
- *Description:* Find Eulerian path in directed graphs using Hierholzer's algorithm
- *Status:* Tested
+ *Description:* Finds an Eulerian trail/circuit in a directed graph using Hierholzer's algorithm. Handles self-loops and parallel edges.
+ - A trail exists iff all vertices satisfy outdeg = indeg (circuit), or exactly one has outdeg - indeg = 1 (start) and one has indeg - outdeg = 1 (end), and the edge-set is weakly connected.
+ - `vertices`: vertex sequence of size $m+1$.
+ - `edges`: edge index sequence of size $m$.
+ *Complexity:* $O(V + E)$
+ *Status:* Tested on https://judge.yosupo.jp/problem/eulerian_trail_directed
 */
-bool euler_directed_graph(vector<vector<int>> &adj, vector<int> &path){
-  path.resize(0);
-  int n = adj.size();
-  vector<int> indeg(n), outdeg(n);
-  int v1 = -1, v2 = -1;
-  for (int i = 0; i < n; i ++){
-    outdeg[i] = adj[i].size();
-    for (int x : adj[i])
-      indeg[x] ++;
+struct directed_euler_trail {
+  ll n, m = 0;
+  vector<vector<ll>> adj;
+  vector<pair<ll, ll>> E;
+  vector<ll> indeg, outdeg, vertices, edges;
+  directed_euler_trail(ll n) : n(n), adj(n), indeg(n), outdeg(n) {}
+  void add_edge(ll u, ll v) {
+    adj[u].push_back(m);
+    E.push_back({u, v});
+    outdeg[u]++, indeg[v]++, m++;
   }
-  for (int i = 0; i < n; i ++){
-    int dif = outdeg[i] - indeg[i];
-    if (dif == 1){
-      if (v1 == -1) v1 = i;
-      else return false;
+  ll find_start() {
+    ll s = -1, cp = 0, cm = 0;
+    for (ll v = 0; v < n; v++) {
+      ll d = outdeg[v] - indeg[v];
+      if (d == 1) cp++, s = v;
+      else if (d == -1) cm++;
+      else if (d != 0) return -2;
+      if (outdeg[v] > 0 && s < 0) s = v;
     }
-    else if (dif == -1){
-      if (v2 == -1) v2 = i;
-      else return false;
-    }
-    else if (dif != 0) return false;
+    if (cp == 0 && cm == 0) return s;
+    return (cp == 1 && cm == 1) ? s : -2;
   }
-  if (v1 != v2 and (v1 == -1 or v2 == -1)) return false;
-  int first = v1;
-  if (v1 != -1) adj[v2].push_back(v1);
-  else 
-    for (int i = 0; i < n; i ++)
-      if (outdeg[i] > 0)
-        first = i;
-  stack<int> st;
-  st.push(first);
-  vector<int> res;
-  while(!st.empty()){
-    int v = st.top();
-    if (outdeg[v] == 0){
-      res.push_back(v);
-      st.pop();
-    }
-    else{
-      st.push(adj[v][0]);
-      outdeg[v] --;
-      swap(adj[v][0], adj[v][outdeg[v]]);
-    }
-  }
-  for (int i = 0; i < n; i ++)
-    if (outdeg[i] != 0)
-      return false;
-  reverse(res.begin(), res.end());
-  if (v1 != -1){
-    for (int i = 0; i + 1 < res.size(); i ++){
-      if (res[i] == v2 && res[i + 1] == v1){
-        vector<int> res2(res.begin() + i + 1, res.end());
-        res2.insert(res2.end(), res.begin(), res.begin() + i + 1);
-        res = res2;
-        break;
+  bool solve() {
+    if (m == 0) { vertices = {0}; return true; }
+    ll s = find_start();
+    if (s == -2) return false;
+    vector<ll> ep(n);
+    edges.resize(m);
+    ll pp = 0, pq = m, v = s;
+    while (pp < pq) {
+      if (ep[v] >= (ll)adj[v].size()) {
+        if (pp == 0)
+          return false;
+        edges[--pq] = edges[--pp];
+        v = E[edges[pq]].first;
+      } else {
+        ll e = adj[v][ep[v]++];
+        edges[pp++] = e;
+        v = E[e].second;
       }
     }
+    vertices = {s};
+    for (ll e : edges) vertices.push_back(E[e].second);
+    return true;
   }
-  path = res;
-  return true;
-}
+};
