@@ -12,7 +12,7 @@ struct BellmanFord {
     for (int i = 1; i <= n; i++) {
       last_updated = -1;
       for (Edge &e : G)
-        if (dist[e.from] + e.weight < dist[e.to]) {
+        if (dist[e.from] != INF && dist[e.from] + e.weight < dist[e.to]) {
           dist[e.to] = dist[e.from] + e.weight;
           p[e.to] = e.from; last_updated = e.to;
         }
