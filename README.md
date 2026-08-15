@@ -66,9 +66,6 @@ content/
 ## 🚧 Roadmap
 
 - [ ] Additional dynamic programming techniques
-- [ ] Voronoi diagrams and Delaunay triangulation
-- [ ] Extended geometry primitives (lines, circles, 3D operations)
-- [ ] 3D Convex Hull algorithms
 - [ ] Karatsuba polynomial multiplication
 - [ ] Advanced polynomial operations
 
