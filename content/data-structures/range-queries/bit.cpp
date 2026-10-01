@@ -7,8 +7,10 @@ struct fenwick_tree {
   vector<ll> bit; int n;
   fenwick_tree(int n): n(n) { bit.assign(n, 0); }
   fenwick_tree(vector<ll> &a): fenwick_tree(a.size()) {
-    for (size_t i = 0; i < a.size(); i++)
-      add(i, a[i]);
+    for (size_t i = 0; i < a.size(); i++) {
+      bit[i]+=a[i];
+      if ((i|(i + 1)) < a.size()) bit[i|(i + 1)]+=bit[i];
+    }
   }
   ll sum(int r) {
     ll ret = 0;
