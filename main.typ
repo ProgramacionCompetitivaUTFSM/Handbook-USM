@@ -26,6 +26,7 @@
 *Contributors:*
 - Javier Oliva (JOliva)
 - Marcelo Lemus (MarceloL)
+- Bastián Jiménez (FreddyTurbins)
 
 // Content
 #let content-file = read("content.typ")

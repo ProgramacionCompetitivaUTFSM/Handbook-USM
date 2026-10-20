@@ -66,6 +66,7 @@ content:
     - dynamic-segment-tree.cpp
     - query-tree.cpp
     - bit.cpp
+    - bit-with-walk.cpp
     - bit-2d.cpp
     - merge-sort-tree.cpp
     - line-container.cpp
