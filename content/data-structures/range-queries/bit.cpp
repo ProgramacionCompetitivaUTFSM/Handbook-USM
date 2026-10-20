@@ -1,5 +1,5 @@
 /*
- *Description:* Range queries and updates, precomputed $O(n log n)$, query/update $O(log n)$
+ *Description:* Range queries and updates, precomputed $O(n)$, query/update $O(log n)$
   - Sum operation can be changed to xor
  *Status:* Tested
 */
