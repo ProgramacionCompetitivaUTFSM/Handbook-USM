@@ -49,6 +49,7 @@ content:
     - sqrt-decomposition.cpp
     - merge-sort-tree.cpp
     - bit.cpp
+    - bit-with-walk.cpp
     - bit-2d.cpp
     - line-container.cpp
     - kd-tree.cpp

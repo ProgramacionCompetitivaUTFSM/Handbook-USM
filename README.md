@@ -80,6 +80,7 @@ content/
 **Contributors:**
 - Javier Oliva (JOliva)
 - Marcelo Lemus (MarceloL)
+- Bastián Jiménez (FreddyTurbins)
 
 ## 📄 License
 
