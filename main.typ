@@ -27,6 +27,7 @@
 - Javier Oliva (JOliva)
 - Marcelo Lemus (MarceloL)
 - Bastián Jiménez (FreddyTurbins)
+- Christian Mauch (TooMuchGames)
 
 // Content
 #let content-file = read("content.typ")

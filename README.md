@@ -5,9 +5,11 @@ A comprehensive collection of algorithms and data structures for competitive pro
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - [Typst](https://typst.app/) - A modern markup-based typesetting system
 
 ### Compilation
+
 ```bash
 typst compile main.typ
 ```
@@ -31,6 +33,7 @@ The handbook includes implementations for:
 ## 📝 Contributing Guidelines
 
 ### Code Style
+
 - **Naming**: Use lowercase with hyphens for folders and files (`knuth-morris-pratt` → `kmp`)
 - **File Extensions**: Only `.cpp` and `.typ` files allowed
 - **Indentation**: Use exactly **2 spaces** (no tabs)
@@ -38,11 +41,13 @@ The handbook includes implementations for:
 - **Atomicity**: Each file should contain only one algorithm/data structure
 
 ### Code Requirements
+
 - **Documentation**: Every C++ file must start with a multi-line comment describing the algorithm
 - **No Macros**: Avoid competitive programming macros like `rep`, `repx`, etc.
 - **Clean Code**: Write readable, well-structured code
 
 ### File Structure
+
 ```
 content/
 ├── algorithms/            # General algorithms
@@ -72,15 +77,18 @@ content/
 ## 👥 Team
 
 **Maintainers:**
+
 - Gabriel Carmona (MrYhatoh)
-- Carlos Lagos (CharlesLakes) 
+- Carlos Lagos (CharlesLakes)
 - Sebastián Torrealba (storrealbac)
 - Abner Vidal (abner_vidal)
 
 **Contributors:**
+
 - Javier Oliva (JOliva)
 - Marcelo Lemus (MarceloL)
 - Bastián Jiménez (FreddyTurbins)
+- Christian Mauch (TooMuchGames)
 
 ## 📄 License
 
@@ -88,4 +96,4 @@ This project is licensed under the terms specified in the [LICENSE](LICENSE) fil
 
 ---
 
-*Built with ❤️ for the competitive programming community at USM*
+_Built with ❤️ for the competitive programming community at USM_
