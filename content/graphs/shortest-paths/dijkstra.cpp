@@ -1,7 +1,7 @@
 /*
- Author: Antti Laaksonen
- Description: Computes shortest path in $O(V log (V + E) )$, does not allow negative weights
- */
+ *Author:* Antti Laaksonen
+ *Description:* Computes shortest path in $O(V log (V + E) )$, does not allow negative weights
+*/
 struct Dijkstra {
   const ll INF = 1e18;
   int n;
