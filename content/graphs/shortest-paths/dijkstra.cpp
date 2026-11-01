@@ -1,11 +1,11 @@
 /*
  *Author:* Antti Laaksonen
- *Description:* Computes shortest path in $O(V log (V + E) )$, does not allow negative weights
+ *Description:* Computes shortest path in $O(E log (V) )$, does not allow negative weights
+ *Status:* Tested on CSES
 */
 struct dijkstra {
-  vector<ll> distance;
-  dijkstra(int start, vector<vector<pair<int, ll>>> &adj) {
-    distance.assign(adj.size(), LLONG_MAX);
+  const ll INF = 1e18; vector<ll> distance;
+  dijkstra(int start, vector<vector<pair<int, ll>>> &adj) : distance(adj.size(), INF) {
     priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> q;
     distance[start] = 0;
     q.push({0, start});
