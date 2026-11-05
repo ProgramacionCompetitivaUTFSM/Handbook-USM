@@ -20,15 +20,19 @@
   subcategory-spacing-below: none,
 )
 
-#let title-case(string) = {
-  if string.len() <= 3 {
-    return upper(string)
-  }
+// Words in file and folder names that render differently from plain title case.
+#let title-words = (
+  "2d": "2D", "2sat": "2-SAT", "3d": "3D", "and": "and", "bcc": "BCC", "bfs": "BFS",
+  "crt": "CRT", "dfs": "DFS", "fft": "FFT", "fwht": "FWHT", "gcd": "GCD", "hld": "HLD",
+  "hlpp": "HLPP", "kd": "KD", "kmp": "KMP", "lca": "LCA", "lct": "LCT", "lis": "LIS",
+  "mst": "MST", "ntt": "NTT", "rmq": "RMQ", "scc": "SCC", "xor": "XOR",
+)
 
-  return string.replace(
-    regex("[A-Za-z]+('[A-Za-z]+)?"),
-    word => upper(word.text.first()) + lower(word.text.slice(1))
-  )
+#let title-case(string) = {
+  string.split(" ").map(word => {
+    let key = lower(word)
+    if key in title-words { title-words.at(key) } else { upper(word.first()) + word.slice(1) }
+  }).join(" ")
 }
 
 #let content-to-string(content) = {

@@ -13,7 +13,7 @@ content:
     - rolling-hashing.cpp
     - k-rolling-hashing.cpp
     - kmp.cpp
-    - z.cpp
+    - z-function.cpp
     - aho-corasick.cpp
   - advanced:
     - manacher.cpp
@@ -38,7 +38,7 @@ content:
     - disjoint-sparse-table.cpp
     - range-query-constant.cpp
     - segment-tree.cpp
-    - segment-tree2d.cpp
+    - segment-tree-2d.cpp
     - segment-tree-with-walk.cpp
     - segment-tree-lazy.cpp
     - iterative-segment-tree-lazy.cpp
@@ -48,9 +48,9 @@ content:
     - query-tree.cpp
     - sqrt-decomposition.cpp
     - merge-sort-tree.cpp
-    - bit.cpp
-    - bit-with-walk.cpp
-    - bit-2d.cpp
+    - fenwick-tree.cpp
+    - fenwick-tree-with-walk.cpp
+    - fenwick-tree-2d.cpp
     - line-container.cpp
     - kd-tree.cpp
     - mo.cpp
@@ -77,7 +77,7 @@ content:
     - counting-divisors.cpp
     - divisors.cpp
     - discrete-log.cpp
-    - erathostenes-sieve.cpp
+    - eratosthenes-sieve.cpp
     - fast-sieve.cpp
     - euler-phi.cpp
     - euler-phi-sieve.cpp
@@ -123,7 +123,7 @@ content:
   - flow-matching:
     - dinic.cpp
     - hopcroft-karp.cpp
-    - mfed.cpp
+    - flow-with-demands.cpp
     - hungarian.cpp
     - min-cost-flow.cpp
     - general-matching.cpp
@@ -136,7 +136,7 @@ content:
     - lca.cpp
     - lca-rmq.cpp
     - hld.cpp
-    - ahld.cpp
+    - associative-hld.cpp
     - centroid-decomposition.cpp
     - virtual-tree.cpp
   - shortest-paths:
@@ -147,7 +147,7 @@ content:
   - connectivity:
     - dfs.cpp
     - bfs.cpp
-    - tarjan.cpp
+    - tarjan-bcc.cpp
     - tarjan-scc.cpp
     - bridges.cpp
     - articulation-points.cpp
@@ -201,7 +201,7 @@ content:
     - lis.cpp
     - egg-drop.cpp
   - optimization:
-    - d&c.cpp
+    - divide-and-conquer.cpp
     - knuth.cpp
     - convex-hull-trick.cpp
     - li-chao-tree.cpp
