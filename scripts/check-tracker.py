@@ -1,58 +1,71 @@
-import yaml
-import sys
+import argparse
 import os
+import sys
 
-# TODO: show files tracked but not existing
-# TODO: implement auto-fix option
+import yaml
 
-def dfs_files(base_directory):
-    file_list = []
-    for root, dirs, files in os.walk(base_directory):
-        for file in files:
-            file_list.append(os.path.relpath(os.path.join(root, file), base_directory))
-    return file_list
 
-def files_tracked(tracker_dict):
-    path = []
+def files_on_disk(content_dir):
+    return {
+        os.path.relpath(os.path.join(root, name), content_dir)
+        for root, _, names in os.walk(content_dir)
+        for name in names
+    }
+
+
+def files_in_tracker(tracker_path):
+    with open(tracker_path) as f:
+        tree = yaml.safe_load(f)["content"]
+
     files = []
-    def dfs(current_dict):
-        for element in current_dict:
-            if isinstance(element, str):
-                files.append(os.path.join(*path, element))
+
+    def walk(items, path):
+        for item in items:
+            if isinstance(item, str):
+                files.append(os.path.join(*path, item))
             else:
-                for key in element:
-                    path.append(key)
-                    dfs(element[key])
-                    path.pop()
-    dfs(tracker_dict["content"])
+                for folder, children in item.items():
+                    walk(children, path + [folder])
+
+    walk(tree, [])
     return files
 
-def main(tracker, content_directory):
-    with open(tracker, 'r') as file:
-        tracked_files = yaml.safe_load(file)
 
-    existing_files = set(dfs_files(content_directory))
+def main():
+    parser = argparse.ArgumentParser(description="Check that a tracker matches the content directory.")
+    parser.add_argument("tracker")
+    parser.add_argument("content_dir")
+    parser.add_argument(
+        "--subset",
+        action="store_true",
+        help="the tracker lists only some files, so skip the untracked-file check",
+    )
+    args = parser.parse_args()
 
-    tracked_files = files_tracked(tracked_files)
+    on_disk = files_on_disk(args.content_dir)
+    tracked = files_in_tracker(args.tracker)
 
-    for file in tracked_files:
-        existing_files.discard(file)
-    
-    if len(existing_files) == 0:
-        print("All files are tracked.")
-    else:
-        print("Untracked files:")
-        for file in existing_files:
-            print(file)
-        exit(1)
+    missing = sorted(set(tracked) - on_disk)
+    untracked = [] if args.subset else sorted(on_disk - set(tracked))
+    duplicated = sorted({f for f in tracked if tracked.count(f) > 1})
+
+    problems = [
+        ("Tracked but missing from disk", missing),
+        ("On disk but not tracked", untracked),
+        ("Tracked more than once", duplicated),
+    ]
+    failed = False
+    for title, files in problems:
+        if files:
+            failed = True
+            print(f"{args.tracker}: {title}:")
+            for f in files:
+                print(f"  {f}")
+
+    if failed:
+        sys.exit(1)
+    print(f"{args.tracker}: OK ({len(tracked)} files)")
+
 
 if __name__ == "__main__":
-    arguments = sys.argv
-
-    if len(arguments) != 3:
-        print("Usage: python check-tracker.py <tracker-file> <base-directory>")
-        sys.exit(1)
-
-    tracker_file = arguments[1]
-    base_directory = arguments[2]
-    main(tracker_file, base_directory)
+    main()
