@@ -74,6 +74,7 @@ content:
     - mo.cpp
     - mo-rollback.cpp
     - mo-update.cpp
+    - pbs.cpp
   - balanced-trees:
     - ordered-set.cpp
     - treap.cpp
