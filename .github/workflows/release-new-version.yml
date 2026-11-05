@@ -2,48 +2,35 @@ name: release-new-version
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [master]
+
+permissions:
+  contents: write
 
 jobs:
-  compile_and_release:
-
+  release:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Install Typst
-      run: |
-        wget https://github.com/typst/typst/releases/latest/download/typst-x86_64-unknown-linux-musl.tar.xz
-        tar -xf typst-x86_64-unknown-linux-musl.tar.xz
-        sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
-    
-    - name: Compile Documents
-      run: |
-        typst compile main.typ
-        typst compile main-wf.typ
-        ls -al main.pdf main-wf.pdf
+      - uses: typst-community/setup-typst@v4
+        with:
+          typst-version: "0.14.2"
 
-    - name: Generate version tag
-      id: version
-      run: |
-        echo "date=$(date +'%Y.%m.%d')" >> $GITHUB_OUTPUT
-        echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      - name: Compile documents
+        run: |
+          typst compile main.typ
+          typst compile main-wf.typ
 
-    - name: Create Release
-      id: create_release
-      uses: softprops/action-gh-release@v2
-      with:
-        tag_name: ${{ steps.version.outputs.date }}-${{ steps.version.outputs.sha }}
-        name: "Release ${{ steps.version.outputs.date }}-${{ steps.version.outputs.sha }}"
-        generate_release_notes: true
-        files: |
-          main.pdf
-          main-wf.pdf
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate version tag
+        id: version
+        run: echo "tag=$(date +'%Y.%m.%d')-$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
 
-    - name: Upload compiled document as release asset
-      if: steps.create_release.outputs.upload_url != ''
-      run: echo "✅ main.pdf attached to release ${{ steps.create_release.outputs.upload_url }}"
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: Release ${{ steps.version.outputs.tag }}
+          generate_release_notes: true
+          files: |
+            main.pdf
+            main-wf.pdf

@@ -1,0 +1,39 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-tracker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - run: python scripts/check-tracker.py tracker.yaml content
+      - run: python scripts/check-tracker.py tracker-wf.yaml content --subset
+
+  compile:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        document: [main, main-wf]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: typst-community/setup-typst@v4
+        with:
+          typst-version: "0.14.2"
+      - run: typst compile ${{ matrix.document }}.typ
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.document }}
+          path: ${{ matrix.document }}.pdf
