@@ -1,5 +1,7 @@
 /*
- *Description:* Allow us to perform Q binary searches in log(Q) rounds
+ *Description:* Parallel Binary Search (PBS) allows us to perform Q binary searches in log(Q) rounds.
+ - snapshot() Returns the current position in the update history.
+ - rollback(chk) Restores the data structure to the chk state.
  *Status:* Tested on CSES
 */
 struct query {
@@ -15,7 +17,7 @@ struct pbs {
       for (auto q: Q) ans[q.i] = r;
       return;
     }
-    ll mid = (l+r)/2, chk = ds.get_state();
+    ll mid = (l+r)/2, chk = ds.snapshot();
     for (ll i = l; i <= mid; i++) ds.apply(i);
     vector<query> L, R;
     for (auto q: Q)
@@ -25,9 +27,7 @@ struct pbs {
     solve(l, mid, L);
   }
   template<typename... Args>
-  pbs(ll l, ll r, vector<query> &Q, Args... args) {
-    ds = T2(args...);
-    ans.resize(Q.size());
+  pbs(ll l, ll r, vector<query> &Q, Args... args): ds(args...), ans(Q.size()) {
     solve(l, r, Q);
   }
 };
