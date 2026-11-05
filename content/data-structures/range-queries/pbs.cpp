@@ -8,7 +8,7 @@ struct query {
   ll l, r, i;
 };
 template<class T, class T2>
-struct pbs {
+struct PBS {
   vector<T> ans;
   T2 ds;
   void solve(ll l, ll r, vector<query>& Q) {
@@ -27,7 +27,7 @@ struct pbs {
     solve(l, mid, L);
   }
   template<typename... Args>
-  pbs(ll l, ll r, vector<query> &Q, Args... args): ds(args...), ans(Q.size()) {
+  PBS(ll l, ll r, vector<query> &Q, Args... args): ds(args...), ans(Q.size()) {
     solve(l, r, Q);
   }
 };
