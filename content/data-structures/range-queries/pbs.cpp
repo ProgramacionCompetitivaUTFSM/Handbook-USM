@@ -1,7 +1,7 @@
 /*
  *Description:* Parallel Binary Search (PBS) allows us to perform Q binary searches in $log(Q)$ rounds.
- - snapshot() Returns the current position in the update history.
- - rollback(chk) Restores the data structure to the chk state.
+ - `snapshot()` Returns the current position in the update history.
+ - `rollback(chk)` Restores the data structure to the chk state.
  *Status:* Tested on CSES
 */
 struct query {
