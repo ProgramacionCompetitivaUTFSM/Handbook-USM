@@ -74,6 +74,8 @@ content:
     - mo.cpp
     - mo-rollback.cpp
     - mo-update.cpp
+    - pbs.cpp
+    pbs<ll, union_find_rb> bs(0, m+1, Q, n, m);
   - balanced-trees:
     - ordered-set.cpp
     - treap.cpp
